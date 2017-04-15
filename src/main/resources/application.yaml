@@ -1,0 +1,16 @@
+# DataSource settings: set here your own configurations for the database
+# connection. In this example we have "netgloo_blog" as database name and
+# "root" as username and password.
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pinetdev?createDatabaseIfNotExist=true
+    username: localuser
+    password: Test1234
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      dialect: org.hibernate.dialect.MySQL5Dialect
