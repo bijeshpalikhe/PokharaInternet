@@ -23,3 +23,79 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
+  - changeSet:
+      id: 2
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: PROVEEDORBIENSERVICIO
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: person
+  - changeSet:
+      id: 3
+      author: bpalikhe
+      preConditions:
+              - onFail: MARK_RAN
+              - tableExists:
+                  tableName: person
+      changes:
+      - dropTable:
+          cascadeConstraints: true
+          tableName: person
+  - changeSet:
+      id: 4
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+          - tableExists:
+              tableName: user_detail
+      changes:
+        - createTable:
+            tableName: user_detail
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: data
+                  type: blob
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dob
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: contact_no
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_verified
+                  type: ENUM('TRUE','FALSE')
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_verified_by
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: blob
+                  constraints:
+                    nullable: false
