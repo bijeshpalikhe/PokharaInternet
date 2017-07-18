@@ -1,11 +1,10 @@
 package com.pinet.app.service;
 
-import com.pinet.app.dao.UserDetailEntity;
-import com.pinet.app.repository.UserDetailRepository;
+import com.pinet.app.entities.ServiceTypeEntity;
+import com.pinet.app.repository.ServiceTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.Calendar;
 
 /**
@@ -15,22 +14,11 @@ import java.util.Calendar;
 public class TestService {
 
     @Autowired
-    UserDetailRepository userDetailRepository;
+    ServiceTypeRepository serviceTypeRepository;
 
-    public String saveTestData(){
-        UserDetailEntity userDetailEntity = new UserDetailEntity();
-        userDetailEntity.setName("test");
-        userDetailEntity.setContactNo("123");
-        userDetailEntity.setData("data");
-        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        userDetailEntity.setDob(date);
-        userDetailEntity.setEmail("email");
-        userDetailEntity.setIdVerified(Boolean.TRUE);
-        userDetailEntity.setIdVerifiedBy(1);
-
-
-        userDetailRepository.save(userDetailEntity);
-
+    public String saveTestData() {
+        ServiceTypeEntity test = new ServiceTypeEntity(1, "test", "Test");
+        serviceTypeRepository.save(test);
         return "Success";
     }
 }
