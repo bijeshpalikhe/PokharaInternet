@@ -1,4 +1,4 @@
-package com.pinet.app.dao;
+package com.pinet.app.entities;
 
 
 import javax.persistence.*;

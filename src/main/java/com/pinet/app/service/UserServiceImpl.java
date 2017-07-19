@@ -1,6 +1,6 @@
 package com.pinet.app.service;
 
-import com.pinet.app.dao.UserDataEntity;
+import com.pinet.app.entities.UserDataEntity;
 import com.pinet.app.repository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

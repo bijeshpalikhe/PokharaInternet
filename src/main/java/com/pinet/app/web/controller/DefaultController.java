@@ -1,7 +1,8 @@
 package com.pinet.app.web.controller;
 
-import com.pinet.app.dao.UserDataEntity;
+
 import com.pinet.app.service.*;
+import com.pinet.app.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
 package com.pinet.app.repository;
 
-import com.pinet.app.dao.UserDetailEntity;
+import com.pinet.app.entities.UserDetailEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
