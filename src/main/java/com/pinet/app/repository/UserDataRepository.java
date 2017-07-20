@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * Created by ashmeet on 7/15/17.
  */
 @Repository
-public interface UserDataRepository extends JpaRepository<UserDataEntity,Integer > {
+public interface UserDataRepository extends JpaRepository<User,Integer > {
     UserDataEntity findByName(String name);
 }

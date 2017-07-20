@@ -19,10 +19,14 @@ public class ServiceTypeService {
     ServiceTypeRepository serviceTypeRepository;
 
     public ServiceReponse saveServiceType(String servicedetail, String bandwidth) {
+
         ServiceTypeEntity serviceTypeEntityToSave = new ServiceTypeEntity();
+
         serviceTypeEntityToSave.setService(servicedetail);
         serviceTypeEntityToSave.setBandwidth(bandwidth);
+
         ServiceTypeEntity savedData = serviceTypeRepository.save(serviceTypeEntityToSave);
+
         ServiceReponse response = new ServiceReponse(savedData.getId(), savedData.getService(), savedData.getBandwidth());
         return response;
     }
