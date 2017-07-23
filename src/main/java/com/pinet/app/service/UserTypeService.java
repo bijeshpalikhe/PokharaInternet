@@ -81,19 +81,24 @@ public class UserTypeService implements UserTypeServiceInteface {
 
     @Override
     public UserDataResponse deleteUserById(Integer userId) {
-        UserDataEntity userDataEntity=new UserDataEntity();
+        UserDataEntity user=new UserDataEntity();
 
 
-        userDataEntity = userDataRepository.findOne(userId);
+        user = userDataRepository.findOne(userId);
 
-        UserDataEntity savedUser=userDataRepository.save(userDataEntity);
+//        UserDataEntity savedUser=userDataRepository.save(userDataEntity);
 
-//       UserDataEntity deletedUser= userDataRepository.delete(savedUser);
+        userDataRepository.delete(user);
 
+        System.out.println("UserDeleted");
 
-
-//        UserDataResponse response = new UserDataResponse(deletedUser.getName(), deletedUser.getUsername(), deletedUser.getGender(), deletedUser.getDob(), deletedUser.getNationality(), deletedUser.getCitizenNo(), deletedUser.getPassportNo(), deletedUser.getFatherName(), deletedUser.getEmail(), deletedUser.getAddress(), deletedUser.getMobileNo(), deletedUser.getPhoneNo(), deletedUser.getOccupancyType(), deletedUser.getServiceCode(), deletedUser.getSubscriptionType(), deletedUser.getInstallationAddress());
+        UserDataResponse response = new UserDataResponse(user.getName(), user.getUsername(), user.getGender(), user.getDob(), user.getNationality(), user.getCitizenNo(), user.getPassportNo(), user.getFatherName(), user.getEmail(), user.getAddress(), user.getMobileNo(), user.getPhoneNo(), user.getOccupancyType(), user.getServiceCode(), user.getSubscriptionType(), user.getInstallationAddress());
 //
+        return response;
+    }
+
+    @Override
+    public UserDataResponse updateUserById(Integer userId) {
         return null;
     }
 

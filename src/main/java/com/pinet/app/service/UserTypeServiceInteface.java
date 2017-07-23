@@ -16,5 +16,6 @@ public interface UserTypeServiceInteface {
     UserDataResponse getUserByUserName(String username);
     UserDataResponse getUserById(Integer userId);
     UserDataResponse deleteUserById(Integer userId);
+    UserDataResponse updateUserById(Integer userId);
 
 }
