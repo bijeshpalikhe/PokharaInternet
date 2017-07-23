@@ -3,15 +3,14 @@ package com.pinet.app.web.controller;
 import com.pinet.app.entities.UserDataEntity;
 import com.pinet.app.model.ServiceReponse;
 import com.pinet.app.model.UserDataResponse;
+import com.pinet.app.model.UserDataVO;
 import com.pinet.app.service.ServiceTypeService;
 import com.pinet.app.service.UserTypeService;
+import com.pinet.app.service.UserTypeServiceInteface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -22,7 +21,7 @@ import java.util.Date;
 @RequestMapping(value = "/userdata")
 public class UserTypeController {
     @Autowired
-    UserTypeService userTypeService;
+    UserTypeServiceInteface userTypeService;
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/getusers")
     public ResponseEntity getUsers() {
@@ -78,6 +77,19 @@ public class UserTypeController {
         try {
             UserDataResponse response = userTypeService.saveUser(name, userName, gender, dob, nationality, citizenNo, passportNo, fatherName, email, address, mobileNo, phoneNo, occupationType, serviceCode, subscriptionType, installationAddress);
             return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.noContent().build();
+        }
+
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json", value = "/saveuser")
+    public ResponseEntity saveUserDataNew(@RequestBody UserDataVO userDataVO) {
+        try {
+            return ResponseEntity.ok(userDataVO);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -7,17 +7,17 @@ import java.util.Date;
  */
 public class UserDataResponse {
 
-   private Integer userId;
+    private Integer userId;
     private String name;
     private String username;
     private Character gender;
     private Date dob;
     private String nationality;
-   private String citizenNo;
+    private String citizenNo;
     private String passportNo;
     private String fatherName;
     private String email;
-   private String address;
+    private String address;
     private String mobileNo;
     private String phoneNo;
     private String occupationType;
@@ -26,11 +26,12 @@ public class UserDataResponse {
     private String installationAddress;
 
 
-    public UserDataResponse(){
+    public UserDataResponse() {
 
     }
+
     public UserDataResponse(Integer userId, String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
-        this.userId=userId;
+        this.userId = userId;
         this.name = name;
         this.username = username;
         this.gender = gender;
@@ -48,6 +49,7 @@ public class UserDataResponse {
         this.subscriptionType = subscriptionType;
         this.installationAddress = installationAddress;
     }
+
     public UserDataResponse(String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
         this.name = name;
         this.username = username;
@@ -66,6 +68,7 @@ public class UserDataResponse {
         this.subscriptionType = subscriptionType;
         this.installationAddress = installationAddress;
     }
+
     public Integer getUserId() {
         return userId;
     }
