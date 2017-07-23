@@ -22,25 +22,24 @@ public class UserTypeService implements UserTypeServiceInteface {
     UserDataRepository userDataRepository;
 
     @Override
-    public UserDataResponse saveUser(String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
-        UserDataEntity userDataEntity=new UserDataEntity();
+    public UserDataResponse saveUser(UserDataEntity userDataEntity){
 
-        userDataEntity.setName(name);
-        userDataEntity.setUsername(username);
-        userDataEntity.setDob(new Date());
-        userDataEntity.setGender(gender);
-        userDataEntity.setNationality(nationality);
-        userDataEntity.setCitizenNo(citizenNo);
-        userDataEntity.setPassportNo(passportNo);
-        userDataEntity.setFatherName(fatherName);
-        userDataEntity.setEmail(email);
-        userDataEntity.setAddress(address);
-        userDataEntity.setMobileNo(mobileNo);
-        userDataEntity.setPhoneNo(phoneNo);
-        userDataEntity.setOccupancyType(occupationType);
-        userDataEntity.setServiceCode(serviceCode);
-        userDataEntity.setSubscriptionType(subscriptionType);
-        userDataEntity.setInstallationAddress(installationAddress);
+//        userDataEntity.setName(name);
+//        userDataEntity.setUsername(username);
+//        userDataEntity.setDob(new Date());
+//        userDataEntity.setGender(gender);
+//        userDataEntity.setNationality(nationality);
+//        userDataEntity.setCitizenNo(citizenNo);
+//        userDataEntity.setPassportNo(passportNo);
+//        userDataEntity.setFatherName(fatherName);
+//        userDataEntity.setEmail(email);
+//        userDataEntity.setAddress(address);
+//        userDataEntity.setMobileNo(mobileNo);
+//        userDataEntity.setPhoneNo(phoneNo);
+//        userDataEntity.setOccupancyType(occupationType);
+//        userDataEntity.setServiceCode(serviceCode);
+//        userDataEntity.setSubscriptionType(subscriptionType);
+//        userDataEntity.setInstallationAddress(installationAddress);
 
         UserDataEntity savedUser=userDataRepository.save(userDataEntity);
         UserDataResponse response = new UserDataResponse(savedUser.getName(), savedUser.getUsername(), savedUser.getGender(), savedUser.getDob(), savedUser.getNationality(), savedUser.getCitizenNo(), savedUser.getPassportNo(), savedUser.getFatherName(), savedUser.getEmail(), savedUser.getAddress(), savedUser.getMobileNo(), savedUser.getPhoneNo(), savedUser.getOccupancyType(), savedUser.getServiceCode(), savedUser.getSubscriptionType(), savedUser.getInstallationAddress());
@@ -98,8 +97,30 @@ public class UserTypeService implements UserTypeServiceInteface {
     }
 
     @Override
-    public UserDataResponse updateUserById(Integer userId) {
-        return null;
+    public UserDataResponse updateUserById(UserDataEntity userDataEntity) {
+        UserDataEntity user = new UserDataEntity();
+        user = userDataRepository.findOne(userDataEntity.getUserId());
+
+        user.setName(userDataEntity.getName());
+        user.setUsername(userDataEntity.getUsername());
+        user.setDob(userDataEntity.getDob());
+        user.setGender(userDataEntity.getGender());
+        user.setNationality(userDataEntity.getNationality());
+        user.setCitizenNo(userDataEntity.getCitizenNo());
+        user.setPassportNo(userDataEntity.getPassportNo());
+        user.setFatherName(userDataEntity.getFatherName());
+        user.setEmail(userDataEntity.getEmail());
+        user.setAddress(userDataEntity.getAddress());
+        user.setMobileNo(userDataEntity.getMobileNo());
+        user.setPhoneNo(userDataEntity.getPhoneNo());
+        user.setOccupancyType(userDataEntity.getOccupancyType());
+        user.setServiceCode(userDataEntity.getServiceCode());
+        user.setSubscriptionType(userDataEntity.getSubscriptionType());
+        user.setInstallationAddress(userDataEntity.getInstallationAddress());
+
+        UserDataEntity savedUser=userDataRepository.save(user);
+        UserDataResponse response = new UserDataResponse(savedUser.getName(), savedUser.getUsername(), savedUser.getGender(), savedUser.getDob(), savedUser.getNationality(), savedUser.getCitizenNo(), savedUser.getPassportNo(), savedUser.getFatherName(), savedUser.getEmail(), savedUser.getAddress(), savedUser.getMobileNo(), savedUser.getPhoneNo(), savedUser.getOccupancyType(), savedUser.getServiceCode(), savedUser.getSubscriptionType(), savedUser.getInstallationAddress());
+        return response;
     }
 
 

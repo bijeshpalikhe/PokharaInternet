@@ -64,19 +64,14 @@ public class UserTypeController {
 
 
     }
-    //(String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress)
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json", value = "insert/{name}/{userName}/{gender}/{dob}/{nationality}/{citizenNo}/{passportNo}/" +
-            "{fatherName}/{email}/{address}/{mobileNo}/{phoneNo}/{subscriptionType}/{installationAddress}")
-    public ResponseEntity saveUserData(@PathVariable("name") String name, @PathVariable("userName") String userName, @PathVariable("gender") Character gender,
-                                       @PathVariable("dob") Date dob, @PathVariable("nationality") String nationality, @PathVariable("citizenNo") String citizenNo,
-                                       @PathVariable("passportNo") String passportNo, @PathVariable("fatherName") String fatherName, @PathVariable("email") String email,
-                                       @PathVariable("address") String address, @PathVariable("mobileNo") String mobileNo, @PathVariable("phoneNo") String phoneNo,
-                                       @PathVariable("occupationType") String occupationType, @PathVariable("serviceCode") String serviceCode,
-                                       @PathVariable("subscriptionType") String subscriptionType, @PathVariable("installationAddress") String installationAddress) {
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json", value = "/saveuser")
+    public ResponseEntity saveUserDataNew(@RequestBody UserDataEntity userDataEntity) {
         try {
-            UserDataResponse response = userTypeService.saveUser(name, userName, gender, dob, nationality, citizenNo, passportNo, fatherName, email, address, mobileNo, phoneNo, occupationType, serviceCode, subscriptionType, installationAddress);
-            return ResponseEntity.ok(response);
+          //  System.out.println(userDataEntity.toString());
+
+            return ResponseEntity.ok(userTypeService.saveUser(userDataEntity));
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,12 +79,13 @@ public class UserTypeController {
         }
 
     }
-
-
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json", value = "/saveuser")
-    public ResponseEntity saveUserDataNew(@RequestBody UserDataVO userDataVO) {
+    @RequestMapping(method = RequestMethod.PUT, produces = "application/json", value = "/updateuser")
+    public ResponseEntity updateUserData(@RequestBody UserDataEntity userDataEntity) {
         try {
-            return ResponseEntity.ok(userDataVO);
+            //  System.out.println(userDataEntity.toString());
+
+            return ResponseEntity.ok(userTypeService.updateUserById(userDataEntity));
+
 
         } catch (Exception e) {
             e.printStackTrace();

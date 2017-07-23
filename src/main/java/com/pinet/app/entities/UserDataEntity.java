@@ -85,6 +85,29 @@ public class UserDataEntity {
         this.installationAddress = installationAddress;
     }
 
+    @Override
+    public String toString() {
+        return "UserDataEntity{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", gender=" + gender +
+                ", dob=" + dob +
+                ", nationality='" + nationality + '\'' +
+                ", citizenNo='" + citizenNo + '\'' +
+                ", passportNo='" + passportNo + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", occupationType='" + occupationType + '\'' +
+                ", serviceCode='" + serviceCode + '\'' +
+                ", subscriptionType='" + subscriptionType + '\'' +
+                ", installationAddress='" + installationAddress + '\'' +
+                '}';
+    }
+
     public Integer getUserId() {
         return userId;
     }
