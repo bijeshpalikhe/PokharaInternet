@@ -1,5 +1,7 @@
 package com.pinet.app.entities;
 
+import com.pinet.app.model.UserDataVO;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -62,8 +64,13 @@ public class UserDataEntity {
     @Column(name="installation_address")
     private String installationAddress;
 
-    public UserDataEntity(){
+    public UserDataEntity(UserDataVO userDataVO){
+        this.name = userDataVO.getName();
+        this.address = userDataVO.getAddress();
 
+    }
+
+    public UserDataEntity() {
     }
 
     public UserDataEntity(String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {

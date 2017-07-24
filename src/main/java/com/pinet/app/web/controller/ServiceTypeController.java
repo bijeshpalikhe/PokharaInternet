@@ -34,7 +34,6 @@ public class ServiceTypeController {
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity getServices() {
         try {
-
             return ResponseEntity.ok(serviceTypeService.getServiceType());
 
         } catch (Exception e) {
