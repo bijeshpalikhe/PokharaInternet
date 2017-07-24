@@ -71,9 +71,8 @@ public class UserTypeService implements UserTypeServiceInteface {
 
         userDataEntity = userDataRepository.findOne(userId);
 
-        UserDataResponse response = new UserDataResponse(savedUser.getUserId(), savedUser.getUserId(), savedUser.getName(), savedUser.getUsername(), savedUser.getGender(), savedUser.getDob(), savedUser.getNationality(), savedUser.getCitizenNo(), savedUser.getPassportNo(), savedUser.getFatherName(), savedUser.getEmail(), savedUser.getAddress(), savedUser.getMobileNo(), savedUser.getPhoneNo(), savedUser.getOccupancyType(), savedUser.getServiceCode(), savedUser.getSubscriptionType(), savedUser.getInstallationAddress());
 
-        return response;
+        return null;
     }
 
     @Override
