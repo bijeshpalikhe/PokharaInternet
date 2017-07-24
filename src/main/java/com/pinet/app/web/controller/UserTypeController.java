@@ -21,7 +21,7 @@ import java.util.Date;
 @RequestMapping(value = "/userdata")
 public class UserTypeController {
     @Autowired
-    UserTypeServiceInteface userTypeService;
+    UserTypeService userTypeService;
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/getusers")
     public ResponseEntity getUsers() {

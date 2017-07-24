@@ -71,9 +71,7 @@ public class UserTypeService implements UserTypeServiceInteface {
 
         userDataEntity = userDataRepository.findOne(userId);
 
-        UserDataEntity savedUser=userDataRepository.save(userDataEntity);
-
-        UserDataResponse response = new UserDataResponse(savedUser.getUserId(), savedUser.getName(), savedUser.getUsername(), savedUser.getGender(), savedUser.getDob(), savedUser.getNationality(), savedUser.getCitizenNo(), savedUser.getPassportNo(), savedUser.getFatherName(), savedUser.getEmail(), savedUser.getAddress(), savedUser.getMobileNo(), savedUser.getPhoneNo(), savedUser.getOccupancyType(), savedUser.getServiceCode(), savedUser.getSubscriptionType(), savedUser.getInstallationAddress());
+        UserDataResponse response = new UserDataResponse(savedUser.getUserId(), savedUser.getUserId(), savedUser.getName(), savedUser.getUsername(), savedUser.getGender(), savedUser.getDob(), savedUser.getNationality(), savedUser.getCitizenNo(), savedUser.getPassportNo(), savedUser.getFatherName(), savedUser.getEmail(), savedUser.getAddress(), savedUser.getMobileNo(), savedUser.getPhoneNo(), savedUser.getOccupancyType(), savedUser.getServiceCode(), savedUser.getSubscriptionType(), savedUser.getInstallationAddress());
 
         return response;
     }
