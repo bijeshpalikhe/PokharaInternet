@@ -18,33 +18,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "")
 public class DefaultController {
-    @Autowired
-    UserServiceImpl userService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/insert")
-    public String insertData() {
-        return  userService.insertUser();
-    }
-    @RequestMapping(method = RequestMethod.GET, value = "/update")
-    public String updateData() {
-        return  (userService.updateUser(2));
-    }
-    @RequestMapping(method = RequestMethod.GET, value = "/view")
-    public String readData() {
-
-
-        return  (userService.readSingleUser(1));
-    }
-    @RequestMapping(method = RequestMethod.GET, value = "/users")
-    public List<UserDataEntity> readAllData() {
-
-
-        return  (userService.findAllUsers());
-    }
-    @RequestMapping(method = RequestMethod.GET, value = "/delete")
-    public String deleteUser() {
-
-
-        return  (userService.deleteUser(3));
+    @RequestMapping()
+    public String testMessage() {
+        return "Greetings from Pinet";
     }
 }

@@ -1,18 +1,11 @@
 package com.pinet.app.web.controller;
 
 import com.pinet.app.entities.UserDataEntity;
-import com.pinet.app.model.ServiceReponse;
-import com.pinet.app.model.UserDataResponse;
 import com.pinet.app.model.UserDataVO;
-import com.pinet.app.service.ServiceTypeService;
 import com.pinet.app.service.UserTypeService;
-import com.pinet.app.service.UserTypeServiceInteface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 /**
  * Created by ashmeet on 7/19/17.
@@ -21,13 +14,13 @@ import java.util.Date;
 @RequestMapping(value = "/userdata")
 public class UserTypeController {
     @Autowired
-    UserTypeServiceInteface userTypeService;
+    UserTypeService userTypeService;
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/getusers")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/users")
     public ResponseEntity getUsers() {
         try {
 
-            return ResponseEntity.ok(userTypeService.getUsers());
+            return ResponseEntity.ok(userTypeService.getAllUsers());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,7 +30,7 @@ public class UserTypeController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/searchbyid/{userId}")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity getUserById(@PathVariable("userId") Integer userId) {
         try {
 
@@ -51,7 +44,7 @@ public class UserTypeController {
 
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, produces = "application/json", value = "/deletebyid/{userId}")
+    @RequestMapping(method = RequestMethod.DELETE, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity deleteUserById(@PathVariable("userId") Integer userId) {
         try {
 
@@ -65,12 +58,11 @@ public class UserTypeController {
 
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json", value = "/saveuser")
-    public ResponseEntity saveUserDataNew(@RequestBody UserDataEntity userDataEntity) {
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json", value = "/user")
+    public ResponseEntity saveUserDataNew(@RequestBody UserDataVO userDataVO) {
         try {
-          //  System.out.println(userDataEntity.toString());
 
-            return ResponseEntity.ok(userTypeService.saveUser(userDataEntity));
+            return ResponseEntity.ok(userTypeService.saveUser(userDataVO));
 
 
         } catch (Exception e) {
