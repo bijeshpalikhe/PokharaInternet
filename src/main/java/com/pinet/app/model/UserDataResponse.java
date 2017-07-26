@@ -50,24 +50,6 @@ public class UserDataResponse {
         this.installationAddress = installationAddress;
     }
 
-    public UserDataResponse(String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
-        this.name = name;
-        this.username = username;
-        this.gender = gender;
-        this.dob = dob;
-        this.nationality = nationality;
-        this.citizenNo = citizenNo;
-        this.passportNo = passportNo;
-        this.fatherName = fatherName;
-        this.email = email;
-        this.address = address;
-        this.mobileNo = mobileNo;
-        this.phoneNo = phoneNo;
-        this.occupationType = occupationType;
-        this.serviceCode = serviceCode;
-        this.subscriptionType = subscriptionType;
-        this.installationAddress = installationAddress;
-    }
 
     public Integer getUserId() {
         return userId;
