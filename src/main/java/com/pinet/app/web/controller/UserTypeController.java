@@ -34,7 +34,7 @@ public class UserTypeController {
     public ResponseEntity getUserById(@PathVariable("userId") Integer userId) {
         try {
 
-            return ResponseEntity.ok(userTypeService.getUserById(userId));
+            return ResponseEntity.ok(userTypeService.readUserById(userId));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,8 +76,8 @@ public class UserTypeController {
         try {
             //  System.out.println(userDataEntity.toString());
 
-            return ResponseEntity.ok(userTypeService.updateUserById(userDataEntity));
-
+     //       return ResponseEntity.ok(userTypeService.updateUserById(userDataEntity));
+return null;
 
         } catch (Exception e) {
             e.printStackTrace();

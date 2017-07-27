@@ -1,5 +1,7 @@
 package com.pinet.app.model;
 
+import com.pinet.app.entities.UserDataEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import java.util.Date;
  */
 public class UserDataVO {
 
+    private Integer userId;
     private String name;
     private String username;
     private Character gender;
@@ -27,6 +30,26 @@ public class UserDataVO {
     private String serviceCode;
     private String subscriptionType;
     private String installationAddress;
+
+    public UserDataVO(UserDataEntity userDataEntity){
+        this.name = userDataEntity.getName();
+        this.address = userDataEntity.getAddress();
+        this.gender = userDataEntity.getGender();
+        this.dob = userDataEntity.getDob();
+        this.nationality = userDataEntity.getNationality();
+        this.citizenNo = userDataEntity.getCitizenNo();
+        this.passportNo = userDataEntity.getPassportNo();
+        this.fatherName = userDataEntity.getFatherName();
+        this.email = userDataEntity.getEmail();
+        this.address = userDataEntity.getAddress();
+        this.mobileNo = userDataEntity.getMobileNo();
+        this.phoneNo = userDataEntity.getPhoneNo();
+        this.occupationType = userDataEntity.getOccupancyType();
+        this.serviceCode = userDataEntity.getServiceCode();
+        this.subscriptionType = userDataEntity.getSubscriptionType();
+        this.installationAddress = userDataEntity.getInstallationAddress();
+    }
+
 
     public UserDataVO(String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
         this.name = name;
@@ -48,6 +71,14 @@ public class UserDataVO {
     }
 
     public UserDataVO() {
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getName() {

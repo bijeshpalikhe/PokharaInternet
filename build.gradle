@@ -18,6 +18,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'liquibase'
+apply plugin: 'groovy'
 
 
 version = '0.0.1-SNAPSHOT'
@@ -25,6 +26,7 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 
@@ -33,8 +35,15 @@ dependencies {
     compile('org.liquibase:liquibase-core')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+    compile (
+            'org.slf4j:slf4j-api:1.7.12'
+    )
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+    testCompile (
+            'org.codehaus.groovy:groovy-all:2.4.6'
+            ,'org.spockframework:spock-core:1.0-groovy-2.4'
+    )
 
 }
 task(runDebug, dependsOn: 'classes', type: JavaExec) {
