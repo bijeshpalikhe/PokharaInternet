@@ -1,29 +1,28 @@
 package com.pinet.app.web.controller
 
+import org.junit.Test
+
 /**
  * Created by bijesh on 7/24/2017.
  */
-class DefaultControllerTest extends spock.lang.Specification1{
-//    def controller = new DefaultController()
-//
-//    def "message should not be null"() {
-//        when:
-//        String message = controller.testMessage()
-//        then:
-//        message != null
-//
-//    }
-//    def "message should exactly the same"() {
-//        when:
-//        String message = controller.testMessage()
-//        println "Your message is "+message
-//        then:
-//        message.equalsIgnoreCase("Greetings from Pinett")
-//
-//    }
-//
-//    def "Checking data availability"(){
-//
-//    }
+class DefaultControllerTest extends spock.lang.Specification{
+    def DefaultController controller = new DefaultController()
+
+    @Test
+    def "message should not be null"() {
+        when:
+        String message = controller.testMessage()
+        then:
+        message != null;
+
+    }
+    @Test
+    def "message should exactly the same"() {
+        when:
+        String message = controller.testMessage()
+        then:
+        message.equalsIgnoreCase("test message");
+
+    }
 }
 

@@ -18,7 +18,7 @@ public class ServiceTypeEntity implements Serializable {
     private Integer id;
 
     @Column(name = "service")
-    private String service; //immutable
+    private String service; //immutable\
 
     @Column(name = "bandwidth")
     private String bandwidth;

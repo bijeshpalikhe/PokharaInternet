@@ -71,13 +71,18 @@ public class UserTypeController {
         }
 
     }
-    @RequestMapping(method = RequestMethod.PUT, produces = "application/json", value = "/updateuser")
-    public ResponseEntity updateUserData(@RequestBody UserDataEntity userDataEntity) {
+    @RequestMapping(method = RequestMethod.PUT, produces = "application/json", value = "/updateuser/{userId}")
+    public ResponseEntity updateUserData(@RequestBody UserDataVO userDataVO,@PathVariable("userId") Integer userId) {
         try {
             //  System.out.println(userDataEntity.toString());
 
+<<<<<<< HEAD
      //       return ResponseEntity.ok(userTypeService.updateUserById(userDataEntity));
 return null;
+=======
+            return ResponseEntity.ok(userTypeService.updateUserById(userDataVO, userId));
+
+>>>>>>> a792fd2ee53988571a8174afa0d12ccd88400e68
 
         } catch (Exception e) {
             e.printStackTrace();
