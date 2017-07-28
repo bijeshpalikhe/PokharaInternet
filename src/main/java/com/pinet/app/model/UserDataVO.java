@@ -13,7 +13,6 @@ import java.util.Date;
  */
 public class UserDataVO {
 
-    private Integer userId;
     private String name;
     private String username;
     private Character gender;
@@ -30,14 +29,11 @@ public class UserDataVO {
     private String serviceCode;
     private String subscriptionType;
     private String installationAddress;
-    private Date lastModifiedDate;
-    private String createdBy;
-    private String lastModifiedBy;
 
 
     public UserDataVO(UserDataEntity userDataEntity) {
         this.name = userDataEntity.getName();
-        this.username=userDataEntity.getUsername();
+        this.username = userDataEntity.getUsername();
         this.address = userDataEntity.getAddress();
         this.gender = userDataEntity.getGender();
         this.dob = userDataEntity.getDob();
@@ -49,47 +45,33 @@ public class UserDataVO {
         this.address = userDataEntity.getAddress();
         this.mobileNo = userDataEntity.getMobileNo();
         this.phoneNo = userDataEntity.getPhoneNo();
-        this.occupationType = userDataEntity.getOccupancyType();
+        this.occupationType = userDataEntity.getOccupationType();
         this.serviceCode = userDataEntity.getServiceCode();
         this.subscriptionType = userDataEntity.getSubscriptionType();
         this.installationAddress = userDataEntity.getInstallationAddress();
-        this.lastModifiedDate = userDataEntity.getLastModifiedDate();
-        this.createdBy=userDataEntity.getCreatedBy();
-        this.lastModifiedBy=userDataEntity.getLastModifiedBy();
+
     }
 
-
-//    public UserDataVO(String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address,
-//                      String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress, Date lastModifiedDate,String createdBy) {
-//        this.name = name;
-//        this.username = username;
-//        this.gender = gender;
-//        this.dob = dob;
-//        this.nationality = nationality;
-//        this.citizenNo = citizenNo;
-//        this.passportNo = passportNo;
-//        this.fatherName = fatherName;
-//        this.email = email;
-//        this.address = address;
-//        this.mobileNo = mobileNo;
-//        this.phoneNo = phoneNo;
-//        this.occupationType = occupationType;
-//        this.serviceCode = serviceCode;
-//        this.subscriptionType = subscriptionType;
-//        this.installationAddress = installationAddress;
-//        this.lastModifiedDate =lastModifiedDate;
-//        this.createdBy=createdBy;
-//    }
+    public UserDataVO(String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress, Date lastModifiedDate, String createdBy, String lastModifiedBy) {
+        this.name = name;
+        this.username = username;
+        this.gender = gender;
+        this.dob = dob;
+        this.nationality = nationality;
+        this.citizenNo = citizenNo;
+        this.passportNo = passportNo;
+        this.fatherName = fatherName;
+        this.email = email;
+        this.address = address;
+        this.mobileNo = mobileNo;
+        this.phoneNo = phoneNo;
+        this.occupationType = occupationType;
+        this.serviceCode = serviceCode;
+        this.subscriptionType = subscriptionType;
+        this.installationAddress = installationAddress;
+    }
 
     public UserDataVO() {
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getName() {
@@ -220,27 +202,5 @@ public class UserDataVO {
         this.installationAddress = installationAddress;
     }
 
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
 
 }

@@ -289,7 +289,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: SERVICE_CODES
-                  type: int
+                  type: text
                   autoIncrement: false
                   constraints:
                     primaryKey: false
@@ -317,7 +317,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: LAST_MODIFIED_DATE
-                  type: date
+                  type: timestamp
                   autoIncrement: false
                   constraints:
                     primaryKey: false
@@ -329,10 +329,10 @@ databaseChangeLog:
                   constraints:
                     primaryKey: false
                     nullable: false
-#              - column:
-#                  name: CREATED_DATE
-#                  type: timestamp
-#                  autoIncrement: false
-#                  constraints:
-#                    primaryKey: false
-#                    nullable: false
+              - column:
+                  name: CREATED_DATE
+                  type: timestamp
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false

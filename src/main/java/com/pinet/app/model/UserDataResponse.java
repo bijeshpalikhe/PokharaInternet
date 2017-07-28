@@ -1,5 +1,17 @@
 package com.pinet.app.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pinet.app.config.JsonDateSerializer;
+import com.pinet.app.entities.UserDataEntity;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.format.datetime.DateFormatter;
+
+import javax.persistence.Column;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -24,13 +36,17 @@ public class UserDataResponse {
     private String serviceCode;
     private String subscriptionType;
     private String installationAddress;
+    private String createdBy;
+    private Date createdDate;
+    private String lastModifiedBy;
+    private Date lastModifiedDate;
 
-
-    public UserDataResponse() {
-
-    }
-
-    public UserDataResponse(Integer userId, String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
+    public UserDataResponse(Integer userId, String name, String username, Character gender, String dob,
+                            String nationality, String citizenNo, String passportNo, String fatherName,
+                            String email, String address, String mobileNo, String phoneNo,
+                            String occupationType, String serviceCode, String subscriptionType,
+                            String installationAddress, String createdBy, Date createdDate,
+                            String lastModifiedBy,Date lastModifiedDate) {
         this.userId = userId;
         this.name = name;
         this.username = username;
@@ -48,10 +64,44 @@ public class UserDataResponse {
         this.serviceCode = serviceCode;
         this.subscriptionType = subscriptionType;
         this.installationAddress = installationAddress;
+        this.createdBy = createdBy;
+        this.createdDate = createdDate;
+        this.lastModifiedBy = lastModifiedBy;
+        this.lastModifiedDate = lastModifiedDate;
     }
 
 
+
+    public UserDataResponse(UserDataEntity userDataEntity) {
+        this.userId = userDataEntity.getUserId();
+        this.name = userDataEntity.getName();
+        this.username = userDataEntity.getUsername();
+        this.gender = userDataEntity.getGender();
+        this.dob = userDataEntity.getDob();
+        this.nationality = userDataEntity.getNationality();
+        this.citizenNo = userDataEntity.getCitizenNo();
+        this.passportNo = userDataEntity.getPassportNo();
+        this.fatherName = userDataEntity.getFatherName();
+        this.email = userDataEntity.getEmail();
+        this.address = userDataEntity.getAddress();
+        this.mobileNo = userDataEntity.getMobileNo();
+        this.phoneNo = userDataEntity.getPhoneNo();
+        this.occupationType = userDataEntity.getOccupationType();
+        this.serviceCode = userDataEntity.getServiceCode();
+        this.subscriptionType = userDataEntity.getSubscriptionType();
+        this.installationAddress = userDataEntity.getInstallationAddress();
+        this.createdDate = userDataEntity.getCreatedDate();
+        this.createdBy = userDataEntity.getCreatedBy();
+        this.lastModifiedBy = userDataEntity.getLastModifiedBy();
+        this.lastModifiedDate = userDataEntity.getLastModifiedDate();
+    }
+
+    public UserDataResponse() {
+
+    }
+
     public Integer getUserId() {
+
         return userId;
     }
 
@@ -155,12 +205,12 @@ public class UserDataResponse {
         this.phoneNo = phoneNo;
     }
 
-    public String getOccupancyType() {
+    public String getOccupationType() {
         return occupationType;
     }
 
-    public void setOccupancyType(String occupancyType) {
-        this.occupationType = occupancyType;
+    public void setOccupationType(String occupationType) {
+        this.occupationType = occupationType;
     }
 
     public String getServiceCode() {
@@ -187,5 +237,37 @@ public class UserDataResponse {
         this.installationAddress = installationAddress;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @JsonSerialize(using=JsonDateSerializer.class)
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    @JsonSerialize(using=JsonDateSerializer.class)
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
 }

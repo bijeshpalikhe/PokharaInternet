@@ -3,6 +3,9 @@ package com.pinet.app.entities;
 import com.pinet.app.model.UserDataVO;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,83 +21,75 @@ public class UserDataEntity {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name="Name")
+    @Column(name = "Name")
     private String name;
 
-    @Column(name="user_name")
+    @Column(name = "user_name")
     private String username;
 
-    @Column(name="gender")
+    @Column(name = "gender")
     private Character gender;
 
     @Column(name = "dob")
     private String dob;
 
-    @Column(name="Nationality")
+    @Column(name = "Nationality")
     private String nationality;
 
-    @Column(name="citizen_no")
+    @Column(name = "citizen_no")
     private String citizenNo;
 
-    @Column(name="passport_no")
+    @Column(name = "passport_no")
     private String passportNo;
 
-    @Column(name="Father_Name")
+    @Column(name = "Father_Name")
     private String fatherName;
 
-    @Column(name="Email")
+    @Column(name = "Email")
     private String email;
 
-    @Column(name="Address")
+    @Column(name = "Address")
     private String address;
 
-    @Column(name="mobile_no")
+    @Column(name = "mobile_no")
     private String mobileNo;
 
-    @Column(name="phone_no")
+    @Column(name = "phone_no")
     private String phoneNo;
 
-    @Column(name="occupation_type")
+    @Column(name = "occupation_type")
     private String occupationType;
 
-    @Column(name="service_codes")
+    @Column(name = "service_codes")
     private String serviceCode;
 
-    @Column(name="subscription_types")
+    @Column(name = "subscription_types")
     private String subscriptionType;
 
-    @Column(name="installation_address")
+    @Column(name = "installation_address")
     private String installationAddress;
 
-    @Column(name="last_modified_by")
-    private String lastModifiedBy;
-
-    @Column(name="created_by")
+    @Column(name = "created_by")
+    @CreatedBy
     private String createdBy;
 
-//    @Column(name="last_modified_date")
-//    private String lastModifiedDate;
+    @Column(name = "created_date")
+    @CreatedDate
+    private Date createdDate;
 
 
-    @Temporal(TemporalType.DATE)
+    @Column(name = "last_modified_by")
+    @LastModifiedBy
+    private String lastModifiedBy;
+
+    @LastModifiedBy
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
 
-    @PrePersist
-    void lastModifiedDate() {
-        this.lastModifiedDate =new Date();
-    }
 
-//
-//    @CreationTimestamp
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "created_date")
-//    private Date createdDate;
-
-
-    public UserDataEntity(UserDataVO userDataVO){
+    public UserDataEntity(UserDataVO userDataVO) {
         this.name = userDataVO.getName();
-        this.username=userDataVO.getUsername();
+        this.username = userDataVO.getUsername();
         this.address = userDataVO.getAddress();
         this.gender = userDataVO.getGender();
         this.dob = userDataVO.getDob();
@@ -110,55 +105,9 @@ public class UserDataEntity {
         this.serviceCode = userDataVO.getServiceCode();
         this.subscriptionType = userDataVO.getSubscriptionType();
         this.installationAddress = userDataVO.getInstallationAddress();
-        this.createdBy=userDataVO.getCreatedBy();
-        this.lastModifiedBy=userDataVO.getLastModifiedBy();
     }
 
     public UserDataEntity() {
-    }
-
-
-
-    public UserDataEntity(String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
-        this.name = name;
-        this.username = username;
-        this.gender = gender;
-        this.dob = dob;
-        this.nationality = nationality;
-        this.citizenNo = citizenNo;
-        this.passportNo = passportNo;
-        this.fatherName = fatherName;
-        this.email = email;
-        this.address = address;
-        this.mobileNo = mobileNo;
-        this.phoneNo = phoneNo;
-        this.occupationType = occupationType;
-        this.serviceCode = serviceCode;
-        this.subscriptionType = subscriptionType;
-        this.installationAddress = installationAddress;
-    }
-
-    @Override
-    public String toString() {
-        return "UserDataEntity{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", gender=" + gender +
-                ", dob=" + dob +
-                ", nationality='" + nationality + '\'' +
-                ", citizenNo='" + citizenNo + '\'' +
-                ", passportNo='" + passportNo + '\'' +
-                ", fatherName='" + fatherName + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", mobileNo='" + mobileNo + '\'' +
-                ", phoneNo='" + phoneNo + '\'' +
-                ", occupationType='" + occupationType + '\'' +
-                ", serviceCode='" + serviceCode + '\'' +
-                ", subscriptionType='" + subscriptionType + '\'' +
-                ", installationAddress='" + installationAddress + '\'' +
-                '}';
     }
 
     public Integer getUserId() {
@@ -265,12 +214,12 @@ public class UserDataEntity {
         this.phoneNo = phoneNo;
     }
 
-    public String getOccupancyType() {
+    public String getOccupationType() {
         return occupationType;
     }
 
-    public void setOccupancyType(String occupancyType) {
-        this.occupationType = occupancyType;
+    public void setOccupationType(String occupationType) {
+        this.occupationType = occupationType;
     }
 
     public String getServiceCode() {
@@ -297,12 +246,20 @@ public class UserDataEntity {
         this.installationAddress = installationAddress;
     }
 
-    public String getOccupationType() {
-        return occupationType;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setOccupationType(String occupationType) {
-        this.occupationType = occupationType;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getLastModifiedBy() {
@@ -313,19 +270,35 @@ public class UserDataEntity {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
     public Date getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public UserDataEntity(Integer userId, String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+        this.userId = userId;
+        this.name = name;
+        this.username = username;
+        this.gender = gender;
+        this.dob = dob;
+        this.nationality = nationality;
+        this.citizenNo = citizenNo;
+        this.passportNo = passportNo;
+        this.fatherName = fatherName;
+        this.email = email;
+        this.address = address;
+        this.mobileNo = mobileNo;
+        this.phoneNo = phoneNo;
+        this.occupationType = occupationType;
+        this.serviceCode = serviceCode;
+        this.subscriptionType = subscriptionType;
+        this.installationAddress = installationAddress;
+        this.createdBy = createdBy;
+        this.createdDate = createdDate;
+        this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
     }
 }
