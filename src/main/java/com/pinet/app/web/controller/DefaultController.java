@@ -1,11 +1,15 @@
 package com.pinet.app.web.controller;
 
-import com.pinet.app.service.TestService;
+
+import com.pinet.app.service.*;
+import com.pinet.app.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by bijesh on 4/19/2017.
@@ -14,13 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "")
 public class DefaultController {
-    @Autowired
-    TestService service;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/test")
-    public String savePhone() {
-        String test = service.saveTestData();
-
-        return  test;
+    @RequestMapping()
+    public String testMessage() {
+        return "Greetings from Pinet";
     }
 }

@@ -219,7 +219,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: DOB
-                  type: date
+                  type: varchar(30)
                   autoIncrement: false
                   constraints:
                     primaryKey: false
@@ -289,7 +289,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: SERVICE_CODES
-                  type: int
+                  type: text
                   autoIncrement: false
                   constraints:
                     primaryKey: false
@@ -304,6 +304,34 @@ databaseChangeLog:
               - column:
                   name: INSTALLATION_ADDRESS
                   type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: LAST_MODIFIED_BY
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: LAST_MODIFIED_DATE
+                  type: timestamp
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: CREATED_BY
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: CREATED_DATE
+                  type: timestamp
                   autoIncrement: false
                   constraints:
                     primaryKey: false
