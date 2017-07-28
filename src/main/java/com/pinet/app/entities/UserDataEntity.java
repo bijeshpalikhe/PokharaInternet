@@ -1,6 +1,8 @@
 package com.pinet.app.entities;
 
 import com.pinet.app.model.UserDataVO;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,7 +28,7 @@ public class UserDataEntity {
     private Character gender;
 
     @Column(name = "dob")
-    private Date dob;
+    private String dob;
 
     @Column(name="Nationality")
     private String nationality;
@@ -64,8 +66,35 @@ public class UserDataEntity {
     @Column(name="installation_address")
     private String installationAddress;
 
+    @Column(name="last_modified_by")
+    private String lastModifiedBy;
+
+    @Column(name="created_by")
+    private String createdBy;
+
+//    @Column(name="last_modified_date")
+//    private String lastModifiedDate;
+
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "last_modified_date")
+    private Date lastModifiedDate;
+
+    @PrePersist
+    void lastModifiedDate() {
+        this.lastModifiedDate =new Date();
+    }
+
+//
+//    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "created_date")
+//    private Date createdDate;
+
+
     public UserDataEntity(UserDataVO userDataVO){
         this.name = userDataVO.getName();
+        this.username=userDataVO.getUsername();
         this.address = userDataVO.getAddress();
         this.gender = userDataVO.getGender();
         this.dob = userDataVO.getDob();
@@ -81,12 +110,16 @@ public class UserDataEntity {
         this.serviceCode = userDataVO.getServiceCode();
         this.subscriptionType = userDataVO.getSubscriptionType();
         this.installationAddress = userDataVO.getInstallationAddress();
+        this.createdBy=userDataVO.getCreatedBy();
+        this.lastModifiedBy=userDataVO.getLastModifiedBy();
     }
 
     public UserDataEntity() {
     }
 
-    public UserDataEntity(String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
+
+
+    public UserDataEntity(String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
         this.name = name;
         this.username = username;
         this.gender = gender;
@@ -160,11 +193,11 @@ public class UserDataEntity {
         this.gender = gender;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -262,5 +295,37 @@ public class UserDataEntity {
 
     public void setInstallationAddress(String installationAddress) {
         this.installationAddress = installationAddress;
+    }
+
+    public String getOccupationType() {
+        return occupationType;
+    }
+
+    public void setOccupationType(String occupationType) {
+        this.occupationType = occupationType;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }

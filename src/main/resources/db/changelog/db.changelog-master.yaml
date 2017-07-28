@@ -219,7 +219,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: DOB
-                  type: date
+                  type: varchar(30)
                   autoIncrement: false
                   constraints:
                     primaryKey: false
@@ -308,3 +308,31 @@ databaseChangeLog:
                   constraints:
                     primaryKey: false
                     nullable: false
+              - column:
+                  name: LAST_MODIFIED_BY
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: LAST_MODIFIED_DATE
+                  type: date
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: CREATED_BY
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+#              - column:
+#                  name: CREATED_DATE
+#                  type: timestamp
+#                  autoIncrement: false
+#                  constraints:
+#                    primaryKey: false
+#                    nullable: false

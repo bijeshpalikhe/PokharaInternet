@@ -76,13 +76,8 @@ public class UserTypeController {
         try {
             //  System.out.println(userDataEntity.toString());
 
-<<<<<<< HEAD
-     //       return ResponseEntity.ok(userTypeService.updateUserById(userDataEntity));
+           // return ResponseEntity.ok(userTypeService.updateUserById(userDataVO, userId));
 return null;
-=======
-            return ResponseEntity.ok(userTypeService.updateUserById(userDataVO, userId));
-
->>>>>>> a792fd2ee53988571a8174afa0d12ccd88400e68
 
         } catch (Exception e) {
             e.printStackTrace();

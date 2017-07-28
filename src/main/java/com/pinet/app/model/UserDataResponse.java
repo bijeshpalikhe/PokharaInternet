@@ -11,7 +11,7 @@ public class UserDataResponse {
     private String name;
     private String username;
     private Character gender;
-    private Date dob;
+    private String dob;
     private String nationality;
     private String citizenNo;
     private String passportNo;
@@ -30,7 +30,7 @@ public class UserDataResponse {
 
     }
 
-    public UserDataResponse(Integer userId, String name, String username, Character gender, Date dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
+    public UserDataResponse(Integer userId, String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress) {
         this.userId = userId;
         this.name = name;
         this.username = username;
@@ -83,11 +83,11 @@ public class UserDataResponse {
         this.gender = gender;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
