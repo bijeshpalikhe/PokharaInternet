@@ -1,6 +1,7 @@
 package com.pinet.app.service
 
 import com.pinet.app.entities.UserDataEntity
+import com.pinet.app.model.UserDataVO
 import com.pinet.app.repository.UserDataRepository
 import org.mockito.Mock
 
@@ -18,6 +19,21 @@ class UserDataServiceTest extends spock.lang.Specification {
     }
 
     def "SaveUser"() {
+        given:
+        UserDataVO userDataVO = new UserDataVO()
+
+
+        when:
+        def result = service.saveUser(userDataVO, "testData")
+
+        then:
+        result != null
+
+
+        and:
+        1 * userDataRepository.save(*_) >> new UserDataEntity()
+
+
 
     }
 

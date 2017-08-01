@@ -32,7 +32,7 @@ public class UserDataService {
         userDataEntity.setLastModifiedDate(utilDate);
 
         UserDataEntity savedUser = userDataRepository.save(userDataEntity);
-        UserDataResponse response = new UserDataResponse(userDataEntity);
+        UserDataResponse response = new UserDataResponse(savedUser);
         return response;
     }
 
@@ -74,14 +74,6 @@ public class UserDataService {
         }
     }
 
-
-    public String updateUserById(Integer userId) {
-        UserDataEntity user = userDataRepository.findOne(userId);
-        UserDataVO userDataVO = new UserDataVO(user);
-
-        UserDataEntity savedUser = userDataRepository.save(user);
-        return "User updated successfully";
-    }
 
     public UserDataResponse updateUserById(UserDataVO userDataVO, Integer userId, String employeeName) {
         UserDataEntity user = userDataRepository.findOne(userId);
