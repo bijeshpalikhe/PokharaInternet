@@ -21,17 +21,20 @@ class UserDataServiceTest extends spock.lang.Specification {
     def "SaveUser"() {
         given:
         UserDataVO userDataVO = new UserDataVO()
+        UserDataEntity userDataEntity = new UserDataEntity()
+        userDataEntity.setCreatedBy("testData")
 
 
         when:
         def result = service.saveUser(userDataVO, "testData")
+        result.getCreatedBy().equalsIgnoreCase("testData")
 
         then:
         result != null
 
 
         and:
-        1 * userDataRepository.save(*_) >> new UserDataEntity()
+        1 * userDataRepository.save(*_) >> userDataEntity
 
 
 

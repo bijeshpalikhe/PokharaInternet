@@ -29,13 +29,13 @@ public class UserDataResponse {
     private String passportNo;
     private String fatherName;
     private String email;
-    private String address;
+    private AddressVo address;
     private String mobileNo;
     private String phoneNo;
     private String occupationType;
     private String serviceCode;
     private String subscriptionType;
-    private String installationAddress;
+    private AddressVo installationAddress;
     private String createdBy;
     private Date createdDate;
     private String lastModifiedBy;
@@ -43,9 +43,9 @@ public class UserDataResponse {
 
     public UserDataResponse(Integer userId, String name, String username, Character gender, String dob,
                             String nationality, String citizenNo, String passportNo, String fatherName,
-                            String email, String address, String mobileNo, String phoneNo,
+                            String email, AddressVo address, String mobileNo, String phoneNo,
                             String occupationType, String serviceCode, String subscriptionType,
-                            String installationAddress, String createdBy, Date createdDate,
+                            AddressVo installationAddress, String createdBy, Date createdDate,
                             String lastModifiedBy,Date lastModifiedDate) {
         this.userId = userId;
         this.name = name;
@@ -83,13 +83,11 @@ public class UserDataResponse {
         this.passportNo = userDataEntity.getPassportNo();
         this.fatherName = userDataEntity.getFatherName();
         this.email = userDataEntity.getEmail();
-        this.address = userDataEntity.getAddress();
         this.mobileNo = userDataEntity.getMobileNo();
         this.phoneNo = userDataEntity.getPhoneNo();
         this.occupationType = userDataEntity.getOccupationType();
         this.serviceCode = userDataEntity.getServiceCode();
         this.subscriptionType = userDataEntity.getSubscriptionType();
-        this.installationAddress = userDataEntity.getInstallationAddress();
         this.createdDate = userDataEntity.getCreatedDate();
         this.createdBy = userDataEntity.getCreatedBy();
         this.lastModifiedBy = userDataEntity.getLastModifiedBy();
@@ -181,11 +179,11 @@ public class UserDataResponse {
         this.email = email;
     }
 
-    public String getAddress() {
+    public AddressVo getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(AddressVo address) {
         this.address = address;
     }
 
@@ -229,11 +227,11 @@ public class UserDataResponse {
         this.subscriptionType = subscriptionType;
     }
 
-    public String getInstallationAddress() {
+    public AddressVo getInstallationAddress() {
         return installationAddress;
     }
 
-    public void setInstallationAddress(String installationAddress) {
+    public void setInstallationAddress(AddressVo installationAddress) {
         this.installationAddress = installationAddress;
     }
 

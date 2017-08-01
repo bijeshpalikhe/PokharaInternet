@@ -90,7 +90,6 @@ public class UserDataEntity {
     public UserDataEntity(UserDataVO userDataVO) {
         this.name = userDataVO.getName();
         this.username = userDataVO.getUsername();
-        this.address = userDataVO.getAddress();
         this.gender = userDataVO.getGender();
         this.dob = userDataVO.getDob();
         this.nationality = userDataVO.getNationality();
@@ -98,13 +97,11 @@ public class UserDataEntity {
         this.passportNo = userDataVO.getPassportNo();
         this.fatherName = userDataVO.getFatherName();
         this.email = userDataVO.getEmail();
-        this.address = userDataVO.getAddress();
         this.mobileNo = userDataVO.getMobileNo();
         this.phoneNo = userDataVO.getPhoneNo();
         this.occupationType = userDataVO.getOccupationType();
         this.serviceCode = userDataVO.getServiceCode();
         this.subscriptionType = userDataVO.getSubscriptionType();
-        this.installationAddress = userDataVO.getInstallationAddress();
     }
 
     public UserDataEntity() {
