@@ -34,7 +34,7 @@ class UserDataServiceTest extends spock.lang.Specification {
 
 
         and:
-        1 * userDataRepository.save(*_) >> userDataEntity
+         1* userDataRepository.save(*_) >> userDataEntity
 
 
 
@@ -45,6 +45,18 @@ class UserDataServiceTest extends spock.lang.Specification {
     }
 
     def "GetUserById"() {
+
+        given:
+        UserDataEntity data = new UserDataEntity()
+
+        when:
+        def result=service.getUserById(1)
+
+        then:
+        result!=null
+
+        and:
+        1* userDataRepository.findOne(1) >>data
 
     }
 

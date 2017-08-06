@@ -1,17 +1,14 @@
 package com.pinet.app.service;
 
 import com.google.gson.Gson;
-import com.pinet.app.entities.ServiceTypeEntity;
 import com.pinet.app.entities.UserDataEntity;
 import com.pinet.app.model.AddressVo;
 import com.pinet.app.model.UserDataResponse;
 import com.pinet.app.model.UserDataVO;
 import com.pinet.app.repository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +61,8 @@ public class UserDataService {
         UserDataEntity userDataEntity = userDataRepository.findOne(userId);
         if (userDataEntity != null) {
             UserDataResponse response = new UserDataResponse(userDataEntity);
+            response.setAddress(convertStringToAddress(userDataEntity.getAddress()));
+            response.setInstallationAddress((convertStringToAddress(userDataEntity.getInstallationAddress())));
             return response;
 
 
