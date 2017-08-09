@@ -1,9 +1,12 @@
 package com.pinet.app.service
 
 import com.pinet.app.entities.UserDataEntity
+import com.pinet.app.model.UserDataResponse
 import com.pinet.app.model.UserDataVO
 import com.pinet.app.repository.UserDataRepository
+import org.apache.catalina.User
 import org.mockito.Mock
+import spock.util.mop.Use
 
 /**
  * Created by bijesh on 7/28/2017.
@@ -41,6 +44,17 @@ class UserDataServiceTest extends spock.lang.Specification {
     }
 
     def "GetAllUsers"() {
+        given:
+        List <UserDataEntity> userDataEntity=new ArrayList<>()
+
+        when:
+        def userDataList=service.getAllUsers()
+
+        then:
+        userDataList!=null
+
+        and:
+        1* userDataRepository.findAll() >>userDataEntity
 
     }
 
@@ -87,6 +101,19 @@ class UserDataServiceTest extends spock.lang.Specification {
     }
 
     def "UpdateUserById"() {
+        given:
+        UserDataEntity userDataEntity=new UserDataEntity()
+        UserDataVO userDataVO=new UserDataVO()
+
+        when:
+        def result=service.updateUserById(userDataVO,1,"Ashmeet")
+
+        then:
+        result!=null
+
+        and:
+        1* userDataRepository.findOne(1) >> userDataEntity
+        1* userDataRepository.save(userDataEntity) >> userDataEntity
 
     }
 
