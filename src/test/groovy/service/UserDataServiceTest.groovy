@@ -4,16 +4,14 @@ import com.pinet.app.entities.UserDataEntity
 import com.pinet.app.model.UserDataResponse
 import com.pinet.app.model.UserDataVO
 import com.pinet.app.repository.UserDataRepository
-import org.apache.catalina.User
-import org.mockito.Mock
-import spock.util.mop.Use
-
 /**
  * Created by bijesh on 7/28/2017.
  */
 class UserDataServiceTest extends spock.lang.Specification {
 
     UserDataRepository userDataRepository = Mock(UserDataRepository)
+
+//    UserDataRepository userDataRepository1=Stub(UserDataRepository)
 
     UserDataService service = new UserDataService()
 
@@ -57,6 +55,7 @@ class UserDataServiceTest extends spock.lang.Specification {
         1* userDataRepository.findAll() >>userDataEntity
 
     }
+
 
     def "GetUserById"() {
 
@@ -106,7 +105,7 @@ class UserDataServiceTest extends spock.lang.Specification {
         UserDataVO userDataVO=new UserDataVO()
 
         when:
-        def result=service.updateUserById(userDataVO,1,"Ashmeet")
+        def result= service.updateUserById(userDataVO,1,"Ashmeet")
 
         then:
         result!=null
@@ -118,7 +117,37 @@ class UserDataServiceTest extends spock.lang.Specification {
     }
 
     def "UpdateUserById1"() {
+        given:
+    UserDataEntity userDataEntity=new UserDataEntity()
+    UserDataVO userDataVO=new UserDataVO()
+
+    when:
+    def result= service.updateUserById(userDataVO,1,"Ashmeet")
+
+    then:
+    result!=null
+
+    and:
+    1* userDataRepository.findOne(1) >> userDataEntity
+    1* userDataRepository.save(userDataEntity) >> userDataEntity
 
     }
+
+//    def "stub testing"(){
+//
+//
+//        given:
+//        UserDataVO userDataVO=new UserDataVO()
+//
+//        userDataVO.setName("Tiwary")
+//        userDataRepository1.save(userDataVO) >>>[userDataVO]
+//
+//
+//        when:
+//        def result=service.saveUser(userDataVO,"Ashmeet")
+//
+//        then:
+//        result!=null
+//    }
 
 }

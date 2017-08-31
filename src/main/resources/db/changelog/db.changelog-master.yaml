@@ -336,3 +336,12 @@ databaseChangeLog:
                   constraints:
                     primaryKey: false
                     nullable: false
+#  - changeSet:
+#      id: create_userData1
+#      author: bpalikhe
+#      changes:
+#         - modifyDataType:
+#             columnName: CREATED_DATE
+#             newDataType: int
+#             tableName: user_data
+#             schemaName: pinetdev
