@@ -1,5 +1,6 @@
 package com.pinet.app.web.controller
 
+import com.pinet.app.entities.UserDataEntity
 import com.pinet.app.service.UserDataService
 import groovy.json.JsonSlurper
 import org.springframework.http.ResponseEntity
@@ -27,23 +28,24 @@ UserDataController userDataController=new UserDataController()
 
     def "getAccount test hits the URL and parses JSON output"() {
 //        when: 'rest account url is hit'
-//        def response = mockMvc.perform(get('/users')).andReturn().response
-//     //   println("REsponse : "+response.getContentAsString())
-//
-//      // def content = new JsonSlurper().parseText(response.contentAsString)
-//     //   println(content)
-//
+//        def response = mockMvc.perform(get('/rest/account')).andReturn().response
+//        def content = new JsonSlurper().parseText(response.contentAsString)
 //
 //        then: 'securityService correctly returned account in JSON'
-//        1 * userDataController.getUsers()
+//        1 * securityService.getCurrentLogin() >> 'spockUser'
 //
-//
+//        //Testing the HTTP Status code
 //        response.status == OK.value()
 //
 //        //Showing how a contains test could work
 //        response.contentType.contains('application/json')
-//       // response.contentType == 'application/json;charset=UTF-8'
+//        response.contentType == 'application/json;charset=UTF-8'
 //
+//        //Can test the whole content string that is returned
+//        response.contentAsString == '{"username":"spockUser"}'
+//
+//        //Or can use the JsonSlurper version to test the JSON as object
+//        content.username == 'spockUser'
 
     }
 
@@ -52,13 +54,13 @@ UserDataController userDataController=new UserDataController()
 //        RestTemplate restTemplate=new RestTemplate()
 //
 //        when:
-//        ResponseEntity responseEntity= restTemplate.getForObject("http://localhost:8080/userdata/users",ResponseEntity.class)
+//       UserDataEntity []userDataEntity= restTemplate.getForObject("http://localhost:8080/userdata/users",UserDataEntity[].class)
 //
 //        then:
-//        responseEntity!=null
+//        userDataEntity!=null
 //
-//        and:
-//        print(responseEntity)
+////        and:
+////        print(userDataEntity)
 
 
 

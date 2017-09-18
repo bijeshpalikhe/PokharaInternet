@@ -11,8 +11,6 @@ class UserDataServiceTest extends spock.lang.Specification {
 
     UserDataRepository userDataRepository = Mock(UserDataRepository)
 
-//    UserDataRepository userDataRepository1=Stub(UserDataRepository)
-
     UserDataService service = new UserDataService()
 
     def setup() {
@@ -33,12 +31,8 @@ class UserDataServiceTest extends spock.lang.Specification {
         then:
         result != null
 
-
         and:
          1* userDataRepository.save(*_) >> userDataEntity
-
-
-
     }
 
     def "GetAllUsers"() {
@@ -117,7 +111,7 @@ class UserDataServiceTest extends spock.lang.Specification {
     }
 
     def "UpdateUserById1"() {
-        given:
+    given:
     UserDataEntity userDataEntity=new UserDataEntity()
     UserDataVO userDataVO=new UserDataVO()
 
