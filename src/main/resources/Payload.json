@@ -1,0 +1,40 @@
+header: Accept:application/json
+
+Content-Type:application/json; charset=UTF-8
+
+{
+"name": "bijesh",
+"username": "arjun",
+"gender": "M",
+"dob": "1996",
+"nationality": "Nepali",
+"citizenNo": "565653565",
+"passportNo": "102154554",
+"fatherName": "Tiwary",
+"email": "ashmeet4293@gmail.com",
+"address": {
+"houseNo": 1,
+"wardNo": 2,
+"tole": "testtole",
+"municipality": "testVDC",
+"district": "testdistrict",
+"zone": "testzone",
+"country": "Nepal"
+},
+"mobileNo": "985454646",
+"phoneNo": "4545654",
+"serviceCode": "1",
+"subscriptionType": "Wireless",
+"installationAddress": {
+"houseNo": 1,
+"wardNo": 2,
+"tole": "testtole",
+"municipality": "testVDC",
+"district": "testdistrict",
+"zone": "testzone",
+"country": "Nepal"
+},
+"occupationType": "Developer",
+"roles": "ROLE_ADMIN,ROLE_USER",
+"password": "adminuser"
+}

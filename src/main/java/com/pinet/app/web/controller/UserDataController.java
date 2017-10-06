@@ -6,6 +6,7 @@ import com.pinet.app.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,6 +18,7 @@ public class UserDataController {
     @Autowired
     UserDataService userDataService;
 
+    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/users")
     public ResponseEntity getUsers() {
         try {
@@ -31,6 +33,7 @@ public class UserDataController {
 
     }
 
+    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity getUserById(@PathVariable("userId") Integer userId) {
         try {
@@ -51,6 +54,7 @@ public class UserDataController {
 
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.DELETE, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity deleteUserById(@PathVariable("userId") Integer userId) {
         try {
@@ -74,6 +78,7 @@ public class UserDataController {
 
     }
 
+    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", value = "/user")
     public ResponseEntity saveUserData(@RequestBody UserDataVO userDataVO, @RequestParam("employeeName") String employeeName) {
         try {
@@ -88,6 +93,7 @@ public class UserDataController {
 
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.PUT, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity updateUserData(@RequestBody UserDataVO userDataVO, @PathVariable("userId") Integer userId, @RequestParam("employeeName") String employeeName) {
         try {

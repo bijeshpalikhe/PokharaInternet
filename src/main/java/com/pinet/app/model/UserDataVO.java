@@ -22,54 +22,16 @@ public class UserDataVO {
     private String passportNo;
     private String fatherName;
     private String email;
-    private String address;
+    private AddressVo address;
     private String mobileNo;
     private String phoneNo;
     private String occupationType;
     private String serviceCode;
     private String subscriptionType;
-    private String installationAddress;
+    private AddressVo installationAddress;
+    private String password;
+    private String roles;
 
-
-    public UserDataVO(UserDataEntity userDataEntity) {
-        this.name = userDataEntity.getName();
-        this.username = userDataEntity.getUsername();
-        this.address = userDataEntity.getAddress();
-        this.gender = userDataEntity.getGender();
-        this.dob = userDataEntity.getDob();
-        this.nationality = userDataEntity.getNationality();
-        this.citizenNo = userDataEntity.getCitizenNo();
-        this.passportNo = userDataEntity.getPassportNo();
-        this.fatherName = userDataEntity.getFatherName();
-        this.email = userDataEntity.getEmail();
-        this.address = userDataEntity.getAddress();
-        this.mobileNo = userDataEntity.getMobileNo();
-        this.phoneNo = userDataEntity.getPhoneNo();
-        this.occupationType = userDataEntity.getOccupationType();
-        this.serviceCode = userDataEntity.getServiceCode();
-        this.subscriptionType = userDataEntity.getSubscriptionType();
-        this.installationAddress = userDataEntity.getInstallationAddress();
-
-    }
-
-    public UserDataVO(String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress, Date lastModifiedDate, String createdBy, String lastModifiedBy) {
-        this.name = name;
-        this.username = username;
-        this.gender = gender;
-        this.dob = dob;
-        this.nationality = nationality;
-        this.citizenNo = citizenNo;
-        this.passportNo = passportNo;
-        this.fatherName = fatherName;
-        this.email = email;
-        this.address = address;
-        this.mobileNo = mobileNo;
-        this.phoneNo = phoneNo;
-        this.occupationType = occupationType;
-        this.serviceCode = serviceCode;
-        this.subscriptionType = subscriptionType;
-        this.installationAddress = installationAddress;
-    }
 
     public UserDataVO() {
     }
@@ -146,11 +108,11 @@ public class UserDataVO {
         this.email = email;
     }
 
-    public String getAddress() {
+    public AddressVo getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(AddressVo address) {
         this.address = address;
     }
 
@@ -194,13 +156,27 @@ public class UserDataVO {
         this.subscriptionType = subscriptionType;
     }
 
-    public String getInstallationAddress() {
+    public AddressVo getInstallationAddress() {
         return installationAddress;
     }
 
-    public void setInstallationAddress(String installationAddress) {
+    public void setInstallationAddress(AddressVo installationAddress) {
         this.installationAddress = installationAddress;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 }
