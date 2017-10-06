@@ -40,13 +40,15 @@ public class UserDataResponse {
     private Date createdDate;
     private String lastModifiedBy;
     private Date lastModifiedDate;
+    private String password;
+    private String roles;
 
     public UserDataResponse(Integer userId, String name, String username, Character gender, String dob,
                             String nationality, String citizenNo, String passportNo, String fatherName,
                             String email, AddressVo address, String mobileNo, String phoneNo,
                             String occupationType, String serviceCode, String subscriptionType,
                             AddressVo installationAddress, String createdBy, Date createdDate,
-                            String lastModifiedBy,Date lastModifiedDate) {
+                            String lastModifiedBy,Date lastModifiedDate, String password, String roles) {
         this.userId = userId;
         this.name = name;
         this.username = username;
@@ -68,6 +70,8 @@ public class UserDataResponse {
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
+        this.password=password;
+        this.roles=roles;
     }
 
 
@@ -92,6 +96,8 @@ public class UserDataResponse {
         this.createdBy = userDataEntity.getCreatedBy();
         this.lastModifiedBy = userDataEntity.getLastModifiedBy();
         this.lastModifiedDate = userDataEntity.getLastModifiedDate();
+        this.password=userDataEntity.getPassword();
+        this.roles=userDataEntity.getRoles();
     }
 
     public UserDataResponse() {
@@ -267,5 +273,21 @@ public class UserDataResponse {
 
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

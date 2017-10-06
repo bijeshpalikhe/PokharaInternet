@@ -102,6 +102,9 @@ public class UserDataService {
             user.setOccupationType(userDataVO.getOccupationType());
             user.setServiceCode(userDataVO.getServiceCode());
             user.setSubscriptionType(userDataVO.getSubscriptionType());
+            user.setPassword(userDataVO.getPassword());
+            user.setRoles(userDataVO.getRoles());
+
             user.setInstallationAddress(convertAdressToString(userDataVO.getInstallationAddress()));
             java.util.Date utilDate = new java.util.Date();
 

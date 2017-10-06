@@ -345,3 +345,35 @@ databaseChangeLog:
 #             newDataType: int
 #             tableName: user_data
 #             schemaName: pinetdev
+
+
+  - changeSet:
+         id: Adding_password_field
+         author: bpalikhe
+         changes:
+             - addColumn:
+                 columns:
+                     - column:
+                         name: PASSWORD
+                         type: varchar(100)
+                         autoIncrement: false
+                         constraints:
+                             primaryKey: false
+                             nullable: false
+                 tableName: user_data
+                 schemaName: pinetdev
+  - changeSet:
+         id: Adding_roles_field
+         author: bpalikhe
+         changes:
+             - addColumn:
+                 columns:
+                     - column:
+                         name: ROLES
+                         type: varchar(50)
+                         autoIncrement: false
+                         constraints:
+                             primaryKey: false
+                             nullable: false
+                 tableName: user_data
+                 schemaName: pinetdev

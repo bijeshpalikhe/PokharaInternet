@@ -86,6 +86,12 @@ public class UserDataEntity {
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
 
+    @Column(name="ROLES")
+    private String roles;
+
+    @Column(name="PASSWORD")
+    private String password;
+
 
     public UserDataEntity(UserDataVO userDataVO) {
         this.name = userDataVO.getName();
@@ -102,6 +108,8 @@ public class UserDataEntity {
         this.occupationType = userDataVO.getOccupationType();
         this.serviceCode = userDataVO.getServiceCode();
         this.subscriptionType = userDataVO.getSubscriptionType();
+        this.password=userDataVO.getPassword();
+        this.roles=userDataVO.getRoles();
     }
 
     public UserDataEntity() {
@@ -275,7 +283,23 @@ public class UserDataEntity {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public UserDataEntity(Integer userId, String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserDataEntity(Integer userId, String name, String username, Character gender, String dob, String nationality, String citizenNo, String passportNo, String fatherName, String email, String address, String mobileNo, String phoneNo, String occupationType, String serviceCode, String subscriptionType, String installationAddress, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate,String password, String roles) {
         this.userId = userId;
         this.name = name;
         this.username = username;
@@ -297,5 +321,7 @@ public class UserDataEntity {
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
+        this.password=password;
+        this.roles=roles;
     }
 }

@@ -34,5 +34,7 @@ Content-Type:application/json; charset=UTF-8
 "zone": "testzone",
 "country": "Nepal"
 },
-"occupationType": "Developer"
+"occupationType": "Developer",
+"roles": "ROLE_ADMIN,ROLE_USER",
+"password": "adminuser"
 }
