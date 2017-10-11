@@ -2,7 +2,6 @@ package com.pinet.app.repository;
 
 
 import com.pinet.app.entities.UserDataEntity;
-import com.pinet.app.model.UserDataResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

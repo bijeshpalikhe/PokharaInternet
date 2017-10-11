@@ -96,8 +96,7 @@ public class UserDataResponse {
         this.createdBy = userDataEntity.getCreatedBy();
         this.lastModifiedBy = userDataEntity.getLastModifiedBy();
         this.lastModifiedDate = userDataEntity.getLastModifiedDate();
-        this.password=userDataEntity.getPassword();
-        this.roles=userDataEntity.getRoles();
+
     }
 
     public UserDataResponse() {

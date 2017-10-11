@@ -362,6 +362,7 @@ databaseChangeLog:
                              nullable: false
                  tableName: user_data
                  schemaName: pinetdev
+
   - changeSet:
          id: Adding_roles_field
          author: bpalikhe
@@ -377,3 +378,20 @@ databaseChangeLog:
                              nullable: false
                  tableName: user_data
                  schemaName: pinetdev
+  - changeSet:
+     id: dropColumn-PASSWORD
+     author: Ashmeet
+     changes:
+     - dropColumn:
+         columnName: PASSWORD
+         schemaName: pinetdev
+         tableName: user_data
+
+  - changeSet:
+     id: dropColumn-ROLES
+     author: Ashmeet
+     changes:
+     - dropColumn:
+         columnName: ROLES
+         schemaName: pinetdev
+         tableName: user_data
