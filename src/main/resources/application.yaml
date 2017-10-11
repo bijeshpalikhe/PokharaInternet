@@ -11,6 +11,13 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
       dialect: org.hibernate.dialect.MySQL5Dialect
+  h2:
+    console:
+      enabled: true
+liquibase:
+  change-log: classpath:db/changelog/changelog.xml
+
+
