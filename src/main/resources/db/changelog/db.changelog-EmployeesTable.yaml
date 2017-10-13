@@ -90,7 +90,7 @@ databaseChangeLog:
                   nullable: false
             - column:
                 name: CREATED_DATE
-                type: timestamp
+                type: datetime
                 autoIncrement: false
                 constraints:
                   primaryKey: false
@@ -105,3 +105,25 @@ databaseChangeLog:
                   name: EMPLOYEE_NAME
                   type: varchar(255)
             tableName: employee_info
+
+#  - changeSet:
+#      id: addColumn-emergencyinfo
+#      author: ashmeet
+#      changes:
+#        - addColumn:
+#            columns:
+#              - column:
+#                  name: emerygency_info
+#                  type: text
+#            tableName: employee_info
+
+
+#  - changeSet:
+#      id: ChangeTypeof-DOB
+#      author: ashmeet
+#      changes:
+#          - modifyDataType:
+#                columnName: CREATED_DATE
+#                newDataType: varchar(30)
+#                tableName: employee_info
+#                schemaName: pinetdev

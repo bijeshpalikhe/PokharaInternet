@@ -30,10 +30,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("**/**").permitAll()
+                .antMatchers("**/employeeinfo/**").permitAll()
                 .antMatchers("/userdata/**").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
                 .and()
                 .formLogin()
 //                .loginPage("/login")
@@ -43,4 +44,16 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
+        public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("user")
+                .password("user")
+                .roles("USER")
+                .and()
+                .withUser("admin")
+                .password("admin")
+                .roles("ADMIN");
+    }
+
 }

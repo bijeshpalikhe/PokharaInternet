@@ -26,8 +26,12 @@ public class UserDataService {
     public UserDataResponse saveUser(UserDataVO userDataVO, String employeeName) {
 
         UserDataEntity userDataEntity = new UserDataEntity(userDataVO);
+
+
         userDataEntity.setAddress(convertAdressToString(userDataVO.getAddress()));
         userDataEntity.setInstallationAddress(convertAdressToString(userDataVO.getInstallationAddress()));
+
+
         userDataEntity.setCreatedBy(employeeName);
         java.util.Date utilDate = new java.util.Date();
         userDataEntity.setCreatedDate(utilDate);
@@ -36,8 +40,10 @@ public class UserDataService {
 
         UserDataEntity savedUser = userDataRepository.save(userDataEntity);
         UserDataResponse response = new UserDataResponse(savedUser);
+
         response.setInstallationAddress(convertStringToAddress(userDataEntity.getInstallationAddress()));
         response.setAddress(convertStringToAddress(userDataEntity.getAddress()));
+
         return response;
     }
 

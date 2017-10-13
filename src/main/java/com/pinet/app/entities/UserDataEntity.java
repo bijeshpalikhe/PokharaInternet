@@ -107,6 +107,7 @@ public class UserDataEntity {
         this.phoneNo = userDataVO.getPhoneNo();
         this.occupationType = userDataVO.getOccupationType();
         this.serviceCode = userDataVO.getServiceCode();
+        this.serviceCode = userDataVO.getServiceCode();
         this.subscriptionType = userDataVO.getSubscriptionType();
 
     }

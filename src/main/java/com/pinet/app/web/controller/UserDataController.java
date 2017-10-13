@@ -18,7 +18,7 @@ public class UserDataController {
     @Autowired
     UserDataService userDataService;
 
-    @Secured({"ROLE_USER","ROLE_ADMIN"})
+//    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/users")
     public ResponseEntity getUsers() {
         try {
@@ -33,7 +33,7 @@ public class UserDataController {
 
     }
 
-    @Secured({"ROLE_USER","ROLE_ADMIN"})
+//    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity getUserById(@PathVariable("userId") Integer userId) {
         try {
@@ -54,7 +54,7 @@ public class UserDataController {
 
     }
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.DELETE, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity deleteUserById(@PathVariable("userId") Integer userId) {
         try {
@@ -78,7 +78,7 @@ public class UserDataController {
 
     }
 
-    @Secured({"ROLE_USER","ROLE_ADMIN"})
+//    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", value = "/user")
     public ResponseEntity saveUserData(@RequestBody UserDataVO userDataVO, @RequestParam("employeeName") String employeeName) {
         try {
@@ -93,7 +93,7 @@ public class UserDataController {
 
     }
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.PUT, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity updateUserData(@RequestBody UserDataVO userDataVO, @PathVariable("userId") Integer userId, @RequestParam("employeeName") String employeeName) {
         try {
