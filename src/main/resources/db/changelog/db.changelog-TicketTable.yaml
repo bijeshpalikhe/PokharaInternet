@@ -1,0 +1,197 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create_TicketDataTable
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+          - tableExists:
+              tableName: ticket_data
+      changes:
+        - createTable:
+            tableName: ticket_data
+            columns:
+            - column:
+                name: TICKET_ID
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: TICKET_TYPE
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CLIENT_ID
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CONTACT_NO
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: ASSIGNED_TO
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: NOTES
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: ACTIVE
+                type: BOOLEAN
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: FOLLOW_UP_BY
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: REVIEWED_BY
+                type: VARCHAR(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: SERVICE_ID
+                type: VARCHAR(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: LAST_MODIFIED_BY
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: LAST_MODIFIED_DATE
+                type: timestamp
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CREATED_BY
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CREATED_DATE
+                type: timestamp
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+
+  - changeSet:
+      id: modifyDataType-Client_ID
+      author: bpalikhe
+      changes:
+      - modifyDataType:
+          columnName: CLIENT_ID
+          newDataType: int
+          tableName: ticket_data
+  - changeSet:
+      id: modifyDataType-Service_ID
+      author: bpalikhe
+      changes:
+      - modifyDataType:
+          columnName: SERVICE_ID
+          newDataType: int
+          tableName: ticket_data
+  - changeSet:
+      id: addForeignKeyConstraint-ticketData-ticketType
+      author: bpalikhe
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: TICKET_TYPE
+            baseTableName: ticket_data
+            constraintName: fk_ticket_type
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: TICKET_IDENTIFIER
+            referencedTableName: ticket_type
+  - changeSet:
+      id: addForeignKeyConstraint-ticketData-ClientId
+      author: bpalikhe
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: CLIENT_ID
+            baseTableName: ticket_data
+            constraintName: fk_client_id_ticket
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: CLIENT_ID
+            referencedTableName: client_data
+  - changeSet:
+      id: addForeignKeyConstraint-ticketData-ServiceId
+      author: bpalikhe
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: SERVICE_ID
+            baseTableName: ticket_data
+            constraintName: fk_service_id_ticket
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: SERVICE_ID
+            referencedTableName: service_type
+  - changeSet:
+      id: dropForeignKeyConstraint-ticketData-ServiceId
+      author: bpalikhe
+      changes:
+      - dropForeignKeyConstraint:
+          baseTableName: ticket_data
+          constraintName: fk_service_id_ticket
+  - changeSet:
+      id: addForeignKeyConstraint-ticketData-UserServiceId
+      author: bpalikhe
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: SERVICE_ID
+            baseTableName: ticket_data
+            constraintName: fk_service_id_ticket
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: USER_SERVICE_ID
+            referencedTableName: user_services
+  - changeSet:
+      id: dropForeignKeyConstraint-ticketData-ClientId
+      author: bpalikhe
+      changes:
+      - dropForeignKeyConstraint:
+          baseTableName: ticket_data
+          constraintName: fk_client_id_ticket
+  - changeSet:
+      id: dropColumn-client_id
+      author: bpalikhe
+      changes:
+      - dropColumn:
+          columnName: CLIENT_ID
+          tableName: ticket_data
