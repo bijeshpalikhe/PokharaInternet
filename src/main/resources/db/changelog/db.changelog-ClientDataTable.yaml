@@ -1,48 +1,76 @@
 databaseChangeLog:
   - changeSet:
-      id: Create_EmployeesRolesTable
+      id: Create_ClientDataTable
       author: bpalikhe
       preConditions:
         - onFail: MARK_RAN
         - not:
           - tableExists:
-              tableName: employee_roles
+              tableName: client_data
       changes:
         - createTable:
-            tableName: employee_roles
+            tableName: client_data
             columns:
             - column:
-                name: ID
+                name: CLIENT_ID
                 type: int
                 autoIncrement: true
                 constraints:
                   primaryKey: true
                   nullable: false
             - column:
-                name: EMPLOYEE_ID
-                type: int
+                name: USER_NAME
+                type: varchar(255)
                 autoIncrement: false
                 constraints:
                   primaryKey: false
                   nullable: false
                   unique: true
             - column:
-                name: UNAME
+                name: CLIENT_NAME
                 type: varchar(255)
                 autoIncrement: false
                 constraints:
                   primaryKey: false
                   nullable: false
             - column:
-                name: PWD
+                name: CLIENT_DATA
+                type: TEXT
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: DOB
+                type: date
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: EMAIL
                 type: varchar(255)
                 autoIncrement: false
                 constraints:
                   primaryKey: false
                   nullable: false
             - column:
-                name: ROLES
-                type: text
+                name: ADDRESS
+                type: TEXT
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: MOBILE_NO
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: PHONE_NO
+                type: varchar(255)
                 autoIncrement: false
                 constraints:
                   primaryKey: false
@@ -75,15 +103,3 @@ databaseChangeLog:
                 constraints:
                   primaryKey: false
                   nullable: false
-  - changeSet:
-      id: addForeignKeyConstraint-EmployeeRoles-EmployeeId
-      author: bpalikhe
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: EMPLOYEE_ID
-            baseTableName: employee_roles
-            constraintName: fk_employee_id
-            onDelete: NO ACTION
-            onUpdate: NO ACTION
-            referencedColumnNames: EMPLOYEE_ID
-            referencedTableName: employee_info

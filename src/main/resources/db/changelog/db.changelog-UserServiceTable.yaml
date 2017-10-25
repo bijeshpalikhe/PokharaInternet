@@ -1,25 +1,25 @@
 databaseChangeLog:
   - changeSet:
-      id: Create_EmployeesRolesTable
+      id: Create_UserServicesTable
       author: bpalikhe
       preConditions:
         - onFail: MARK_RAN
         - not:
           - tableExists:
-              tableName: employee_roles
+              tableName: user_services
       changes:
         - createTable:
-            tableName: employee_roles
+            tableName: user_services
             columns:
             - column:
-                name: ID
+                name: USER_SERVICE_ID
                 type: int
                 autoIncrement: true
                 constraints:
                   primaryKey: true
                   nullable: false
             - column:
-                name: EMPLOYEE_ID
+                name: CLIENT_ID
                 type: int
                 autoIncrement: false
                 constraints:
@@ -27,22 +27,29 @@ databaseChangeLog:
                   nullable: false
                   unique: true
             - column:
-                name: UNAME
+                name: SERVICE_ID
+                type: int
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: INSTALLATION_ADDRESS
                 type: varchar(255)
                 autoIncrement: false
                 constraints:
                   primaryKey: false
                   nullable: false
             - column:
-                name: PWD
-                type: varchar(255)
+                name: ACTIVE
+                type: BOOLEAN
                 autoIncrement: false
                 constraints:
                   primaryKey: false
                   nullable: false
             - column:
-                name: ROLES
-                type: text
+                name: CONNECTED_AREA
+                type: varchar(255)
                 autoIncrement: false
                 constraints:
                   primaryKey: false
@@ -76,14 +83,26 @@ databaseChangeLog:
                   primaryKey: false
                   nullable: false
   - changeSet:
-      id: addForeignKeyConstraint-EmployeeRoles-EmployeeId
+      id: addForeignKeyConstraint-UserService-ServiceId
       author: bpalikhe
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: EMPLOYEE_ID
-            baseTableName: employee_roles
-            constraintName: fk_employee_id
+            baseColumnNames: SERVICE_ID
+            baseTableName: user_services
+            constraintName: fk_service_id
             onDelete: NO ACTION
             onUpdate: NO ACTION
-            referencedColumnNames: EMPLOYEE_ID
-            referencedTableName: employee_info
+            referencedColumnNames: SERVICE_ID
+            referencedTableName: service_type
+  - changeSet:
+      id: addForeignKeyConstraint-UserService-ClientId
+      author: bpalikhe
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: CLIENT_ID
+            baseTableName: user_services
+            constraintName: fk_client_id
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: CLIENT_ID
+            referencedTableName: client_data
