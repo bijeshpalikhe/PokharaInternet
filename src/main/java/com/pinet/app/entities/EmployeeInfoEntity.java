@@ -8,13 +8,10 @@ import org.springframework.data.annotation.LastModifiedBy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-
         /*
         *Created by bijesh on 7/17/2017.
         *Table to store Employee info
         * */
-
-
 @Entity
 @Table(name = "employee_info")
 public class EmployeeInfoEntity implements Serializable {

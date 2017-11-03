@@ -1,3 +1,4 @@
+/*
 package com.pinet.app.entities;
 
 import com.pinet.app.model.UserDataVO;
@@ -10,9 +11,10 @@ import org.springframework.data.annotation.LastModifiedBy;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
+*
  * Created by ashmeet on 7/15/17.
- */
+
+
 @Entity
 @Table(name = "user_data")
 public class UserDataEntity {
@@ -102,9 +104,6 @@ public class UserDataEntity {
         this.mobileNo = userDataVO.getMobileNo();
         this.phoneNo = userDataVO.getPhoneNo();
         this.occupationType = userDataVO.getOccupationType();
-        this.serviceCode = userDataVO.getServiceCode();
-        this.subscriptionType = userDataVO.getSubscriptionType();
-        this.installationAddress = userDataVO.getInstallationAddress();
     }
 
     public UserDataEntity() {
@@ -302,3 +301,4 @@ public class UserDataEntity {
         this.lastModifiedDate = lastModifiedDate;
     }
 }
+*/

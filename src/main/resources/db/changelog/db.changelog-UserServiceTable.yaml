@@ -25,7 +25,6 @@ databaseChangeLog:
                 constraints:
                   primaryKey: false
                   nullable: false
-                  unique: true
             - column:
                 name: SERVICE_ID
                 type: int

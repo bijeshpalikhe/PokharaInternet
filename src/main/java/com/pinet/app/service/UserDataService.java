@@ -1,3 +1,4 @@
+/*
 package com.pinet.app.service;
 
 import com.pinet.app.entities.ServiceTypeEntity;
@@ -12,9 +13,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by ashmeet on 7/19/17.
- */
+ *//*
+
 @Service
 public class UserDataService {
 
@@ -22,7 +25,7 @@ public class UserDataService {
     @Autowired
     UserDataRepository userDataRepository;
 
-    public UserDataResponse saveUser(UserDataVO userDataVO, String employeeName) {
+    public ClientDataResponse saveUser(ClientVO userDataVO, String employeeName) {
 
         UserDataEntity userDataEntity = new UserDataEntity(userDataVO);
         userDataEntity.setCreatedBy(employeeName);
@@ -32,28 +35,28 @@ public class UserDataService {
         userDataEntity.setLastModifiedDate(utilDate);
 
         UserDataEntity savedUser = userDataRepository.save(userDataEntity);
-        UserDataResponse response = new UserDataResponse(userDataEntity);
+        ClientDataResponse response = new ClientDataResponse(userDataEntity);
         return response;
     }
 
-    public List<UserDataResponse> getAllUsers() {
+    public List<ClientDataResponse> getAllUsers() {
         List<UserDataEntity> userDataEntityList = userDataRepository.findAll();
-        List<UserDataResponse> userList = new ArrayList<>();
+        List<ClientDataResponse> userList = new ArrayList<>();
 
         for (UserDataEntity userDataEntity : userDataEntityList) {
 
-            UserDataResponse response = new UserDataResponse(userDataEntity);
+            ClientDataResponse response = new ClientDataResponse(userDataEntity);
             userList.add(response);
         }
         return userList;
     }
 
 
-    public UserDataResponse getUserById(Integer userId) {
+    public ClientDataResponse getUserById(Integer userId) {
 
         UserDataEntity userDataEntity = userDataRepository.findOne(userId);
         if (userDataEntity != null) {
-            UserDataResponse response = new UserDataResponse(userDataEntity);
+            ClientDataResponse response = new ClientDataResponse(userDataEntity);
             return response;
 
 
@@ -77,13 +80,13 @@ public class UserDataService {
 
     public String updateUserById(Integer userId) {
         UserDataEntity user = userDataRepository.findOne(userId);
-        UserDataVO userDataVO = new UserDataVO(user);
+        ClientVO userDataVO = new ClientVO(user);
 
         UserDataEntity savedUser = userDataRepository.save(user);
         return "User updated successfully";
     }
 
-    public UserDataResponse updateUserById(UserDataVO userDataVO, Integer userId, String employeeName) {
+    public ClientDataResponse updateUserById(ClientVO userDataVO, Integer userId, String employeeName) {
         UserDataEntity user = userDataRepository.findOne(userId);
         if (user != null) {
             user.setName(userDataVO.getName());
@@ -109,7 +112,7 @@ public class UserDataService {
             user.setLastModifiedBy(lastModifiedBY);
 
             UserDataEntity savedUser = userDataRepository.save(user);
-            UserDataResponse response = new UserDataResponse(savedUser);
+            ClientDataResponse response = new ClientDataResponse(savedUser);
             return response;
         } else {
             return null;
@@ -120,3 +123,4 @@ public class UserDataService {
 
 
 }
+*/
