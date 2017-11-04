@@ -4,8 +4,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/pinetdev?createDatabaseIfNotExist=true
-    username: localuser
-    password: Test1234
+    username: root
+    password: system
     testWhileIdle: true
     validationQuery: SELECT 1
   jpa:
