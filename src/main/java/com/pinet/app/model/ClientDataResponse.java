@@ -1,9 +1,12 @@
 package com.pinet.app.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.pinet.app.config.JsonDateSerializer;
+import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.ClientDataEntity;
 
+import java.io.IOException;
 import java.sql.Date;
 
 /**
@@ -13,11 +16,11 @@ public class ClientDataResponse {
 
     private Integer clientId;
     private String userName;
-    private String clientName;
-    private String clientData;
+    private NameVO clientName;
+    private ClientDataVO clientData;
     private java.sql.Date dob;
     private String email;
-    private String address;
+    private AddressVo address;
     private String mobileNo;
     private String phoneNo;
     private String createdBy;
@@ -26,14 +29,35 @@ public class ClientDataResponse {
     private java.sql.Date lastModifiedDate;
 
 
+    public NameVO getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(NameVO clientName) {
+        this.clientName = clientName;
+    }
+
+    public ClientDataVO getClientData() {
+        return clientData;
+    }
+
+    public void setClientData(ClientDataVO clientData) {
+        this.clientData = clientData;
+    }
+
+    public AddressVo getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressVo address) {
+        this.address = address;
+    }
+
     public ClientDataResponse(ClientDataEntity clientDataEntity) {
         this.clientId = clientDataEntity.getClientId();
         this.userName = clientDataEntity.getUserName();
-        this.clientName = clientDataEntity.getClientName();
-        this.clientData = clientDataEntity.getClientData();
         this.dob = clientDataEntity.getDob();
         this.email = clientDataEntity.getEmail();
-        this.address = clientDataEntity.getAddress();
         this.mobileNo = clientDataEntity.getMobileNo();
         this.phoneNo = clientDataEntity.getPhoneNo();
         this.createdBy = clientDataEntity.getCreatedBy();
@@ -58,22 +82,6 @@ public class ClientDataResponse {
         this.userName = userName;
     }
 
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public String getClientData() {
-        return clientData;
-    }
-
-    public void setClientData(String clientData) {
-        this.clientData = clientData;
-    }
-
     public Date getDob() {
         return dob;
     }
@@ -88,14 +96,6 @@ public class ClientDataResponse {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getMobileNo() {
@@ -147,4 +147,5 @@ public class ClientDataResponse {
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
+
 }

@@ -59,6 +59,9 @@ public class ClientDataEntity implements Serializable {
     @CreatedDate
     private Date createdDate;
 
+    public ClientDataEntity() {
+    }
+
     @Column(name = "last_modified_by")
     @LastModifiedBy
     private String lastModifiedBy;

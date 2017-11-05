@@ -63,14 +63,13 @@ public class UserServicesService {
 
     private AddressVo convertJsonToAddress(String address) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
-        AddressVo jsonInString = null;
         try {
-            jsonInString = mapper.readValue(address, AddressVo.class);
+            AddressVo jsonInString = mapper.readValue(address, AddressVo.class);
+            return jsonInString;
         } catch (IOException e) {
             e.printStackTrace();
             throw new PokharaInternetException(e.getMessage());
         }
-        return jsonInString;
 
 
     }

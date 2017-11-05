@@ -19,19 +19,18 @@ public class ClientController {
     @Autowired
     ClientDataService service;
 
-   /* @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/users")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity getUsers() {
         try {
 
-            return ResponseEntity.ok(userDataService.getAllUsers());
+            return ResponseEntity.ok(service.getAllClients());
 
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getCause().getMessage());
         }
 
 
-    }*/
+    }
 
    /* @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/user/{userId}")
     public ResponseEntity getUserById(@PathVariable("userId") Integer userId) {
@@ -82,7 +81,7 @@ public class ClientController {
             return ResponseEntity.ok(service.saveUser(userDataVO, employeeName));
 
         } catch (Exception e) {
-            return new ResponseEntity(e.getCause(), HttpStatus.NO_CONTENT);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getCause().getMessage());
         }
 
     }
