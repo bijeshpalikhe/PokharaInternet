@@ -129,7 +129,7 @@ public class ClientDataService {
 
    }
 */
-    private String convertNametojson(NameVO nameVO) throws PokharaInternetException {
+    public String convertNametojson(NameVO nameVO) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String jsonInString = mapper.writeValueAsString(nameVO);
@@ -142,7 +142,7 @@ public class ClientDataService {
 
     }
 
-    private String convertAddresstojson(AddressVo addressVo) throws PokharaInternetException {
+    public String convertAddresstojson(AddressVo addressVo) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String jsonInString = mapper.writeValueAsString(addressVo);
@@ -155,7 +155,7 @@ public class ClientDataService {
 
     }
 
-    private String convertDatatojson(ClientDataVO clientDataVO) throws PokharaInternetException {
+    public String convertDatatojson(ClientDataVO clientDataVO) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String jsonInString = mapper.writeValueAsString(clientDataVO);
@@ -167,7 +167,7 @@ public class ClientDataService {
 
     }
 
-    private ClientDataResponse convertClientEntityToResponse(ClientDataEntity clientDataEntity) throws PokharaInternetException {
+    public ClientDataResponse convertClientEntityToResponse(ClientDataEntity clientDataEntity) throws PokharaInternetException {
         ClientDataResponse clientDataResponse = new ClientDataResponse(clientDataEntity);
         clientDataResponse.setAddress(convertJsonToAddress(clientDataEntity.getAddress()));
         clientDataResponse.setClientName(convertJsonToName(clientDataEntity.getClientName()));
@@ -176,7 +176,7 @@ public class ClientDataService {
         return clientDataResponse;
     }
 
-    private AddressVo convertJsonToAddress(String address) throws PokharaInternetException {
+    public AddressVo convertJsonToAddress(String address) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             AddressVo jsonInString = mapper.readValue(address, AddressVo.class);
@@ -189,7 +189,7 @@ public class ClientDataService {
 
     }
 
-    private NameVO convertJsonToName(String name) throws PokharaInternetException {
+    public NameVO convertJsonToName(String name) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             NameVO object = mapper.readValue(name, NameVO.class);
@@ -203,7 +203,7 @@ public class ClientDataService {
 
     }
 
-    private ClientDataVO convertJsonToData(String data) throws PokharaInternetException {
+    public ClientDataVO convertJsonToData(String data) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             ClientDataVO object = mapper.readValue(data, ClientDataVO.class);
@@ -216,7 +216,7 @@ public class ClientDataService {
 
     }
 
-    private ClientDataEntity saveClientEntity(ClientDataEntity clientDataEntity) throws PokharaInternetException {
+    public ClientDataEntity saveClientEntity(ClientDataEntity clientDataEntity) throws PokharaInternetException {
         try {
             ClientDataEntity savedClient = clientDataRepository.save(clientDataEntity);
             return savedClient;
