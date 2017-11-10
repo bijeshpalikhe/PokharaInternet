@@ -70,7 +70,7 @@ public class ClientDataEntity implements Serializable {
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
 
-    @OneToMany
+    @OneToMany(mappedBy="userServiceId")
     private Set<UserServicesEntity> userServicesEntities;
 
     public static long getSerialVersionUID() {
@@ -201,4 +201,5 @@ public class ClientDataEntity implements Serializable {
     public ClientDataEntity(Integer clientId) {
         this.clientId = clientId;
     }
+
 }

@@ -8,8 +8,10 @@ import com.pinet.app.entities.ClientDataEntity;
 import com.pinet.app.model.*;
 import com.pinet.app.repository.ClientDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,78 +59,68 @@ public class ClientDataService {
         return userList;
     }
 
-    /*
+
+    public ClientDataResponse getClientsById(Integer userId) throws PokharaInternetException {
+
+        ClientDataEntity userDataEntity = clientDataRepository.findOne(userId);
+        if (userDataEntity != null) {
+            ClientDataResponse response = convertClientEntityToResponse(userDataEntity);
+            return response;
+        } else {
+            return null;
+        }
+
+    }
 
 
-   public ClientDataResponse getUserById(Integer userId) {
+    public String deleteClientById(Integer clientId, String employeeName) throws PokharaInternetException {
+        ClientDataEntity client = clientDataRepository.findOne(clientId);
+        if (client == null) {
+            return null;
+        } else {
+            try {
+                clientDataRepository.delete(client.getClientId());
+                System.out.println("****user deleted by " + employeeName + " ClientDetails : " + client.toString());
+                return "User successfully deleted";
+            } catch (DataIntegrityViolationException e) {
+                System.out.println("Cause" + e.getCause());
+                System.out.println("Message" + e.getMessage());
+                e.printStackTrace();
 
-       UserDataEntity userDataEntity = userDataRepository.findOne(userId);
-       if (userDataEntity != null) {
-           ClientDataResponse response = new ClientDataResponse(userDataEntity);
-           return response;
+                throw new PokharaInternetException("Error deleting the user, Please check for active services");
+            }
 
+        }
+    }
 
-       } else {
-           return null;
-       }
-
-
-   }
-
-   public String deleteUserById(Integer userId) {
-       UserDataEntity user = userDataRepository.findOne(userId);
-       if (user == null) {
-           return null;
-       } else {
-           userDataRepository.delete(user);
-           return "User successfully deleted";
-       }
-   }
-
-
-   public String updateUserById(Integer userId) {
-       UserDataEntity user = userDataRepository.findOne(userId);
-       ClientVO clientDataVO = new ClientVO(user);
-
-       UserDataEntity savedUser = userDataRepository.save(user);
-       return "User updated successfully";
-   }
-
-   public ClientDataResponse updateUserById(ClientVO clientDataVO, Integer userId, String employeeName) {
-       UserDataEntity user = userDataRepository.findOne(userId);
-       if (user != null) {
-           user.setName(clientDataVO.getName());
-           user.setUsername(clientDataVO.getUsername());
-           user.setDob(clientDataVO.getDob());
-           user.setGender(clientDataVO.getGender());
-           user.setNationality(clientDataVO.getNationality());
-           user.setCitizenNo(clientDataVO.getCitizenNo());
-           user.setPassportNo(clientDataVO.getPassportNo());
-           user.setFatherName(clientDataVO.getFatherName());
-           user.setEmail(clientDataVO.getEmail());
-           user.setAddress(clientDataVO.getAddress());
-           user.setMobileNo(clientDataVO.getMobileNo());
-           user.setPhoneNo(clientDataVO.getPhoneNo());
-           user.setOccupationType(clientDataVO.getOccupationType());
-           user.setServiceCode(clientDataVO.getServiceCode());
-           user.setSubscriptionType(clientDataVO.getSubscriptionType());
-           user.setInstallationAddress(clientDataVO.getInstallationAddress());
-           java.util.Date utilDate = new java.util.Date();
-
-           user.setLastModifiedDate(utilDate);
-           String lastModifiedBY = user.getLastModifiedBy() + "," + employeeName;
-           user.setLastModifiedBy(lastModifiedBY);
-
-           UserDataEntity savedUser = userDataRepository.save(user);
-           ClientDataResponse response = new ClientDataResponse(savedUser);
-           return response;
-       } else {
-           return null;
-       }
+    public ClientDataResponse updateClientById(ClientVO clientVO, Integer clientId, String employeeName) throws PokharaInternetException {
+        ClientDataEntity clientDataEntity = clientDataRepository.findOne(clientId);
+        if (clientDataEntity != null) {
+            NameVO nameVO = new NameVO(clientVO.getFname(), clientVO.getMname(), clientVO.getLname());
+            ClientDataVO dataVO = new ClientDataVO(clientVO.getGender(), clientVO.getNationality(), clientVO.getCitizenNo(), clientVO.getPassportNo(), clientVO.getFatherName(), clientVO.getOccupationType());
+            AddressVo addressVo = new AddressVo(clientVO.getHouseNo(), clientVO.getWardNo(), clientVO.getStreetName(), clientVO.getMunicipality(), clientVO.getDistrict(), clientVO.getZone(), clientVO.getCountry());
+            clientDataEntity.setUserName(clientVO.getUsername());
+            clientDataEntity.setDob(clientVO.getDob());
+            clientDataEntity.setEmail(clientVO.getEmail());
+            clientDataEntity.setMobileNo(clientVO.getMobileNo());
+            clientDataEntity.setPhoneNo(clientVO.getPhoneNo());
+            clientDataEntity.setClientName(convertNametojson(nameVO));
+            clientDataEntity.setClientData(convertDatatojson(dataVO));
+            clientDataEntity.setAddress(convertAddresstojson(addressVo));
+            java.util.Date utilDate = new java.util.Date();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            clientDataEntity.setLastModifiedBy(employeeName);
+            clientDataEntity.setLastModifiedDate(sqlDate);
+            ClientDataEntity savedClient = saveClientEntity(clientDataEntity);
+            ClientDataResponse response = convertClientEntityToResponse(savedClient);
+            return response;
+        } else {
+            return null;
+        }
 
 
-   }
-*/
+    }
+
     public String convertNametojson(NameVO nameVO) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -221,7 +213,7 @@ public class ClientDataService {
             ClientDataEntity savedClient = clientDataRepository.save(clientDataEntity);
             return savedClient;
         } catch (Exception e) {
-            throw new PokharaInternetException(e.getCause().getMessage());
+            throw new PokharaInternetException("Error saving in DB, Please check the info");
 
         }
     }

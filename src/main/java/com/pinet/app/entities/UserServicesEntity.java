@@ -26,8 +26,8 @@ public class UserServicesEntity implements Serializable {
     @Column(name = "user_service_id")
     private Integer userServiceId;
 
-    @JoinColumn(name = "client_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable=false)
     private ClientDataEntity clientID;
 
     @ManyToOne
