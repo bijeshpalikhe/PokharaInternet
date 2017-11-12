@@ -76,7 +76,7 @@ databaseChangeLog:
                   nullable: false
             - column:
                 name: CREATED_DATE
-                type: timestamp
+                type: datetime
                 autoIncrement: false
                 constraints:
                   primaryKey: false
