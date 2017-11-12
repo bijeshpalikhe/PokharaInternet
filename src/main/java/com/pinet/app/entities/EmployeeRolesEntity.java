@@ -1,13 +1,14 @@
 package com.pinet.app.entities;
 
 
+import com.pinet.app.model.EmployeeRolesVo;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
         /*
         *Created by bijesh on 7/17/2017.
@@ -22,32 +23,20 @@ public class EmployeeRolesEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "employee_id")
+    @Column(name = "ID")
+    private Integer id;
+
+    @Column(name = "EMPLOYEE_ID")
     private Integer employeeId;
 
-    @Column(name = "phone_no")
-    private String phoneNo;
+    @Column(name = "UNAME")
+    private String username;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "PWD")
+    private String password;
 
-    @Column(name = "info")
-    private String info;
-
-    @Column(name = "dob")
-    private Date dob;
-
-    @Column(name = "id_type")
-    private String idType;
-
-    @Column(name = "id_no")
-    private String idNo;
-
-    @Column(name = "file_no")
-    private String fileNo;
-
-    @Column(name = "employee_name")
-    private String employeesName;
+    @Column(name = "ROLES")
+    private String roles;
 
     @Column(name = "created_by")
     @CreatedBy
@@ -66,6 +55,30 @@ public class EmployeeRolesEntity implements Serializable {
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
 
+    public EmployeeRolesEntity() {
+    }
+
+    public EmployeeRolesEntity(EmployeeRolesVo employeeRolesVo) {
+//        this.employeeId=employeeRolesVo.getEmployeeId();
+        /* userName;
+        private String password;
+        private String roles; */
+        this.username=employeeRolesVo.getUserName();
+        this.password=employeeRolesVo.getPassword();
+        this.roles=employeeRolesVo.getRoles();
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -74,68 +87,28 @@ public class EmployeeRolesEntity implements Serializable {
         this.employeeId = employeeId;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
+    public String getUserName() {
+        return username;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getInfo() {
-        return info;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public String getIdType() {
-        return idType;
-    }
-
-    public void setIdType(String idType) {
-        this.idType = idType;
-    }
-
-    public String getIdNo() {
-        return idNo;
-    }
-
-    public void setIdNo(String idNo) {
-        this.idNo = idNo;
-    }
-
-    public String getFileNo() {
-        return fileNo;
-    }
-
-    public void setFileNo(String fileNo) {
-        this.fileNo = fileNo;
-    }
-
-    public String getEmployeesName() {
-        return employeesName;
-    }
-
-    public void setEmployeesName(String employeesName) {
-        this.employeesName = employeesName;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public String getCreatedBy() {
@@ -169,5 +142,6 @@ public class EmployeeRolesEntity implements Serializable {
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
+
 
 }

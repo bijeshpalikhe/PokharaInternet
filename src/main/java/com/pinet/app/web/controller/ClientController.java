@@ -85,10 +85,10 @@ public class ClientController {
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity saveUserData(@RequestBody ClientVO userDataVO, @RequestParam("employeeName") String employeeName) {
         try {
-            ClientDataResponse response = service.saveUser(userDataVO, employeeName);
-            return ResponseEntity.ok(response);
-        } catch (PokharaInternetException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.ok(service.saveUser(userDataVO, employeeName));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getCause().getMessage());
         }
 
 

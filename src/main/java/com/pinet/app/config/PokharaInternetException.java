@@ -22,3 +22,4 @@ public class PokharaInternetException extends Exception {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }
+
