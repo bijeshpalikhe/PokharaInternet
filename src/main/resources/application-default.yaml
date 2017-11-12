@@ -24,36 +24,10 @@ liquibase:
 
 
 #logging
-#logging:
-#    file: src/main/resources/logs/application.log
-#    pattern:
-#        console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
-#        file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-
-
-#logback configuration
-spring:
-  profiles.active: dev
-
-spring:
-  profiles: dev
 logging:
-  file: src/main/resources/logs/dev_app.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.web: DEBUG
-    com.pinet.app.web.controller: DEBUG
-    org.hibernate: DEBUG
+    file: src/main/resources/logs/application.log
+    pattern:
+        console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+        file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
-spring:
-  profiles: production
-logging:
-  file: src/main/resources/logs/production_app.log
-  pattern:
-    file: "%d %-5level [%thread] %logger{0} : %msg%n"
-  level:
-    org.springframework.web: WARN
-    com.pinet.app.web.controller: WARN
-    org.hibernate: WARN
+

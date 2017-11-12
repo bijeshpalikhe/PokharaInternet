@@ -1,4 +1,4 @@
-"insert code : " http://localhost:8080/employeeinfo/employee/?employeeName="arjun"
+"POST : " http://localhost:8080/employeeinfo/employee/?employeeName="arjun"
 "update code:" http: //localhost:8080/employeeinfo/employee/1?employeename=arjun
 "Get all ": http: //localhost:8080/employeeinfo/employees
 "DElete URL :" http://localhost:8080/employeeinfo/employee/2

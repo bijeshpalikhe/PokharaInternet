@@ -9,10 +9,11 @@ import org.springframework.data.annotation.LastModifiedBy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-        /*
-        *Created by bijesh on 7/17/2017.
-        *Table to store Employee info
-        * */
+
+/*
+*Created by bijesh on 7/17/2017.
+*Table to store Employee info
+* */
 @Entity
 @Table(name = "employee_info")
 public class EmployeeInfoEntity implements Serializable {
@@ -63,17 +64,21 @@ public class EmployeeInfoEntity implements Serializable {
     @LastModifiedBy
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
-            
-    public EmployeeInfoEntity(EmployeeInfoVO employeeInfoVO){
-                this.phoneNo=employeeInfoVO.getPhoneNo();
-                this.email=employeeInfoVO.getEmail();
-                this.dob=employeeInfoVO.getDob();
-                this.idType=employeeInfoVO.getIdType();
-                this.idNo=employeeInfoVO.getIdNo();
-                this.fileNo=employeeInfoVO.getFileNo();
+
+    public EmployeeInfoEntity() {
+    }
+
+    public EmployeeInfoEntity(EmployeeInfoVO employeeInfoVO) {
+        this.phoneNo = employeeInfoVO.getPhoneNo();
+        this.email = employeeInfoVO.getEmail();
+        this.dob = employeeInfoVO.getDob();
+        this.idType = employeeInfoVO.getIdType();
+        this.idNo = employeeInfoVO.getIdNo();
+        this.fileNo = employeeInfoVO.getFileNo();
 //        this.emergencyInfo=employeeInfoVO.getEmergencyInfo();
 //
     }
+
     public Integer getEmployeeId() {
         return employeeId;
     }

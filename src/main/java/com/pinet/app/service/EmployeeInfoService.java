@@ -2,6 +2,7 @@ package com.pinet.app.service;
 
 
 import com.google.gson.Gson;
+import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.EmployeeInfoEntity;
 import com.pinet.app.model.*;
 import com.pinet.app.repository.EmployeeInfoRepository;
@@ -14,20 +15,17 @@ import java.util.Date;
 
 @Service
 public class EmployeeInfoService {
-
     @Autowired
     EmployeeInfoRepository employeeInfoRepository;
 
-    public EmployeeInfoResponse saveEmployeeInfo(EmployeeInfoVO employeeInfoVO, String employeeName) {
+    public EmployeeInfoResponse saveEmployeeInfo(EmployeeInfoVO employeeInfoVO, String employeeName) throws PokharaInternetException {
         EmployeeInfoEntity employeeInfoEntity = new EmployeeInfoEntity(employeeInfoVO);
-
 
         employeeInfoEntity.setCreatedBy(employeeName);
         java.util.Date utilDate = new java.util.Date();
         employeeInfoEntity.setCreatedDate(utilDate);
         employeeInfoEntity.setLastModifiedBy(employeeName);
         employeeInfoEntity.setLastModifiedDate(utilDate);
-
 
         employeeInfoEntity.setInfo(convertInfoToString(employeeInfoVO.getInfoVO()));
         employeeInfoEntity.setEmployeesName(convertNameToString(employeeInfoVO.getEmployeesName()));
@@ -39,10 +37,9 @@ public class EmployeeInfoService {
         employeeInfoResponse.setEmployeesName(convertStringToName(employeeInfoEntity.getEmployeesName()));
 
         return employeeInfoResponse;
-
     }
 
-    public EmployeeInfoResponse getEmployeeID(Integer employeeId) {
+    public EmployeeInfoResponse getEmployeeID(Integer employeeId) throws PokharaInternetException{
         EmployeeInfoEntity employeeInfoEntity = employeeInfoRepository.findOne(employeeId);
 
         if (employeeInfoEntity != null) {
@@ -65,7 +62,7 @@ public class EmployeeInfoService {
 //        return null;
 //    }
 
-    public List<EmployeeInfoResponse> getAllEmployee() {
+    public List<EmployeeInfoResponse> getAllEmployee() throws PokharaInternetException{
         List<EmployeeInfoEntity> employeeInfoEntities = employeeInfoRepository.findAll();
         List<EmployeeInfoResponse> employeeList = new ArrayList<>();
 
@@ -82,7 +79,7 @@ public class EmployeeInfoService {
         return employeeList;
     }
 
-    public EmployeeInfoResponse updateEmployeeInfoById(EmployeeInfoVO employeeInfoVO, Integer employeeId, String employeeName) {
+    public EmployeeInfoResponse updateEmployeeInfoById(EmployeeInfoVO employeeInfoVO, Integer employeeId, String employeeName) throws PokharaInternetException{
         EmployeeInfoEntity employeeInfoEntity = employeeInfoRepository.findOne(employeeId);
         if (employeeInfoEntity != null) {
 
@@ -109,28 +106,20 @@ public class EmployeeInfoService {
 
             response.setInfo(convertStringToInfo(employeeInfoEntity.getInfo()));
             response.setEmployeesName(convertStringToName(employeeInfoEntity.getEmployeesName()));
-
-
             return response;
-
         }
         return null;
-
     }
 
-    public String deleteEmployeeById(Integer employeeId) {
+    public String deleteEmployeeById(Integer employeeId) throws PokharaInternetException{
         EmployeeInfoEntity employeeInfoEntity = employeeInfoRepository.findOne(employeeId);
-        if (employeeInfoEntity != null) {
+        if (employeeInfoEntity == null) {
+            return null;
+        } else {
             employeeInfoRepository.delete(employeeInfoEntity);
-            return "Employee Deleted Successfully";
+            return "Employee successfully deleted";
         }
-        return "Employee cannot be Deleted";
-
     }
-
-
-
-
 
     public String convertInfoToString(InfoVO infoVO) {
         Gson gson = new Gson();

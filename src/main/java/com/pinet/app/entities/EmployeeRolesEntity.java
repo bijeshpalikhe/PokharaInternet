@@ -30,7 +30,7 @@ public class EmployeeRolesEntity implements Serializable {
     private Integer employeeId;
 
     @Column(name = "UNAME")
-    private String userName;
+    private String username;
 
     @Column(name = "PWD")
     private String password;
@@ -63,7 +63,7 @@ public class EmployeeRolesEntity implements Serializable {
         /* userName;
         private String password;
         private String roles; */
-        this.userName=employeeRolesVo.getUserName();
+        this.username=employeeRolesVo.getUserName();
         this.password=employeeRolesVo.getPassword();
         this.roles=employeeRolesVo.getRoles();
     }
@@ -88,11 +88,11 @@ public class EmployeeRolesEntity implements Serializable {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
