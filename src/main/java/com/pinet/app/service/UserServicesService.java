@@ -48,6 +48,24 @@ public class UserServicesService {
         return response;
     }
 
+    public UserServicesResponse getAllUserServices(int clientId, String employeeName) throws PokharaInternetException {
+
+        return null;
+    }
+
+    public UserServicesResponse getUserServicebyId(int userServiceId, String employeeName) throws PokharaInternetException {
+        return null;
+    }
+
+    public UserServicesResponse deleteUserServices(int serviceId, String employeeName) throws PokharaInternetException {
+        return null;
+    }
+
+    public UserServicesResponse editUserServices(int userServiceId, UserServiceVo userServiceVo, String employeeName) throws PokharaInternetException {
+        return null;
+    }
+
+
     private String convertAddresstojson(AddressVo addressVo) throws PokharaInternetException {
         ObjectMapper mapper = new ObjectMapper();
         try {
