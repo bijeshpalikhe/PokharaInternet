@@ -56,4 +56,8 @@ public class ServiceTypeEntity implements Serializable {
     public void setBandwidth(String bandwidth) {
         this.bandwidth = bandwidth;
     }
+
+    public ServiceTypeEntity(Integer id) {
+        this.id = id;
+    }
 }

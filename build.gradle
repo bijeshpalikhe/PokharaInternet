@@ -32,17 +32,24 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.liquibase:liquibase-core')
+    compile 'com.google.code.gson:gson:2.8.1'
     compile('org.springframework.boot:spring-boot-starter-web')
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
-    compile(
-            'org.slf4j:slf4j-api:1.7.12'
-    )
+    compile('org.slf4j:slf4j-api:1.7.12')
+    compile group: 'cglib', name: 'cglib-nodep', version: '2.2'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.2.5.RELEASE'
+    compile 'org.springframework.security:spring-security-web:5.0.0.M4'
+    compile('org.webjars:bootstrap:4.0.0-beta')
+    compile("org.springframework.boot:spring-boot-devtools")
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
     testCompile(
             'org.codehaus.groovy:groovy-all:2.4.6',
             'org.spockframework:spock-core:1.0-groovy-2.4'
     )
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile("org.springframework.security:spring-security-test")
 
 }
 task(runDebug, dependsOn: 'classes', type: JavaExec) {
@@ -50,4 +57,5 @@ task(runDebug, dependsOn: 'classes', type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     jvmArgs = ["-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
 }
+
 

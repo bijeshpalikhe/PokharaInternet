@@ -1,12 +1,15 @@
+/*
 package com.pinet.app.service
 
 import com.pinet.app.entities.UserDataEntity
 import com.pinet.app.repository.UserDataRepository
 import org.mockito.Mock
 
+*/
 /**
  * Created by bijesh on 7/28/2017.
- */
+ *//*
+
 class UserDataServiceTest extends spock.lang.Specification {
 
     UserDataRepository userDataRepository = Mock(UserDataRepository)
@@ -64,3 +67,4 @@ class UserDataServiceTest extends spock.lang.Specification {
     }
 
 }
+*/

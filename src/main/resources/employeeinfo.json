@@ -1,0 +1,26 @@
+"POST : " http://localhost:8080/employeeinfo/employee/?employeeName="arjun"
+"update code:" http: //localhost:8080/employeeinfo/employee/1?employeename=arjun
+"Get all ": http: //localhost:8080/employeeinfo/employees
+"DElete URL :" http://localhost:8080/employeeinfo/employee/2
+
+
+{
+"employeesName": {
+"firstName": "Ram",
+"middleName": "Hari",
+"lastName": "Poudel"
+},
+"phoneNo": "0615641",
+"email": "pawan@gmail.com",
+"infoVO": {
+"employeeAddress": "Pokhara",
+"employmentDate": "1996",
+"employeeContactName": "Arjun Pade",
+"employeeRelation": "false",
+"emergencyPhone": "9846744037"
+},
+"dob": 1506968100000,
+"idType": "License",
+"idNo": "102",
+"fileNo": "69"
+}

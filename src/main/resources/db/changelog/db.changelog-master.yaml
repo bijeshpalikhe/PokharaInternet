@@ -331,8 +331,49 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: CREATED_DATE
-                  type: timestamp
+                  type: datetime
                   autoIncrement: false
                   constraints:
                     primaryKey: false
                     nullable: false
+  - changeSet:
+      id: addColumn-notes
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+        - columnExists:
+            tableName: service_type
+            columnName: NOTES
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: NOTES
+              type: varchar(255)
+          tableName: service_type
+  - changeSet:
+      id: addColumn-notesRetry
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - columnExists:
+            tableName: service_type
+            columnName: NOTES
+      changes:
+        - addColumn:
+            columns:
+            - column:
+                name: NOTES
+                type: varchar(255)
+            tableName: service_type
+  - changeSet:
+      id: addColumn-notesRetry2
+      author: bpalikhe
+      changes:
+        - addColumn:
+            columns:
+            - column:
+                name: NOTES
+                type: varchar(255)
+            tableName: service_type
