@@ -1,0 +1,10 @@
+spring:
+  profiles: production
+logging:
+  file: src/main/resources/logs/production_app.log
+  pattern:
+    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+  level:
+    org.springframework.web: WARN
+    com.pinet.app.web.controller: WARN
+    org.hibernate: WARN

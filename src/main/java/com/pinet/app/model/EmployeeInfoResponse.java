@@ -1,82 +1,43 @@
-package com.pinet.app.entities;
+package com.pinet.app.model;
 
+import com.pinet.app.entities.EmployeeInfoEntity;
 
-import com.pinet.app.model.EmployeeInfoVO;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
-/*
-*Created by bijesh on 7/17/2017.
-*Table to store Employee info
-* */
-@Entity
-@Table(name = "employee_info")
-public class EmployeeInfoEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class EmployeeInfoResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "employee_id")
     private Integer employeeId;
-
-    @Column(name = "phone_no")
+    private NameVO employeesName;
     private String phoneNo;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "info")
-    private String info;
-
-    @Column(name = "dob")
+    private InfoVO info;
     private Date dob;
-
-    @Column(name = "id_type")
     private String idType;
-
-    @Column(name = "id_no")
     private String idNo;
-
-    @Column(name = "file_no")
     private String fileNo;
-
-    @Column(name = "employee_name")
-    private String employeesName;
-
-    @Column(name = "created_by")
-    @CreatedBy
     private String createdBy;
-
-    @Column(name = "created_date")
-    @CreatedDate
     private Date createdDate;
-
-
-    @Column(name = "last_modified_by")
-    @LastModifiedBy
     private String lastModifiedBy;
-
-    @LastModifiedBy
-    @Column(name = "last_modified_date")
     private Date lastModifiedDate;
 
-    public EmployeeInfoEntity() {
+    public EmployeeInfoResponse() {
     }
 
-    public EmployeeInfoEntity(EmployeeInfoVO employeeInfoVO) {
-        this.phoneNo = employeeInfoVO.getPhoneNo();
-        this.email = employeeInfoVO.getEmail();
-        this.dob = employeeInfoVO.getDob();
-        this.idType = employeeInfoVO.getIdType();
-        this.idNo = employeeInfoVO.getIdNo();
-        this.fileNo = employeeInfoVO.getFileNo();
-//        this.emergencyInfo=employeeInfoVO.getEmergencyInfo();
-//
+
+    public EmployeeInfoResponse(EmployeeInfoEntity employeeInfoEntity){
+        this.employeeId=employeeInfoEntity.getEmployeeId();
+//        this.employeesName=employeeInfoEntity.getEmployeesName();
+        this.phoneNo=employeeInfoEntity.getPhoneNo();
+        this.email=employeeInfoEntity.getEmail();
+//        this.info=employeeInfoEntity.getInfo();
+        this.dob=employeeInfoEntity.getDob();
+        this.idType=employeeInfoEntity.getIdType();
+        this.idNo=employeeInfoEntity.getIdNo();
+        this.fileNo=employeeInfoEntity.getFileNo();
+        this.createdBy=employeeInfoEntity.getCreatedBy();
+        this.createdDate=employeeInfoEntity.getCreatedDate();
+        this.lastModifiedBy=employeeInfoEntity.getLastModifiedBy();
+        this.lastModifiedDate=employeeInfoEntity.getLastModifiedDate();
     }
 
     public Integer getEmployeeId() {
@@ -85,6 +46,14 @@ public class EmployeeInfoEntity implements Serializable {
 
     public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public NameVO getEmployeesName() {
+        return employeesName;
+    }
+
+    public void setEmployeesName(NameVO employeesName) {
+        this.employeesName = employeesName;
     }
 
     public String getPhoneNo() {
@@ -103,11 +72,11 @@ public class EmployeeInfoEntity implements Serializable {
         this.email = email;
     }
 
-    public String getInfo() {
+    public InfoVO getInfo() {
         return info;
     }
 
-    public void setInfo(String info) {
+    public void setInfo(InfoVO info) {
         this.info = info;
     }
 
@@ -143,14 +112,6 @@ public class EmployeeInfoEntity implements Serializable {
         this.fileNo = fileNo;
     }
 
-    public String getEmployeesName() {
-        return employeesName;
-    }
-
-    public void setEmployeesName(String employeesName) {
-        this.employeesName = employeesName;
-    }
-
     public String getCreatedBy() {
         return createdBy;
     }
@@ -182,5 +143,4 @@ public class EmployeeInfoEntity implements Serializable {
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
-
 }

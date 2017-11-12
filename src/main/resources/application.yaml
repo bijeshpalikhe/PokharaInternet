@@ -17,7 +17,17 @@ spring:
   h2:
     console:
       enabled: true
+
+
 liquibase:
   change-log: classpath:db/changelog/changelog.xml
+
+
+#logging
+logging:
+    file: src/main/resources/logs/application.log
+    pattern:
+        console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+        file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 
