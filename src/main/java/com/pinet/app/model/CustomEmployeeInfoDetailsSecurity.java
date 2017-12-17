@@ -73,4 +73,12 @@ public class CustomEmployeeInfoDetailsSecurity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public EmployeeRolesEntity getEmployeeRolesEntity() {
+        return employeeRolesEntity;
+    }
+
+    public void setEmployeeRolesEntity(EmployeeRolesEntity employeeRolesEntity) {
+        this.employeeRolesEntity = employeeRolesEntity;
+    }
 }

@@ -44,19 +44,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 col-xs-6 b-r"> <strong>Log</strong>
+                           <!--/ <div class="col-md-6 col-xs-6 b-r"> <strong>Log</strong>-->
                                 <br/>
-                                <p class="text-muted"  th:text="${Log.LogType}" >Johnathan Deo</p>
-                            </div>
-                            <div class="col-md-6 col-xs-6 b-r"> <strong>Bandwidth</strong>
-                                <br/>
-                                <p class="text-muted" th:text="${Log.bandwidth}">(123) 456 7890</p>
-                            </div>
-                            <div class="col-md-12 col-xs-12 b-r"> <strong>Notes</strong>
-                                <br/>
-                                <p class="text-muted" th:text="${Log.notes}">This package includes monthly payment option</p>
-                            </div>
-
+                                <p class="text-muted"  th:text="${logs}" ></p>
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>

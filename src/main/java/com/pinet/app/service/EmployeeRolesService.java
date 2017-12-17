@@ -1,9 +1,12 @@
 package com.pinet.app.service;
 
 import com.pinet.app.config.PokharaInternetException;
+import com.pinet.app.entities.EmployeeInfoEntity;
 import com.pinet.app.entities.EmployeeRolesEntity;
+import com.pinet.app.model.EmployeeInfoResponse;
 import com.pinet.app.model.EmployeeRolesResponse;
 import com.pinet.app.model.EmployeeRolesVo;
+import com.pinet.app.repository.EmployeeInfoRepository;
 import com.pinet.app.repository.EmployeeRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,9 @@ public class EmployeeRolesService {
 
     @Autowired
     EmployeeRolesRepository employeeRolesRepository;
+
+    @Autowired
+    EmployeeInfoRepository employeeInfoRepository;
 
 
     public EmployeeRolesResponse saveEmployeeRoles(EmployeeRolesVo employeeRolesVo, String employeeName) throws PokharaInternetException{
@@ -79,4 +85,6 @@ public class EmployeeRolesService {
         }
 
     }
+
+
 }

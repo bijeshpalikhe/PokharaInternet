@@ -61,22 +61,30 @@ public class UserServicesService {
         return response;
     }
 
-    public UserServicesResponse getServiceDetails(Integer clientId){
-        ClientDataEntity clientDataEntity=new ClientDataEntity();
+    public UserServicesResponse getServiceDetails(Integer clientId) throws PokharaInternetException {
+        ClientDataEntity clientDataEntity = new ClientDataEntity();
         clientDataEntity.setClientId(clientId);
-        UserServicesEntity userServicesEntity=userServicesRepository.findByClientID(clientDataEntity);
-        UserServicesResponse response=new UserServicesResponse(userServicesEntity);
-        response.setServiceName(serviceTypeRepository.findOne(response.getServiceId()).getService());
-        return response;
 
+        UserServicesEntity userServicesEntity = userServicesRepository.findByClientID(clientDataEntity);
+        if (userServicesEntity == null) {
+            return null;
+        }
+        UserServicesResponse response = new UserServicesResponse(userServicesEntity);
+        String serviceName = serviceTypeRepository.findOne(response.getServiceId()).getService();
+        if (serviceName != null) {
+            return null;
+        } else {
+            response.setServiceName(serviceName);
+            return response;
+        }
     }
 
-    public  List<ClientDataEntity> getClientsByServiceId(Integer serviceId){
-        List<ClientDataEntity> entities=new ArrayList<>();
-        ServiceTypeEntity serviceTypeEntity=new ServiceTypeEntity();
+    public List<ClientDataEntity> getClientsByServiceId(Integer serviceId) throws PokharaInternetException {
+        List<ClientDataEntity> entities = new ArrayList<>();
+        ServiceTypeEntity serviceTypeEntity = new ServiceTypeEntity();
         serviceTypeEntity.setId(serviceId);
-       List< UserServicesEntity > userServicesEntity=userServicesRepository.findByserviceTypeEntity(serviceTypeEntity);
-        for(UserServicesEntity entity :userServicesEntity){
+        List<UserServicesEntity> userServicesEntity = userServicesRepository.findByserviceTypeEntity(serviceTypeEntity);
+        for (UserServicesEntity entity : userServicesEntity) {
             entities.add(entity.getClientID());
         }
         return entities;

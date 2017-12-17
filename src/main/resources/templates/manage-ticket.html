@@ -46,7 +46,7 @@
                             <div class="col-md-6 col-lg-3 col-xlg-3">
                                 <div class="card">
                                     <div class="box bg-info text-center">
-                                        <h1 class="font-light text-white">2,064</h1>
+                                        <h1 class="font-light text-white" th:text="${totalTicketCount}"></h1>
                                         <h6 class="text-white">Total Tickets</h6>
                                     </div>
                                 </div>
@@ -55,8 +55,8 @@
                             <div class="col-md-6 col-lg-3 col-xlg-3">
                                 <div class="card">
                                     <div class="box bg-primary text-center">
-                                        <h1 class="font-light text-white">1,738</h1>
-                                        <h6 class="text-white">Responded</h6>
+                                        <h1 class="font-light text-white"  th:text="${totalActiveTicketCount}">1,738</h1>
+                                        <h6 class="text-white"  >Active</h6>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                     <td th:text="${ticket.ticketId}"></td>
                                     <td th:text="${ticket.ticketType}"></td>
                                     <td>
-                                        <a href="${'/ticket/edit/'+ticket.ticketId+'/?employeeName=arjun'}" th:text="${ticket.clientUsername}"></a>
+                                        <a th:href="${'/ticket/edit/'+ticket.ticketId}" > <span th:text="${ticket.clientUsername}"></span> </a>
                                     </td>
                                     <td th:text="${ticket.assignedTo}"></td>
                                     <td th:text="${ticket.timeToComplete}"></td>

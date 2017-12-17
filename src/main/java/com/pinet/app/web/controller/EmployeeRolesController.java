@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,25 +24,27 @@ public class EmployeeRolesController {
     EmployeeRolesService service;
 
     @RequestMapping(method = RequestMethod.GET, value = "/roles/{employeeId}")
-    public String getAllRoles(@PathVariable("employeeId") Integer employeeId, Model model) throws PokharaInternetException {
-//        List<ServiceResponse> response = serviceTypeService.getServiceType();
+    public String getAllRoles(@PathVariable("employeeId") Integer employeeId, Model model)  {
             LOGGER.error("Client id from getAllServices() "+employeeId);
-//            model.addAttribute("services", response);
             EmployeeRolesVo employeeRolesVo=new EmployeeRolesVo();
             employeeRolesVo.setEmployeeId(employeeId);
             model.addAttribute("employeeRolesVo", employeeRolesVo);
-
         return "assign-roles";
 
     }
 
     @RequestMapping(method = RequestMethod.POST, value="/assignroles")
-    public String assignroles(@ModelAttribute EmployeeRolesVo employeeRolesVo) throws PokharaInternetException {
+    public String assignroles(@ModelAttribute EmployeeRolesVo employeeRolesVo) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
 
-        EmployeeRolesResponse employeeRolesResponse = service.saveEmployeeRoles(employeeRolesVo, "arjun");
+        try {
+            EmployeeRolesResponse employeeRolesResponse = service.saveEmployeeRoles(employeeRolesVo, currentPrincipalName);
+            return "redirect:/dashboard";
+        } catch (PokharaInternetException e) {
+            return "redirect:/exception/error?q=" + e.getMessage();
 
-        return "redirect:/dashboard";
-
+        }
     }
 
 //    @RequestMapping(method = RequestMethod.GET, value = "/roles/{employeeId}")

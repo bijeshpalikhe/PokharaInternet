@@ -69,9 +69,9 @@
                                 <td th:text="${employee.phoneNo}"></td>
                                 <td th:text="${employee.info.employeeAddress}"></td>
 
-                                <td><a th:href="${'/employeeinfo/'+employee.employeeId+'/?employeeName=arjun'}"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
+                                <td><a th:href="${'/employeeinfo/'+employee.employeeId}"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
                                     <a th:href="${'/employeeinfo/delete/'+employee.employeeId}"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;
-                                    <a th:href="${'/employeeinfo/edit/'+employee.employeeId+'/?employeeName=arjun'}"><i class="fa fa-edit"></i></a>
+                                    <a th:href="${'/employeeinfo/edit/'+employee.employeeId}"><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                             </tbody>

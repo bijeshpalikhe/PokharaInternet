@@ -165,7 +165,10 @@
                                             <label class="control-label text-right col-md-3">Due Date</label>
                                             <div class="col-md-9">
                                                 <!--<input type="date" class="form-control" placeholder="dd/mm/yyyy" />-->
-                                                <input type="text" th:field="*{timeToComplete}" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44"/>
+                                                <!--<input type="text" th:field="*{timeToComplete}" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44"/>-->
+                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy" />
+                                                <input type="text" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44"/>
+
                                                 <div th:if="${param.invalidDate}">
                                                     <div class="alert alert-danger">
                                                         Please Select Date Greater than current Date

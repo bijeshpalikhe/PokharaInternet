@@ -36,35 +36,39 @@ public class SmsController implements EmailService {
 
     @RequestMapping(value = "/sendsms", method = RequestMethod.GET)
     public String addCustomer(Model model) {
-//        List<ClientDataEntity> clientDataEntities= servicesService.getclientID(serviceId);
-        List<ServiceResponse> response = serviceTypeService.getServiceType();
-        if (response != null) {
-            model.addAttribute("services", response);
-            model.addAttribute("userService", new UserServicesResponse());
-            return "sms";
-        } else {
-            return "redirect:/sms/sendsms?serviceError";
+        List<ServiceResponse> response = null;
+        try {
+            response = serviceTypeService.getServiceType();
+            if (response != null) {
+                model.addAttribute("services", response);
+                model.addAttribute("userService", new UserServicesResponse());
+                return "sms"; //redirects to sms.html page
+            } else {
+                return "redirect:/sms/sendsms?serviceError";
+            }
+        } catch (PokharaInternetException e) {
+            return "redirect:/exception/error?q=" + e.getMessage();
         }
+
     }
 
     @RequestMapping(value = "/sendsms", method = RequestMethod.POST)
-    public String assignService(@ModelAttribute UserServicesResponse userServicesResponse) throws PokharaInternetException {
-        List<ClientDataEntity> clientDataEntities = userServicesService.getClientsByServiceId(userServicesResponse.getServiceId());
-        String phoneNo;
-        for(ClientDataEntity clientDataEntity : clientDataEntities){
+    public String assignService(@ModelAttribute UserServicesResponse userServicesResponse)  {
+        List<ClientDataEntity> clientDataEntities = null;
+        try {
+            clientDataEntities = userServicesService.getClientsByServiceId(userServicesResponse.getServiceId());
+            String phoneNo;
+            for(ClientDataEntity clientDataEntity : clientDataEntities){
                 phoneNo=clientDataEntity.getPhoneNo();
-            String emailAddress=clientDataEntity.getEmail();
-            sendSimpleMessage(emailAddress,"Welcome Regards","Welcome to Pokhara Internet mailing service");
+                String emailAddress=clientDataEntity.getEmail();
+                sendSimpleMessage(emailAddress,"Welcome Regards","Welcome to Pokhara Internet mailing service");
 
+            }
+            return "redirect:/dashboard";//+ clientDataResponse.getClientId();
+        } catch (PokharaInternetException e) {
+            return "redirect:/exception/error?q=" + e.getMessage();
         }
-//            List<ClientDataEntity> clientDataEntities=user
 
-// if(service.checkUsernameUnique(clientVO.getUsername())){
-//            System.out.println("The Username is already Used");
-//            return "redirect:/client/addcustomer?uniqueConstraintsError";
-//        }
-//        ClientDataResponse clientDataResponse = service.saveUser(clientVO, "arjun");
-        return "redirect:/dashboard";//+ clientDataResponse.getClientId();
     }
 
 

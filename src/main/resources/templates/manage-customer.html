@@ -68,10 +68,10 @@
                                 <td th:text="${client.userName}"></td>
                                 <td th:text="${client.mobileNo}"></td>
                                 <td th:text="${client.address.municipality+'- '+client.address.wardNo+', '+client.address.streetName}"></td>
-                                <td><a th:href="${'/client/'+client.clientId+'/?employeeName=arjun'}"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
+                                <td><a th:href="${'/client/'+client.clientId}"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
                                     <a th:href="${'/client/delete/'+client.clientId}"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;
-                                    <a th:href="${'/client/assignticket/'+client.clientId+'/?employeeName=arjun'}"><i class="fa fa-ticket"></i></a>&nbsp;&nbsp;
-                                    <a th:href="${'/client/edit/'+client.clientId+'/?employeeName=arjun'}"><i class="fa fa-edit"></i></a>
+                                    <a th:href="${'/client/assignticket/'+client.clientId}"><i class="fa fa-ticket"></i></a>&nbsp;&nbsp;
+                                    <a th:href="${'/client/edit/'+client.clientId}"><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                             </tbody>

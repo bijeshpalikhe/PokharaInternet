@@ -33,165 +33,122 @@ public class ServiceTypeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addService(@ModelAttribute ServiceVO serviceVO) throws PokharaInternetException {
-
-        serviceTypeService.saveServiceType(serviceVO);
-        return "redirect:/dashboard";
-
+    public String addService(@ModelAttribute ServiceVO serviceVO) {
+        try {
+            LOGGER.info("Received request for saving  the Service Inforamation in database");
+            serviceTypeService.saveServiceType(serviceVO);
+            LOGGER.info(" Service  data saved successfully in Database ");
+            return "redirect:/servicetype/manageservice";
+        } catch (PokharaInternetException e) {
+            LOGGER.error("Cannot POST Service Data  [ERROR]  : " + e.getMessage());
+            return "redirect:/exception/error?q=" + e.getMessage();
+        }
     }
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/manageservice")
-    public String getAllServices(Model model) throws PokharaInternetException {
-        List<ServiceResponse> response = serviceTypeService.getServiceType();
-        if (response != null) {
-            model.addAttribute("services", response);
+    public String getAllServices(Model model) {
+        List<ServiceResponse> response = null;
+        try {
+            LOGGER.info("Received request for Getting all Service Inforamation from database");
+            response = serviceTypeService.getServiceType();
+            if (response != null) {
+                model.addAttribute("services", response);
+                LOGGER.info(" Service data fetched successfully from Database and added to the View manage-service.html");
+                return "manage-service";
+            } else {
+                throw new PokharaInternetException(" Cannot get Service Data please check the DB");
+            }
+        } catch (PokharaInternetException e) {
+            LOGGER.error("Cannot Get All Services Data  [ERROR]  : " + e.getMessage());
+            return "redirect:/exception/error?q=" + e.getMessage();
         }
-        return "manage-service";
-
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/services/{clientId}")
-    public String getAllService(@PathVariable("clientId") Integer clientId, Model model) throws PokharaInternetException {
-        List<ServiceResponse> response = serviceTypeService.getServiceType();
-        if (response != null) {
-            model.addAttribute("services", response);
-            UserServiceVo userServiceVo=new UserServiceVo();
-            userServiceVo.setClientId(clientId);
-            model.addAttribute("userServiceVo", userServiceVo);
+    public String getAllService(@PathVariable("clientId") Integer clientId, Model model) {
+        List<ServiceResponse> response = null;
+        try {
+            LOGGER.info("Received request for Getting  Service Inforamation from database from to Assignt to the particular client of Client ID : "+clientId);
+            response = serviceTypeService.getServiceType();
+            if (response != null) {
+                model.addAttribute("services", response);
+                UserServiceVo userServiceVo = new UserServiceVo();
+                userServiceVo.setClientId(clientId);
+                model.addAttribute("userServiceVo", userServiceVo);
+                LOGGER.info(" Service data fetched successfully from Database and added to the View assign-service.html");
+                return "assign-service";
+            } else {
+                throw new PokharaInternetException("Cannot get the services Please check the DB");
+            }
+        } catch (PokharaInternetException e) {
+            LOGGER.error("Cannot Get Services Data  [ERROR]  : " + e.getMessage());
+            return "redirect:/exception/error?q=" + e.getMessage();
         }
-        return "assign-service";
-
     }
 
 
-
     @RequestMapping(method = RequestMethod.GET, value = "/{serviceId}")
-    public String getClientById(@PathVariable("serviceId") Integer serviceId,
-                                @RequestParam("employeeName") String employeeName, Model model) {
-        ServiceResponse serviceResponse = serviceTypeService.getServiceById(serviceId);
-        if (serviceResponse != null) {
-            model.addAttribute("service", serviceResponse);
-//                return ResponseEntity.ok("view-customer");
-            return "view-service";
+    public String getServiceById(@PathVariable("serviceId") Integer serviceId, Model model) {
+        ServiceResponse serviceResponse = null;
+        try {
+            LOGGER.info("Received request for Getting  Service Inforamation from database with serviceId : "+serviceId);
+            serviceResponse = serviceTypeService.getServiceById(serviceId);
+            if (serviceResponse != null) {
+                model.addAttribute("service", serviceResponse);
+                LOGGER.info(" Service data fetched successfully from Database and added to the View view-service.html");
+                return "view-service";
+
+            } else {
+                throw new PokharaInternetException("Cannot get the service with Id " + serviceId + " Please check the DB");
+            }
+        } catch (PokharaInternetException e) {
+            LOGGER.error("Cannot Get Services Data of Id : "+serviceId+" [ERROR]  : " + e.getMessage());
+            return "redirect:/exception/error?q=" + e.getMessage();
 
         }
-//             else {
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with UserId : " + clientId + " Not found !");
-//            }
-
-        return "redirect:/dashboard";
     }
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{serviceId}")
-    public String editService(@PathVariable("serviceId") Integer serviceId, Model model) throws PokharaInternetException {
+    public String editService(@PathVariable("serviceId") Integer serviceId, Model model) {
 
-        ServiceResponse serviceResponse = serviceTypeService.getServiceById(serviceId);
-
-        if (serviceResponse != null) {
-            ServiceVO serviceVO=new ServiceVO(serviceResponse);
-            model.addAttribute("service",serviceVO );
-//            model.addAttribute("service", serviceResponse);
-
-            return "edit-service";
+        ServiceResponse serviceResponse = null;
+        try {
+            LOGGER.info("Received request for Editing  Service Inforamation from database with serviceId : "+serviceId);
+            serviceResponse = serviceTypeService.getServiceById(serviceId);
+            if (serviceResponse != null) {
+                ServiceVO serviceVO = new ServiceVO(serviceResponse);
+                model.addAttribute("service", serviceVO);
+                LOGGER.info(" Service data fetched successfully from Database and added to the View edit-service.html");
+                return "edit-service";
+            } else {
+                throw new PokharaInternetException("Cannot Edit the service with id : " + serviceId);
+            }
+        } catch (PokharaInternetException e) {
+            LOGGER.error(" Service Data of Id : "+serviceId+" Not found for edit [ERROR]  : " + e.getMessage());
+            return "redirect:/exception/error?q=" + e.getMessage();
         }
-//        System.out.println("Clinet DAta EDIT E");
-        return "redirect:/dashboard";
-
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/update" )
-    public String updateUserData(@RequestParam ("serviceId") Integer serviceId, @ModelAttribute ServiceVO serviceVO) {
-
-//        ServiceVO serviceVO=new ServiceVO(serviceResponse);
-        ServiceResponse response = serviceTypeService.updateServiceType(serviceVO,serviceId);
-        if (response != null) {
-
-            return "redirect:/dashboard";
-//                return ResponseEntity.ok(response);
+    @RequestMapping(method = RequestMethod.POST, value = "/update")
+    public String updateServiceData(@RequestParam("serviceId") Integer serviceId, @ModelAttribute ServiceVO serviceVO) {
+        ServiceResponse response = null;
+        try {
+            LOGGER.info("Received request for Updating  Service Inforamation from database with serviceId : "+serviceId);
+            response = serviceTypeService.updateServiceType(serviceVO, serviceId);
+            if (response != null) {
+                LOGGER.info(" Service data Updated successfully to Database redirecting to manage service view page");
+                return "redirect:/servicetype/manageservice";
+            } else {
+                throw new PokharaInternetException("Cannot update service with Id  " + serviceId + " Please review the DB");
+            }
+        } catch (PokharaInternetException e) {
+            LOGGER.error(" Cannot update Service Data of Id : "+serviceId+" [ERROR]  : " + e.getMessage());
+            return "redirect:/exception/error?q=" + e.getMessage();
 
         }
-//             else {
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with UserId : " + userId + " Not found !");
-//
-//            }
-        return "redirect:/view-service";
-
     }
-
-
-
-
-//    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-//    public ResponseEntity saveServiceType(@RequestParam("serviceDetail") String serviceDetail, @RequestParam("bandwidth") String bandwidth) {
-//        try {
-//            LOGGER.info("Received request for saving  the Service Inforamation");
-//            ServiceResponse serviceResponse = serviceTypeService.saveServiceType(serviceDetail, bandwidth);
-//            if(serviceResponse!=null){
-//                LOGGER.info(" Service  data saved successfully ");
-//                return ResponseEntity.ok(serviceResponse);
-//            } else {
-//                return ResponseEntity.status(HttpStatus.CONFLICT).body("Cannot save Service Data");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            LOGGER.error("Cannot POST Service Data  [ERROR]  : " + e.getMessage());
-//            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-//        }
-//    }
-//
-//    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-//    public ResponseEntity getServices() {
-//        try {
-//            LOGGER.info("Received request to get the Service Data ");
-//
-//            List<ServiceResponse> serviceResponses=serviceTypeService.getServiceType();
-//            if(serviceResponses!=null){
-//                return ResponseEntity.ok(serviceResponses);
-//            }else{
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cannot Get Service Data");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            LOGGER.error("Cannot GET  Service Data  [ERROR]  : " + e.getMessage());
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-//        }
-//    }
-//
-//    @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/searchbyservice/{serviceType}")
-//    public ResponseEntity getServicesByServiceType(@PathVariable("serviceType") String serviceType) {
-//        try {
-//            List<ServiceResponse> serviceResponses=serviceTypeService.getServiceTypeByServiceType(serviceType);
-//
-//            if(serviceResponses!=null) {
-//                return ResponseEntity.ok(serviceResponses);
-//            }else{
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cannot Get Service Data By serviceType");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            LOGGER.error("Cannot GET  Service Data By serviceType [ERROR]  : " + e.getMessage());
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-//        }
-//    }
-//
-//    @RequestMapping(method = RequestMethod.GET, produces = "application/json", value = "/searchbybandwidth/{bandwidth}")
-//    public ResponseEntity getServicesByBandwidth(@PathVariable("bandwidth") String bandwidth) {
-//        try {
-//
-//            List<ServiceResponse> serviceResponses = serviceTypeService.getServiceTypeByBandwidth(bandwidth);
-//            if (serviceResponses != null) {
-//                return ResponseEntity.ok(serviceResponses);
-//            } else {
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cannot Get Service Data By bandwith");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            LOGGER.error("Cannot GET  Service Data By bandwith [ERROR]  : " + e.getMessage());
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-//        }
-//    }
 
 }

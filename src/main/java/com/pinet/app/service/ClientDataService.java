@@ -41,16 +41,8 @@ public class ClientDataService {
         clientDataEntity.setClientData(convertDatatojson(dataVO));
         clientDataEntity.setAddress(convertAddresstojson(addressVo));
         clientDataEntity.setCreatedBy(employeeName);
-
-
-
-
-
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
-       // clientDataEntity.setDob(sqlDate);
-
         clientDataEntity.setCreatedDate(sqlDate);
         clientDataEntity.setLastModifiedBy(employeeName);
         clientDataEntity.setLastModifiedDate(sqlDate);
@@ -84,7 +76,7 @@ public class ClientDataService {
 
     }
 
-    public Boolean checkUsernameUnique(String username){
+    public Boolean checkUsernameUnique(String username) throws  PokharaInternetException{
         ClientDataEntity clientDataEntity=clientDataRepository.findByUserName(username);
         if(clientDataEntity!=null){
             return true;

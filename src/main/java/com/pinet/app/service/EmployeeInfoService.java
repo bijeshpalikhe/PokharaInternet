@@ -4,6 +4,7 @@ package com.pinet.app.service;
 import com.google.gson.Gson;
 import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.EmployeeInfoEntity;
+import com.pinet.app.entities.EmployeeRolesEntity;
 import com.pinet.app.model.*;
 import com.pinet.app.repository.EmployeeInfoRepository;
 import com.pinet.app.repository.EmployeeRolesRepository;
@@ -125,28 +126,38 @@ public class EmployeeInfoService {
         }
     }
 
-    public String convertInfoToString(InfoVO infoVO) {
+    public EmployeeInfoResponse getEmployeeByUsername(String username) throws PokharaInternetException {
+        EmployeeRolesEntity employeeRolesEntity=employeeRolesRepository.findByUsername(username);
+        EmployeeInfoEntity employeeInfoEntity=employeeInfoRepository.findOne(employeeRolesEntity.getEmployeeId());
+
+        EmployeeInfoResponse response=new EmployeeInfoResponse(employeeInfoEntity);
+        return response;
+
+    }
+
+
+    public String convertInfoToString(InfoVO infoVO) throws PokharaInternetException {
         Gson gson = new Gson();
         String json = gson.toJson(infoVO);
         return json;
 
     }
 
-    public InfoVO convertStringToInfo(String jsonString) {
+    public InfoVO convertStringToInfo(String jsonString) throws PokharaInternetException {
         Gson gson = new Gson();
         InfoVO infoVO = gson.fromJson(jsonString, InfoVO.class);
         return infoVO;
 
     }
 
-    public String convertNameToString(NameVO nameVO) {
+    public String convertNameToString(NameVO nameVO) throws PokharaInternetException {
         Gson gson = new Gson();
         String json = gson.toJson(nameVO);
         return json;
 
     }
 
-    public NameVO convertStringToName(String jsonString) {
+    public NameVO convertStringToName(String jsonString) throws PokharaInternetException{
         Gson gson = new Gson();
         NameVO nameVO = gson.fromJson(jsonString, NameVO.class);
         return nameVO;

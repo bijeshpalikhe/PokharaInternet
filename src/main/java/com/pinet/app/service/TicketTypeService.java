@@ -1,5 +1,6 @@
 package com.pinet.app.service;
 
+import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.TicketTypeEntitiy;
 import com.pinet.app.model.TicketDataResponse;
 import com.pinet.app.model.TicketDataVO;
@@ -16,7 +17,7 @@ public class TicketTypeService {
     @Autowired
     TicketTypeRepository ticketTypeRepository;
 
-    public List<TicketTypeResponse> getAllTickets(){
+    public List<TicketTypeResponse> getAllTickets() throws PokharaInternetException {
         List<TicketTypeEntitiy> ticketTypeEntities = ticketTypeRepository.findAll();
         List<TicketTypeResponse> ticketList = new ArrayList<>();
 

@@ -65,7 +65,7 @@
             <!-- Logo -->
             <!-- ============================================================== -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="/dashboard">
+                <a class="navbar-brand" href="dashboard.html">
                     <!-- Logo icon --><b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
@@ -240,9 +240,8 @@
                                         <div class="u-img"><img th:src="@{/assets/images/logo-icon.png}" alt="user"/>
                                         </div>
                                         <div class="u-text">
-                                            <h4>Bikram Neupane</h4>
-                                            <p class="text-muted">varun@gmail.com</p>
-                                            <a href="view-user.php" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                            <!--<h4 th:text ="${#authentication.getName()}"></h4>-->
+                                            <!--<a th:href="${'/employeeinfo/employeeUsername/'+#authentication.getName()}"  class="btn btn-rounded btn-danger btn-sm">View Profile</a>-->
                                         </div>
                                     </div>
                                 </li>
@@ -272,16 +271,15 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
                     <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                            class="fa fa-group"></i><span class="hide-menu">User</span></a>
+                            class="fa fa-group"></i><span class="hide-menu">Customer<span
+                            class="label label-rouded label-themecolor pull-right">4</span></span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="/client/addcustomer">Add User</a></li>
-                            <li><a href="/client/clients">Manage User</a></li>
+                            <li><a href="/client/addcustomer">Add Customer</a></li>
+                            <li><a href="/client/clients">Manage Customer</a></li>
                         </ul>
                     </li>
-                    <li class="nav-devider"></li>
                     <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                            class="fa fa-ticket"></i><span class="hide-menu">Ticket<span
-                            class="label label-rouded label-themecolor pull-right">45</span></span></a>
+                            class="fa fa-ticket"></i><span class="hide-menu">Ticket</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="/ticket/addticket">Add Ticket</a></li>
                             <li><a href="/ticket/tickets">Manage Ticket</a></li>
@@ -295,7 +293,12 @@
                             <li><a href="/servicetype/manageservice">Manage Service</a></li>
                         </ul>
                     </li>
-
+                    <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
+                            class="fa fa-envelope"></i><span class="hide-menu">SMS</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="/sms/sendsms">Send Sms to Employee </a></li>
+                        </ul>
+                    </li>
                     <li class="nav-devider"></li>
 
                     <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
@@ -309,15 +312,10 @@
                     <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
                             class="fa fa-print"></i><span class="hide-menu">Report</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="/report/staff">Import/Export Staff</a></li>
-                            <li><a href="/report/customer">Import/Export Customer</a></li>
+                            <li><a href="/uploadexcel/customer">Import/Export Customer</a></li>
+                            <li><a href="/uploadexcel/staff">Import/Export Staff</a></li>
                             <li><a href="/report/ticket">Export Ticket</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                            class="fa fa-envelope"></i><span class="hide-menu">SMS</span></a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="/sms/sendsms">Send Sms to Employee </a></li>
+                            <li><a href="/logger">System Log</a></li>
                         </ul>
                     </li>
                     <li class="nav-devider"></li>
@@ -328,7 +326,6 @@
                             <li><a href="/report/customer">Account Settings</a></li>
                         </ul>
                     </li>
-
                 </ul>
             </nav>
             <!-- End Sidebar navigation -->

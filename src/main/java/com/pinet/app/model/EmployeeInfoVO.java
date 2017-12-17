@@ -21,6 +21,7 @@ public class EmployeeInfoVO {
     }
     public EmployeeInfoVO(EmployeeInfoResponse employeeInfoResponse){
         this.employeesName=employeeInfoResponse.getEmployeesName();
+        this.email=employeeInfoResponse.getEmail();
         this.phoneNo=employeeInfoResponse.getPhoneNo();
         this.dob=employeeInfoResponse.getDob();
         this.idType=employeeInfoResponse.getIdType();

@@ -1,6 +1,7 @@
 package com.pinet.app.model;
 
 
+import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.TicketDataEntity;
 import com.pinet.app.mail.EmailService;
 import com.pinet.app.service.TicketDataService;
@@ -32,7 +33,7 @@ public class ScheduledTasks implements EmailService {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     @Scheduled(fixedRate = 10000)
-    public void reportCurrentTime() {
+    public void reportCurrentTime() throws PokharaInternetException {
         Date currentDate = new Date();
         long currentTime = Math.abs(currentDate.getTime());
 

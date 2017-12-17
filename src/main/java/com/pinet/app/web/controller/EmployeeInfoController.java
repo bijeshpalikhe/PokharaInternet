@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,88 +26,119 @@ public class EmployeeInfoController {
     @Autowired
     EmployeeInfoService service;
 
-//    @Secured({"ROLE_USER","ROLE_ADMIN"})
     @RequestMapping(value = "/addemployee", method = RequestMethod.GET)
     public String addEmployee(Model model) {
-        System.out.println("EMployee DAta DAta Entity INitialized ");
         model.addAttribute("employeeInfoVo", new EmployeeInfoVO());
         return "add-user";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addEmployee(@ModelAttribute EmployeeInfoVO employeeInfoVO) throws PokharaInternetException {
-        EmployeeInfoResponse employeeInfoResponse = service.saveEmployeeInfo(employeeInfoVO, "arjun");
+    public String addEmployee(@ModelAttribute EmployeeInfoVO employeeInfoVO) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        EmployeeInfoResponse employeeInfoResponse = null;
+        try {
+            employeeInfoResponse = service.saveEmployeeInfo(employeeInfoVO, currentPrincipalName);
+            return "redirect:/employeeroles/roles/" + employeeInfoResponse.getEmployeeId();
 
-        return "redirect:/employeeroles/roles/" +employeeInfoResponse.getEmployeeId();
+        } catch (PokharaInternetException e) {
+            return "redirect:/exception/error?q=" + e.getMessage();
+
+        }
+
     }
 
 
     //viewiing all clients
     @RequestMapping(method = RequestMethod.GET, value = "/employees")
-    public String getAllEmployees(Model model) throws PokharaInternetException {
-        List<EmployeeInfoResponse> response = service.getAllEmployee();
-
-        if (response != null) {
+    public String getAllEmployees(Model model)  {
+        List<EmployeeInfoResponse> response = null;
+        try {
+            response = service.getAllEmployee();
+            if (response == null) {
+                throw  new PokharaInternetException("Cannot Get the Employee Details");
+            }
             model.addAttribute("employees", response);
+            return "manage-user";
+
+        } catch (PokharaInternetException e) {
+            return "redirect:/exception/error?q=" + e.getMessage();
         }
-        return "manage-user";
+
+
 
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{employeeId}")
-    public String getEmpoyeeById(@PathVariable("employeeId") Integer employeeId,
-                                @RequestParam("employeeName") String employeeName, Model model) {
+    public String getEmpoyeeById(@PathVariable("employeeId") Integer employeeId, Model model) {
         try {
             EmployeeInfoResponse employeeInfoResponse = service.getEmployeeID(employeeId);
-            if (employeeInfoResponse != null) {
-                model.addAttribute("employee", employeeInfoResponse);
-                return "view-user";
+            if (employeeInfoResponse == null) {
+                throw new PokharaInternetException("Cannot get the Employee Details of : " + employeeId);
             }
+            model.addAttribute("employee", employeeInfoResponse);
+            return "view-user";
         } catch (PokharaInternetException e) {
-            return "ERROR HANDLING PAGE";
+            return "redirect:/exception/error?q=" + e.getMessage();
         }
-        return "view-user";
     }
 
+//    @RequestMapping(method = RequestMethod.GET, value = "employeeUsername/{employeeUsername}")
+//    public String getEmployeeByEmail(@PathVariable("employeeUsername") String employeeUsername, Model model) {
+//        try {
+//            EmployeeInfoResponse employeeInfoResponse = service.getEmployeeByUsername(employeeUsername);
+//            if (employeeInfoResponse == null) {
+//                throw new PokharaInternetException("Cannot get the Employee Details of : " + employeeUsername);
+//            }
+//            model.addAttribute("employee", employeeInfoResponse);
+//            return "view-user";
+//        } catch (PokharaInternetException e) {
+//            return "redirect:/exception/error?q=" + e.getMessage();
+//        }
+//    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/delete/{employeeId}")
-    public String deleteUser(@PathVariable("employeeId") Integer employeeId
-    ) throws PokharaInternetException {
-
-        if (service.deleteEmployeeById(employeeId)) {
+    public String deleteEmployee(@PathVariable("employeeId") Integer employeeId
+    ) {
+        try {
+            if (service.deleteEmployeeById(employeeId) == false) {
+                throw new PokharaInternetException("Cannot Delete Employee please Check the Database");
+            }
             return "redirect:/employeeinfo/employees";
+        } catch (PokharaInternetException e) {
+            return "redirect:/exception/error?q=" + e.getMessage();
         }
-        return "redirect:/dashboard";
-
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{employeeId}")
-    public String editUser(@PathVariable("employeeId") Integer employeeId,
-                             Model model) throws PokharaInternetException {
+    public String editEmployee(@PathVariable("employeeId") Integer employeeId,
+                           Model model) {
 
-        EmployeeInfoResponse employeeInfoResponse = service.getEmployeeID(employeeId);
-
-        if (employeeInfoResponse != null) {
+        EmployeeInfoResponse employeeInfoResponse = null;
+        try {
+            employeeInfoResponse = service.getEmployeeID(employeeId);
             EmployeeInfoVO employeeInfoVO = new EmployeeInfoVO(employeeInfoResponse);
             model.addAttribute("employee", employeeInfoVO);
-
             return "edit-user";
+        } catch (PokharaInternetException e) {
+            return "redirect:/exception/error?q=" + e.getMessage();
+
         }
-//        System.out.println("Clinet DAta EDIT E");
-        return "edit-user";
 
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/update")
-    public String updateUserData(@RequestParam("employeeId") Integer employeeId, @ModelAttribute EmployeeInfoVO employeeInfoVO) throws PokharaInternetException {
-
-        EmployeeInfoResponse response = service.updateEmployeeInfoById(employeeInfoVO, employeeId, "arjun");
-        System.out.println("\n Employee Data DATA UPDATed  ");
-        if (response != null) {
-            return "redirect:/dashboard";
-
+    public String updateEmployeeData(@RequestParam("employeeId") Integer employeeId, @ModelAttribute EmployeeInfoVO employeeInfoVO) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        EmployeeInfoResponse response = null;
+        try {
+            response = service.updateEmployeeInfoById(employeeInfoVO, employeeId, currentPrincipalName);
+            return "redirect:/employeeinfo/employees";
+        } catch (PokharaInternetException e) {
+            return "redirect:/exception/error?q=" + e.getMessage();
 
         }
-        return "redirect:/view-employee";
     }
 
     //    @Secured({"ROLE_USER","ROLE_ADMIN"})

@@ -1,5 +1,6 @@
 package com.pinet.app.service;
 
+import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.ClientDataEntity;
 import com.pinet.app.entities.ServiceTypeEntity;
 import com.pinet.app.model.ClientDataResponse;
@@ -21,7 +22,7 @@ public class ServiceTypeService {
     @Autowired
     ServiceTypeRepository serviceTypeRepository;
 
-    public ServiceResponse saveServiceType(ServiceVO serviceVO) {
+    public ServiceResponse saveServiceType(ServiceVO serviceVO) throws PokharaInternetException {
 
         ServiceTypeEntity serviceTypeEntityToSave = new ServiceTypeEntity();
 
@@ -34,7 +35,7 @@ public class ServiceTypeService {
         return response;
     }
 
-    public ServiceResponse updateServiceType(ServiceVO serviceVO, Integer id) {
+    public ServiceResponse updateServiceType(ServiceVO serviceVO, Integer id) throws PokharaInternetException {
         ServiceTypeEntity serviceTypeEntity = serviceTypeRepository.findOne(id);
         if (serviceTypeEntity != null) {
 
@@ -51,7 +52,7 @@ public class ServiceTypeService {
         return null;
     }
 
-    public List<ServiceResponse> getServiceType() {
+    public List<ServiceResponse> getServiceType() throws PokharaInternetException {
         List<ServiceTypeEntity> serviceTypeEntityList = serviceTypeRepository.findAll();
         List<ServiceResponse> responseList = new ArrayList<>();
 
@@ -63,7 +64,7 @@ public class ServiceTypeService {
         return responseList;
     }
 
-    public List<ServiceResponse> getServiceTypeByServiceType(String serviceTpye) {
+    public List<ServiceResponse> getServiceTypeByServiceType(String serviceTpye) throws PokharaInternetException{
         List<ServiceTypeEntity> serviceTypeEntityList = serviceTypeRepository.findByService(serviceTpye);
         List<ServiceResponse> responseList = new ArrayList<>();
 
@@ -75,7 +76,7 @@ public class ServiceTypeService {
         return responseList;
     }
 
-    public List<ServiceResponse> getServiceTypeByBandwidth(String bandwidth) {
+    public List<ServiceResponse> getServiceTypeByBandwidth(String bandwidth) throws PokharaInternetException{
         List<ServiceTypeEntity> serviceTypeEntityList = serviceTypeRepository.findByBandwidth(bandwidth);
        if(serviceTypeEntityList!=null){
 
@@ -91,7 +92,7 @@ public class ServiceTypeService {
     }
 
 
-    public ServiceResponse getServiceById(Integer serviceId) {
+    public ServiceResponse getServiceById(Integer serviceId) throws PokharaInternetException{
 
         ServiceTypeEntity serviceTypeEntity = serviceTypeRepository.findOne(serviceId);
         if (serviceTypeEntity != null) {

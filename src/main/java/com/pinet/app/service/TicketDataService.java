@@ -1,5 +1,6 @@
 package com.pinet.app.service;
 
+import com.pinet.app.PokharaInternetApplication;
 import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.TicketDataEntity;
 import com.pinet.app.model.TicketDataResponse;
@@ -34,7 +35,7 @@ public class TicketDataService {
         return response;
     }
 
-    public List<TicketDataResponse> getAllTickets() {
+    public List<TicketDataResponse> getAllTickets() throws  PokharaInternetException {
         List<TicketDataEntity> ticketDataEntities = ticketDataRepository.findAll();
         List<TicketDataResponse> userList = new ArrayList<>();
 
@@ -45,17 +46,26 @@ public class TicketDataService {
         }
         return userList;
     }
-    public TicketDataResponse getTicketById(Integer ticketId) {
+    public TicketDataResponse getTicketById(Integer ticketId) throws  PokharaInternetException {
         TicketDataEntity ticketEntity = ticketDataRepository.findOne(ticketId);
             TicketDataResponse response = new TicketDataResponse(ticketEntity);
         return response;
     }
 
 
-    public void update(Integer ticketId, Boolean active) {
+    public void update(Integer ticketId, Boolean active) throws PokharaInternetException {
         TicketDataEntity ticketEntity = ticketDataRepository.findOne(ticketId);
         ticketEntity.setActive(active);
         ticketDataRepository.save(ticketEntity);
+    }
+    public Integer getTotalTicketsValue() throws PokharaInternetException{
+        List<TicketDataEntity> ticketDataEntities = ticketDataRepository.findAll();
+        return ticketDataEntities.size();
+    }
+
+    public Integer getActiveTicketValue() throws PokharaInternetException {
+        List<TicketDataEntity> ticketDataEntities = ticketDataRepository.findByActive(true);
+        return ticketDataEntities.size();
     }
 }
 

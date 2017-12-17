@@ -95,12 +95,6 @@
                                 </div>
 
                                 <div class="row">
-                                    <!--/span-->
-                                    <div class="col-md-6">
-
-
-                                    </div>
-                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label class="control-label text-right col-md-3">Date of Birth</label>
@@ -109,7 +103,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Relationship</label>
+                                            <div class="col-md-9">
+                                                <div class="radio-list">
+                                                    <label class="custom-control custom-radio">
+                                                        <input th:field="*{infoVO.employeeRelation}" id="radio3" value="1" name="radio" type="radio" checked="" class="custom-control-input"/>
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">Married</span>
+                                                    </label>
+                                                    <label class="custom-control custom-radio">
+                                                        <input th:field="*{infoVO.employeeRelation}"  id="radio4" value="0" name="radio" type="radio" class="custom-control-input"/>
+                                                        <span class="custom-control-indicator"></span>
+                                                        <span class="custom-control-description">Unmarried</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <!--/row-->
                                 <h3 class="box-title">General Information</h3>
@@ -207,22 +220,6 @@
 
                                 </div>
                                 <h3 class="box-title">Address</h3>
-                                <hr class="m-t-0 m-b-40"/>
-                                <!--/row-->
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="control-label text-right col-md-3">Employee Relation</label>
-                                            <div class="col-md-9">
-                                                <textarea th:field="*{infoVO.employeeRelation}" class="form-control" placeholder="Pokhara-Lekhnath 30"></textarea>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <!--/span-->
-
-                                </div>
-                                <!--/row-->
                             </div>
                             <hr/>
                             <div class="form-actions">
