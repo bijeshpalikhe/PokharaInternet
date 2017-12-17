@@ -59,7 +59,7 @@ public class EmployeeRolesEntity implements Serializable {
     }
 
     public EmployeeRolesEntity(EmployeeRolesVo employeeRolesVo) {
-//        this.employeeId=employeeRolesVo.getEmployeeId();
+        this.employeeId=employeeRolesVo.getEmployeeId();
         /* userName;
         private String password;
         private String roles; */

@@ -7,7 +7,7 @@ import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.ClientDataEntity;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by ashmeet on 7/19/17.
@@ -18,7 +18,7 @@ public class ClientDataResponse {
     private String userName;
     private NameVO clientName;
     private ClientDataVO clientData;
-    private java.sql.Date dob;
+    private Date dob;
     private String email;
     private AddressVo address;
     private String mobileNo;
@@ -28,6 +28,26 @@ public class ClientDataResponse {
     private String lastModifiedBy;
     private java.sql.Date lastModifiedDate;
 
+    public ClientDataResponse() {
+    }
+
+    public ClientDataResponse(ClientDataEntity clientDataEntity) {
+        this.clientId = clientDataEntity.getClientId();
+        this.userName = clientDataEntity.getUserName();
+        this.dob = clientDataEntity.getDob();
+        this.email = clientDataEntity.getEmail();
+        this.mobileNo = clientDataEntity.getMobileNo();
+        this.phoneNo = clientDataEntity.getPhoneNo();
+        this.createdBy = clientDataEntity.getCreatedBy();
+        this.createdDate = clientDataEntity.getCreatedDate();
+        this.lastModifiedBy = clientDataEntity.getLastModifiedBy();
+        this.lastModifiedDate =  clientDataEntity.getLastModifiedDate();
+    }
+
+
+//    public String getClientName() {
+//        return clientName.getFirstName()+" "+clientName.getMiddleName()+" "+clientName.getLastName();
+//    }
 
     public NameVO getClientName() {
         return clientName;
@@ -48,23 +68,15 @@ public class ClientDataResponse {
     public AddressVo getAddress() {
         return address;
     }
-
+//    public String getAddress() {
+//        String address=this.address.getMunicipality()+"-"+this.address.getWaardNo()+", "+this.address.getStreetName();
+//        return address;
+//    }
     public void setAddress(AddressVo address) {
         this.address = address;
     }
 
-    public ClientDataResponse(ClientDataEntity clientDataEntity) {
-        this.clientId = clientDataEntity.getClientId();
-        this.userName = clientDataEntity.getUserName();
-        this.dob = clientDataEntity.getDob();
-        this.email = clientDataEntity.getEmail();
-        this.mobileNo = clientDataEntity.getMobileNo();
-        this.phoneNo = clientDataEntity.getPhoneNo();
-        this.createdBy = clientDataEntity.getCreatedBy();
-        this.createdDate = clientDataEntity.getCreatedDate();
-        this.lastModifiedBy = clientDataEntity.getLastModifiedBy();
-        this.lastModifiedDate = clientDataEntity.getLastModifiedDate();
-    }
+
 
     public Integer getClientId() {
         return clientId;
@@ -127,9 +139,7 @@ public class ClientDataResponse {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
+
 
     public String getLastModifiedBy() {
         return lastModifiedBy;
@@ -144,8 +154,11 @@ public class ClientDataResponse {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setCreatedDate(java.sql.Date createdDate) {
+        this.createdDate = createdDate;
     }
 
+    public void setLastModifiedDate(java.sql.Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
 }

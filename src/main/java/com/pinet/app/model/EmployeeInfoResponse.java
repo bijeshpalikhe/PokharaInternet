@@ -1,6 +1,9 @@
 package com.pinet.app.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pinet.app.config.JsonDateSerializer;
 import com.pinet.app.entities.EmployeeInfoEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -11,13 +14,20 @@ public class EmployeeInfoResponse {
     private String phoneNo;
     private String email;
     private InfoVO info;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
+
     private String idType;
     private String idNo;
     private String fileNo;
     private String createdBy;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdDate;
     private String lastModifiedBy;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date lastModifiedDate;
 
     public EmployeeInfoResponse() {
@@ -80,6 +90,7 @@ public class EmployeeInfoResponse {
         this.info = info;
     }
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getDob() {
         return dob;
     }
@@ -120,6 +131,7 @@ public class EmployeeInfoResponse {
         this.createdBy = createdBy;
     }
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -136,6 +148,7 @@ public class EmployeeInfoResponse {
         this.lastModifiedBy = lastModifiedBy;
     }
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getLastModifiedDate() {
         return lastModifiedDate;
     }

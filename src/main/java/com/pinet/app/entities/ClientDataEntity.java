@@ -8,7 +8,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
         /*
@@ -57,7 +57,7 @@ public class ClientDataEntity implements Serializable {
 
     @Column(name = "created_date")
     @CreatedDate
-    private Date createdDate;
+    private java.sql.Date createdDate;
 
     public ClientDataEntity() {
     }
@@ -68,7 +68,7 @@ public class ClientDataEntity implements Serializable {
 
     @LastModifiedBy
     @Column(name = "last_modified_date")
-    private Date lastModifiedDate;
+    private java.sql.Date lastModifiedDate;
 
     @OneToMany(mappedBy="userServiceId")
     private Set<UserServicesEntity> userServicesEntities;
@@ -165,12 +165,16 @@ public class ClientDataEntity implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedDate() {
+    public java.sql.Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(java.sql.Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public void setLastModifiedDate(java.sql.Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     public String getLastModifiedBy() {
@@ -181,13 +185,11 @@ public class ClientDataEntity implements Serializable {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public Date getLastModifiedDate() {
+    public java.sql.Date getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
+
 
     public ClientDataEntity(ClientVO clientDataVO) {
 
@@ -201,5 +203,6 @@ public class ClientDataEntity implements Serializable {
     public ClientDataEntity(Integer clientId) {
         this.clientId = clientId;
     }
+
 
 }

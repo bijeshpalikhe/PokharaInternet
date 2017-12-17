@@ -4,11 +4,9 @@ package com.pinet.app.service;
 import com.google.gson.Gson;
 import com.pinet.app.config.PokharaInternetException;
 import com.pinet.app.entities.EmployeeInfoEntity;
-import com.pinet.app.model.EmployeeInfoResponse;
-import com.pinet.app.model.EmployeeInfoVO;
-import com.pinet.app.model.InfoVO;
-import com.pinet.app.model.NameVO;
+import com.pinet.app.model.*;
 import com.pinet.app.repository.EmployeeInfoRepository;
+import com.pinet.app.repository.EmployeeRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +17,9 @@ import java.util.List;
 public class EmployeeInfoService {
     @Autowired
     EmployeeInfoRepository employeeInfoRepository;
+
+    @Autowired
+    EmployeeRolesRepository employeeRolesRepository;
 
     public EmployeeInfoResponse saveEmployeeInfo(EmployeeInfoVO employeeInfoVO, String employeeName) throws PokharaInternetException {
         EmployeeInfoEntity employeeInfoEntity = new EmployeeInfoEntity(employeeInfoVO);
@@ -113,13 +114,14 @@ public class EmployeeInfoService {
         return null;
     }
 
-    public String deleteEmployeeById(Integer employeeId) throws PokharaInternetException{
+    public Boolean deleteEmployeeById(Integer employeeId) throws PokharaInternetException{
         EmployeeInfoEntity employeeInfoEntity = employeeInfoRepository.findOne(employeeId);
         if (employeeInfoEntity == null) {
             return null;
         } else {
+            employeeRolesRepository.delete(employeeId);
             employeeInfoRepository.delete(employeeInfoEntity);
-            return "Employee successfully deleted";
+            return true;
         }
     }
 

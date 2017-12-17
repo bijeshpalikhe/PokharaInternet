@@ -195,3 +195,37 @@ databaseChangeLog:
       - dropColumn:
           columnName: CLIENT_ID
           tableName: ticket_data
+
+  - changeSet:
+          id: addColumn-timeToComplete
+          author: ashmeet
+          changes:
+            - addColumn:
+                columns:
+                  - column:
+                      name: TIME_TO_COMPLETE
+                      type: datetime
+                tableName: ticket_data
+
+  - changeSet:
+           id: addColumn-employeeEmail
+           author: ashmeet
+           changes:
+             - addColumn:
+                 columns:
+                   - column:
+                       name: EMPLOYEE_EMAIL
+                       type: text
+                 tableName: ticket_data
+
+  - changeSet:
+           id: addColumn-clientUsername
+           author: ashmeet
+           changes:
+             - addColumn:
+                 columns:
+                   - column:
+                       name: CLIENT_USERNAME
+                       type: text
+                 tableName: ticket_data
+

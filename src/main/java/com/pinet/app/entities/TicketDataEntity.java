@@ -1,5 +1,6 @@
 package com.pinet.app.entities;
 
+import com.pinet.app.model.TicketDataVO;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -17,8 +18,8 @@ public class TicketDataEntity {
     @Column(name="TICKET_TYPE")
     private String ticketType;
 
-    @Column(name="CLIENT_ID")
-    private String clientId;
+//    @Column(name="CLIENT_ID")
+//    private String clientId;
 
     @Column(name="CONTACT_NO")
     private String contactNo;
@@ -58,7 +59,32 @@ public class TicketDataEntity {
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
 
+    @Column(name = "TIME_TO_COMPLETE")
+    private Date timeToComplete;
+
+    @Column(name="EMPLOYEE_EMAIL")
+    private String employeeEmail;
+
+    @Column(name="CLIENT_USERNAME")
+    private String clientUsername;
+
     public TicketDataEntity() {
+    }
+
+    public TicketDataEntity(TicketDataVO ticketDataVO) {
+        this.ticketType=ticketDataVO.getTicketType();
+//        this.clientId=ticketDataVO.getClientId();
+        this.contactNo=ticketDataVO.getContactNo();
+        this.assignedTo=ticketDataVO.getAssignedTo();
+        this.notes=ticketDataVO.getNotes();
+        this.active=ticketDataVO.getActive();
+        this.followUpBy=ticketDataVO.getFollowUpBy();
+        this.reviewedBy=ticketDataVO.getReviewedBy();
+        this.serviceId=ticketDataVO.getServiceId();
+        this.timeToComplete=ticketDataVO.getTimeToComplete();
+        this.employeeEmail=ticketDataVO.getEmail();
+        this.clientUsername=ticketDataVO.getClientUsername();
+
     }
 
     public Integer getTicketId() {
@@ -77,13 +103,13 @@ public class TicketDataEntity {
         this.ticketType = ticketType;
     }
 
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
+//    public String getClientId() {
+//        return clientId;
+//    }
+//
+//    public void setClientId(String clientId) {
+//        this.clientId = clientId;
+//    }
 
     public String getContactNo() {
         return contactNo;
@@ -171,5 +197,29 @@ public class TicketDataEntity {
 
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public Date getTimeToComplete() {
+        return timeToComplete;
+    }
+
+    public void setTimeToComplete(Date timeToComplete) {
+        this.timeToComplete = timeToComplete;
+    }
+
+    public String getEmployeeEmail() {
+        return employeeEmail;
+    }
+
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
+    }
+
+    public String getClientUsername() {
+        return clientUsername;
+    }
+
+    public void setClientUsername(String clientUsername) {
+        this.clientUsername = clientUsername;
     }
 }

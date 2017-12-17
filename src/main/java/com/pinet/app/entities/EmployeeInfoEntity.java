@@ -65,6 +65,8 @@ public class EmployeeInfoEntity implements Serializable {
     @Column(name = "last_modified_date")
     private Date lastModifiedDate;
 
+
+
     public EmployeeInfoEntity() {
     }
 

@@ -16,6 +16,7 @@ import java.sql.Date;
 public class UserServicesResponse {
 
     private Integer userServiceId;
+    private Integer serviceId;
     private int clientID;
     private int serviceTypeEntity;
     private AddressVo installationAddress;
@@ -25,6 +26,13 @@ public class UserServicesResponse {
     private Date createdDate;
     private String lastModifiedBy;
     private Date lastModifiedDate;
+
+
+    //for getting service Name
+    private String serviceName;
+
+    public UserServicesResponse() {
+    }
 
     public Integer getUserServiceId() {
         return userServiceId;
@@ -106,8 +114,17 @@ public class UserServicesResponse {
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    public Integer getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
+    }
+
     public UserServicesResponse(UserServicesEntity userServicesEntity) {
         this.userServiceId = userServicesEntity.getUserServiceId();
+        this.serviceId=userServicesEntity.getServiceTypeEntity().getId();
         this.clientID= userServicesEntity.getClientID().getClientId();
         this.serviceTypeEntity= userServicesEntity.getServiceTypeEntity().getId();
         this.active= userServicesEntity.getActive();
@@ -116,5 +133,13 @@ public class UserServicesResponse {
         this.createdDate= userServicesEntity.getCreatedDate();
         this.lastModifiedBy= userServicesEntity.getLastModifiedBy();
         this.lastModifiedDate= userServicesEntity.getLastModifiedDate();
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 }

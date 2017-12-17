@@ -8,11 +8,16 @@ import com.pinet.app.entities.ClientDataEntity;
 import com.pinet.app.entities.ServiceTypeEntity;
 import com.pinet.app.entities.UserServicesEntity;
 import com.pinet.app.model.*;
+import com.pinet.app.repository.ClientDataRepository;
+import com.pinet.app.repository.ServiceTypeRepository;
 import com.pinet.app.repository.UserServicesRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,15 +31,23 @@ public class UserServicesService {
     @Autowired
     UserServicesRepository userServicesRepository;
 
+    @Autowired
+    ServiceTypeRepository serviceTypeRepository;
+
+
     public UserServicesResponse saveUserServices(UserServiceVo userServiceVo, String employeeName) throws PokharaInternetException {
+
         UserServicesEntity userServicesEntity = new UserServicesEntity();
+
         ClientDataEntity clientDataEntity = new ClientDataEntity(userServiceVo.getClientId());
         ServiceTypeEntity serviceTypeEntity = new ServiceTypeEntity(userServiceVo.getServiceId());
+
         userServicesEntity.setInstallationAddress(convertAddresstojson(userServiceVo.getInstallationAddress()));
-        userServicesEntity.setActive(Boolean.FALSE);
+
+        userServicesEntity.setActive(userServiceVo.getActive());
         userServicesEntity.setClientID(clientDataEntity);
         userServicesEntity.setServiceTypeEntity(serviceTypeEntity);
-        userServicesEntity.setConnectedArea("");
+        userServicesEntity.setConnectedArea(userServiceVo.getConnectedArea());
         userServicesEntity.setCreatedBy(employeeName);
         userServicesEntity.setLastModifiedBy(employeeName);
         java.util.Date utilDate = new java.util.Date();
@@ -46,6 +59,27 @@ public class UserServicesService {
         response.setInstallationAddress(convertJsonToAddress(savedUserServicesEntity.getInstallationAddress()));
 
         return response;
+    }
+
+    public UserServicesResponse getServiceDetails(Integer clientId){
+        ClientDataEntity clientDataEntity=new ClientDataEntity();
+        clientDataEntity.setClientId(clientId);
+        UserServicesEntity userServicesEntity=userServicesRepository.findByClientID(clientDataEntity);
+        UserServicesResponse response=new UserServicesResponse(userServicesEntity);
+        response.setServiceName(serviceTypeRepository.findOne(response.getServiceId()).getService());
+        return response;
+
+    }
+
+    public  List<ClientDataEntity> getClientsByServiceId(Integer serviceId){
+        List<ClientDataEntity> entities=new ArrayList<>();
+        ServiceTypeEntity serviceTypeEntity=new ServiceTypeEntity();
+        serviceTypeEntity.setId(serviceId);
+       List< UserServicesEntity > userServicesEntity=userServicesRepository.findByserviceTypeEntity(serviceTypeEntity);
+        for(UserServicesEntity entity :userServicesEntity){
+            entities.add(entity.getClientID());
+        }
+        return entities;
     }
 
     private String convertAddresstojson(AddressVo addressVo) throws PokharaInternetException {

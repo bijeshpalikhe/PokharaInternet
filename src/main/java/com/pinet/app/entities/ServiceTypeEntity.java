@@ -23,10 +23,14 @@ public class ServiceTypeEntity implements Serializable {
     @Column(name = "bandwidth")
     private String bandwidth;
 
-    public ServiceTypeEntity(Integer id, String service, String bandwidth) {
+    @Column(name="notes")
+    private String notes;
+
+    public ServiceTypeEntity(Integer id, String service, String bandwidth, String notes) {
         this.id = id;
         this.service = service;
         this.bandwidth = bandwidth;
+        this.notes=notes;
     }
 
     public ServiceTypeEntity() {
@@ -59,5 +63,17 @@ public class ServiceTypeEntity implements Serializable {
 
     public ServiceTypeEntity(Integer id) {
         this.id = id;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

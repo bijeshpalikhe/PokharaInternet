@@ -1,5 +1,7 @@
 package com.pinet.app.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class EmployeeInfoVO {
@@ -8,6 +10,7 @@ public class EmployeeInfoVO {
     private String phoneNo;
     private String email;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     private String idType;
     private String idNo;
@@ -15,6 +18,16 @@ public class EmployeeInfoVO {
     private InfoVO infoVO;
 
     public EmployeeInfoVO() {
+    }
+    public EmployeeInfoVO(EmployeeInfoResponse employeeInfoResponse){
+        this.employeesName=employeeInfoResponse.getEmployeesName();
+        this.phoneNo=employeeInfoResponse.getPhoneNo();
+        this.dob=employeeInfoResponse.getDob();
+        this.idType=employeeInfoResponse.getIdType();
+        this.idNo=employeeInfoResponse.getIdNo();
+        this.fileNo=employeeInfoResponse.getFileNo();
+        this.infoVO=employeeInfoResponse.getInfo();
+
     }
 
     public NameVO getEmployeesName() {

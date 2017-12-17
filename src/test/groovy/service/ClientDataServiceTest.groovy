@@ -33,7 +33,7 @@ class ClientDataServiceTest extends spock.lang.Specification {
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
         entity.setDob(sqlDate)
         entity.setEmail("email")
-        entity.setAddress("{\"houseNo\":1,\"streetName\":\"hamaltole\",\"municipality\":\"Pokhara-lekhnath\",\"district\":\"kaski\",\"zone\":\"gandaki\",\"country\":\"nepal\",\"waardNo\":4}")
+        entity.setAddress("{\"houseNo\":1,\"streetName\":\"hamaltole\",\"municipality\":\"Pokhara-lekhnath\",\"district\":\"kaski\",\"zone\":\"gandaki\",\"country\":\"nepal\",\"wardNo\":4}")
         entity.setMobileNo("8888")
         entity.setPhoneNo("78888")
 

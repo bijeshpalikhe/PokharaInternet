@@ -4,6 +4,7 @@ package com.pinet.app.model;
  * Created by bijesh on 10/28/2017.
  */
 public class AddressVo {
+
     private Integer houseNo;
     private Integer wardNo;
     private String streetName;
@@ -24,12 +25,12 @@ public class AddressVo {
         this.houseNo = houseNo;
     }
 
-    public Integer getWaardNo() {
+    public Integer getWardNo() {
         return wardNo;
     }
 
-    public void setWaardNo(Integer waardNo) {
-        this.wardNo = waardNo;
+    public void setWrdNo(Integer wardNo) {
+        this.wardNo = wardNo;
     }
 
     public String getStreetName() {

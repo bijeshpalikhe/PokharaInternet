@@ -1,16 +1,17 @@
 package com.pinet.app.model;
 
 public class InfoVO {
+
     private String employeeAddress;
     private String employmentDate;
-    private String employeeContactName;
+    private String employeeContactNumber;
     private Boolean employeeRelation;
     private String emergencyPhone;
 
-    public InfoVO(String employeeAddress, String employmentDate, String employeeContactName, Boolean employeeRelation, String emergencyPhone) {
+    public InfoVO(String employeeAddress, String employmentDate, String employeeContactNumber, Boolean employeeRelation, String emergencyPhone) {
         this.employeeAddress = employeeAddress;
         this.employmentDate = employmentDate;
-        this.employeeContactName = employeeContactName;
+        this.employeeContactNumber = employeeContactNumber;
         this.employeeRelation = employeeRelation;
         this.emergencyPhone = emergencyPhone;
     }
@@ -34,12 +35,12 @@ public class InfoVO {
         this.employmentDate = employmentDate;
     }
 
-    public String getEmployeeContactName() {
-        return employeeContactName;
+    public String getEmployeeContactNumber() {
+        return employeeContactNumber;
     }
 
-    public void setEmployeeContactName(String employeeContactName) {
-        this.employeeContactName = employeeContactName;
+    public void setEmployeeContactNumber(String employeeContactNumber) {
+        this.employeeContactNumber = employeeContactNumber;
     }
 
     public Boolean getEmployeeRelation() {

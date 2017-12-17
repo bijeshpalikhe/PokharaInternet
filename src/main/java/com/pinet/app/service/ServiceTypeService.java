@@ -1,7 +1,10 @@
 package com.pinet.app.service;
 
+import com.pinet.app.entities.ClientDataEntity;
 import com.pinet.app.entities.ServiceTypeEntity;
-import com.pinet.app.model.ServiceReponse;
+import com.pinet.app.model.ClientDataResponse;
+import com.pinet.app.model.ServiceResponse;
+import com.pinet.app.model.ServiceVO;
 import com.pinet.app.repository.ServiceTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,56 +21,84 @@ public class ServiceTypeService {
     @Autowired
     ServiceTypeRepository serviceTypeRepository;
 
-    public ServiceReponse saveServiceType(String servicedetail, String bandwidth) {
+    public ServiceResponse saveServiceType(ServiceVO serviceVO) {
 
         ServiceTypeEntity serviceTypeEntityToSave = new ServiceTypeEntity();
 
-        serviceTypeEntityToSave.setService(servicedetail);
-        serviceTypeEntityToSave.setBandwidth(bandwidth);
+        serviceTypeEntityToSave.setService(serviceVO.getServiceType());
+        serviceTypeEntityToSave.setBandwidth(serviceVO.getBandwidth());
 
         ServiceTypeEntity savedData = serviceTypeRepository.save(serviceTypeEntityToSave);
 
-        ServiceReponse response = new ServiceReponse(savedData.getId(), savedData.getService(), savedData.getBandwidth());
+        ServiceResponse response = new ServiceResponse(savedData.getId(), savedData.getService(), savedData.getBandwidth(),savedData.getNotes());
         return response;
     }
 
-    public List<ServiceReponse> getServiceType() {
+    public ServiceResponse updateServiceType(ServiceVO serviceVO, Integer id) {
+        ServiceTypeEntity serviceTypeEntity = serviceTypeRepository.findOne(id);
+        if (serviceTypeEntity != null) {
+
+//            ServiceTypeEntity serviceTypeEntityToSave = new ServiceTypeEntity();
+
+            serviceTypeEntity.setService(serviceVO.getServiceType());
+            serviceTypeEntity.setBandwidth(serviceVO.getBandwidth());
+
+            ServiceTypeEntity savedData = serviceTypeRepository.save(serviceTypeEntity);
+
+            ServiceResponse response = new ServiceResponse(savedData.getId(), savedData.getService(), savedData.getBandwidth(), savedData.getNotes());
+            return response;
+        }
+        return null;
+    }
+
+    public List<ServiceResponse> getServiceType() {
         List<ServiceTypeEntity> serviceTypeEntityList = serviceTypeRepository.findAll();
-        List<ServiceReponse> responseList = new ArrayList<>();
+        List<ServiceResponse> responseList = new ArrayList<>();
 
         for (ServiceTypeEntity serviceTypeEntity : serviceTypeEntityList) {
 
-            ServiceReponse reponse = new ServiceReponse(serviceTypeEntity.getId(), serviceTypeEntity.getService(), serviceTypeEntity.getBandwidth());
+            ServiceResponse reponse = new ServiceResponse(serviceTypeEntity.getId(), serviceTypeEntity.getService(), serviceTypeEntity.getBandwidth(),serviceTypeEntity.getNotes());
             responseList.add(reponse);
         }
         return responseList;
     }
 
-    public List<ServiceReponse> getServiceTypeByServiceType(String serviceTpye) {
+    public List<ServiceResponse> getServiceTypeByServiceType(String serviceTpye) {
         List<ServiceTypeEntity> serviceTypeEntityList = serviceTypeRepository.findByService(serviceTpye);
-        List<ServiceReponse> responseList = new ArrayList<>();
+        List<ServiceResponse> responseList = new ArrayList<>();
 
         for (ServiceTypeEntity serviceTypeEntity : serviceTypeEntityList) {
 
-            ServiceReponse reponse = new ServiceReponse(serviceTypeEntity.getId(), serviceTypeEntity.getService(), serviceTypeEntity.getBandwidth());
+            ServiceResponse reponse = new ServiceResponse(serviceTypeEntity.getId(), serviceTypeEntity.getService(), serviceTypeEntity.getBandwidth(), serviceTypeEntity.getNotes());
             responseList.add(reponse);
         }
         return responseList;
     }
 
-    public List<ServiceReponse> getServiceTypeByBandwidth(String bandwidth) {
+    public List<ServiceResponse> getServiceTypeByBandwidth(String bandwidth) {
         List<ServiceTypeEntity> serviceTypeEntityList = serviceTypeRepository.findByBandwidth(bandwidth);
-        List<ServiceReponse> responseList = new ArrayList<>();
+       if(serviceTypeEntityList!=null){
+
+       }
+        List<ServiceResponse> responseList = new ArrayList<>();
 
         for (ServiceTypeEntity serviceTypeEntity : serviceTypeEntityList) {
 
-            ServiceReponse reponse = new ServiceReponse(serviceTypeEntity.getId(), serviceTypeEntity.getService(), serviceTypeEntity.getBandwidth());
+            ServiceResponse reponse = new ServiceResponse(serviceTypeEntity.getId(), serviceTypeEntity.getService(), serviceTypeEntity.getBandwidth(), serviceTypeEntity.getNotes());
             responseList.add(reponse);
         }
         return responseList;
     }
 
 
+    public ServiceResponse getServiceById(Integer serviceId) {
 
-
+        ServiceTypeEntity serviceTypeEntity = serviceTypeRepository.findOne(serviceId);
+        if (serviceTypeEntity != null) {
+            ServiceResponse response = new ServiceResponse(serviceTypeEntity);
+            return response;
+        } else {
+            return null;
+        }
+    }
 }

@@ -42,20 +42,35 @@ dependencies {
     compile('org.webjars:bootstrap:4.0.0-beta')
     compile("org.springframework.boot:spring-boot-devtools")
 
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+    // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4
+    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '2.1.2.RELEASE'
+
+   // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.4.3.RELEASE'
+
+    // https://mvnrepository.com/artifact/com.sun.mail/javax.mail
+    compile group: 'com.sun.mail', name: 'javax.mail', version: '1.6.0'
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
     testCompile(
             'org.codehaus.groovy:groovy-all:2.4.6',
             'org.spockframework:spock-core:1.0-groovy-2.4'
     )
+    
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile("org.springframework.security:spring-security-test")
 
 }
-task(runDebug, dependsOn: 'classes', type: JavaExec) {
-    main = "com.mything.server.HttpServer"
-    classpath = sourceSets.main.runtimeClasspath
-    jvmArgs = ["-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
-}
 
 
+
+//task(runDebug, dependsOn: 'classes', type: JavaExec) {
+//    main = "com.mything.server.HttpServer"
+//    classpath = sourceSets.main.runtimeClasspath
+//    jvmArgs = ["-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
+//}
+//
+//

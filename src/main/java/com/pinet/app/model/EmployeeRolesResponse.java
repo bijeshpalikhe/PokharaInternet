@@ -1,5 +1,7 @@
 package com.pinet.app.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pinet.app.config.JsonDateSerializer;
 import com.pinet.app.entities.EmployeeRolesEntity;
 
 import java.util.Date;
@@ -66,6 +68,7 @@ public class EmployeeRolesResponse {
         this.createdBy = createdBy;
     }
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -82,6 +85,7 @@ public class EmployeeRolesResponse {
         this.lastModifiedBy = lastModifiedBy;
     }
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getLastModifiedDate() {
         return lastModifiedDate;
     }

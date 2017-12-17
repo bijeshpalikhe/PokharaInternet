@@ -4,6 +4,7 @@ package com.pinet.app.model;
  * Created by bijesh on 10/11/2017.
  */
 public class NameVO {
+
     private String firstName;
     private String middleName;
     private String lastName;

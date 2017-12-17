@@ -15,10 +15,10 @@ public class EmployeeRolesService {
     EmployeeRolesRepository employeeRolesRepository;
 
 
-    public EmployeeRolesResponse saveEmployeeRoles(EmployeeRolesVo employeeRolesVo, Integer employeeId, String employeeName) throws PokharaInternetException{
+    public EmployeeRolesResponse saveEmployeeRoles(EmployeeRolesVo employeeRolesVo, String employeeName) throws PokharaInternetException{
         EmployeeRolesEntity employeeRolesEntity = new EmployeeRolesEntity(employeeRolesVo);
 
-        employeeRolesEntity.setEmployeeId(employeeId);
+//        employeeRolesEntity.setEmployeeId(employeeId);
         employeeRolesEntity.setCreatedBy(employeeName);
         java.util.Date utilDate = new java.util.Date();
         employeeRolesEntity.setCreatedDate(utilDate);

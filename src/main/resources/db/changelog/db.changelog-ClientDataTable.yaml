@@ -103,3 +103,29 @@ databaseChangeLog:
                 constraints:
                   primaryKey: false
                   nullable: false
+
+  - changeSet:
+        id: addColumn-timeToComplete
+        author: ashmeet
+        changes:
+          - addColumn:
+              columns:
+                - column:
+                    name: TIME_TO_COMPLETE
+                    type: datetime
+              tableName: client_data
+
+  - changeSet:
+        id: dropColumn-timeToComplete
+        author: ashmeet
+        changes:
+        - dropColumn:
+            columnName: TIME_TO_COMPLETE
+            tableName: client_data
+  - changeSet:
+          id: dropColumn-timeToComplete
+          author: ashmeet
+          changes:
+          - dropColumn:
+              columnName: TIME_TO_COMPLETE
+              tableName: client_data

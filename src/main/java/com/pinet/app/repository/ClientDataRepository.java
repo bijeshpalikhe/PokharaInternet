@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClientDataRepository extends JpaRepository<ClientDataEntity,Integer > {
+    ClientDataEntity findByUserName(String username);
 }
