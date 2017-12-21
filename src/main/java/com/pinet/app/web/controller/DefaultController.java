@@ -18,18 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @Controller
-@Secured({"ROLE_ADMIN","ROLE_USER"})
-
-//@RequestMapping(value = "")
 public class DefaultController {
 
     @Autowired
     EmployeeInfoService employeeInfoService;
-
-//    @RequestMapping()
-//    public String testMessage() {
-//        return "Greetings from Pinet";
-//    }
 
     @GetMapping("/login")
     public String login() {
@@ -70,7 +62,6 @@ public class DefaultController {
 //        return "dashboard";
 //    }
 
-    @Secured("ROLE_ADMIN")
     @GetMapping("/due")
     public String dueDate() {
         return "due-date";
@@ -129,18 +120,5 @@ public class DefaultController {
 //    }
 //    @Secured(value="ROLE_ADMIN")
 
-    @RequestMapping("/test")
-    public String showAccess(){
-        return "Test Authroized ";
-    }
-    @Secured(value="ROLE_USER")
-    @RequestMapping("/user")
-    public String showAccessToUser(){
-        return "User Authroized ";
-    }
-//    @Secured(value="ROLE_ADMIN")
-    @RequestMapping("/admin")
-    public String showAdminAccess(){
-        return "Admin Authroized ";
-    }
+
 }
