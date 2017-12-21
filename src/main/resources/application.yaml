@@ -1,12 +1,15 @@
 # DataSource settings: set here your own configurations for the database
 # connection. In this example we have "netgloo_blog" as database name and
 # "root" as username and password.
+#spring.datasource.url = ${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/"nameofDB"
+# spring.datasource.username = ${OPENSHIFT_MYSQL_DB_USERNAME}
+# spring.datasource.password = ${OPENSHIFT_MYSQL_DB_PORT}
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/pinetdev?createDatabaseIfNotExist=true
-    username: root
+    url: ${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/pinetdev?createDatabaseIfNotExist=true
+    username:  ${OPENSHIFT_MYSQL_DB_USERNAME}
     password: system
-    testWhileIdle: true
+    testWhileIdle: ${OPENSHIFT_MYSQL_DB_PASSWORD}
     validationQuery: SELECT 1
   jpa:
     show-sql: true
