@@ -1,0 +1,7 @@
+POST: http://localhost:8080/employeeroles/roles/2?employeeName="arjun"
+
+{
+"userName":"ashmeet",
+"password":"ashmeet",
+"roles":"ROLE_ADMIN"
+}

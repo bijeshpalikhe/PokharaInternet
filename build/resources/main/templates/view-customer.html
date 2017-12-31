@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/main">
+
+<head>
+    <title>View Customer</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="page-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Profile</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item">Customer</li>
+                    <li class="breadcrumb-item active">View Customer</li>
+                </ol>
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="font-medium m-t-30">Service Information</h4>
+                        <hr/>
+                        <div class="card-body">
+                            <small class="text-muted">Service Type</small>
+                            <h6 th:text="${userService.serviceName}" />
+                            <small class="text-muted p-t-30 db" >Installation Address Street Name</small>
+                            <!--<h6 th:text="${userService.installationAddress.wardNo}" />-->
+                            <small class="text-muted p-t-30 db">Status</small>
+                            <h6 th:text="${userService.active}" />
+                            <small class="text-muted p-t-30 db">Connected Area</small>
+                            <h6 th:text="${userService.connectedArea}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="font-medium m-t-30">Personal Information</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Name</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.clientName.firstName+ ' '+client.clientName.middleName+' '+client.clientName.lastName}" >Johnathan Deo</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Username</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.userName}">(123) 456 7890</p>
+                            </div>
+                            <div class="col-md-2 col-xs-6 b-r"> <strong>Gender</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.clientData.gender}">Male</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>DOB</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.dob}">1997-11-22</p>
+                            </div>
+                        </div>
+                        <h4 class="font-medium m-t-30">General Information</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Occupation</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.clientData.occupationType}">Developer</p>
+                            </div>
+                            <div class="col-md-8 col-xs-6 b-r"> <strong>Fathers Name</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.clientData.fatherName}">Johnathan Deo</p>
+                            </div>
+
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Nationality</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.clientData.nationality}">Johnathan Deo</p>
+                            </div>
+
+
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Passport No.</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.clientData.passportNo}">7890</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Citizenship No.</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.clientData.citizenNo}">123/21</p>
+                            </div>
+                        </div>
+                        <h4 class="font-medium m-t-30">Contact Information</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Email</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.email}">Developer</p>
+                            </div>
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Mobile Number</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.mobileNo}">Johnathan Deo</p>
+                            </div>
+
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Phone Number</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.phoneNo}">Johnathan Deo</p>
+                            </div>
+
+
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Street</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.address.streetName}">7890</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>House Number</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.address.houseNo}">123/21</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Ward Number</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.address.wardNo}">123/21</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Municipality </strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.address.municipality}">123/21</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>District</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.address.district}">123/21</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Zone</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${client.address.zone}">123/21</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+        <!-- Row -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/main">
+
+<head>
+    <title>Manage Tickets</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="page-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Manage Tickets</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item">Tickets</li>
+                    <li class="breadcrumb-item active">Manage Tickets</li>
+                </ol>
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!--<h4 class="card-title">Manage Tickets</h4>-->
+                        <!--<h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>-->
+                        <!--<div class="table-responsive m-t-40">-->
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ticket</th>
+                                <th>Client</th>
+                                <th>Follow up by</th>
+                                <th>Due date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ticket</th>
+                                <th>Client</th>
+                                <th>Follow up by</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <tr th:each="ticket : ${tickets}">
+                                <td th:text="${ticket.ticketId}"></td>
+                                <td th:text="${ticket.ticketType}"></td>
+                                <td th:text="${ticket.clientUsername}"></td>
+                                <td th:text="${ticket.assignedTo}"></td>
+                                <td th:text="${ticket.timeToComplete}"></td>
+                                <td th:text="${ticket.active}"></td>
+                                <td>
+                                    <a th:href="${'/ticket/'+ticket.ticketId}"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
+                                    <a th:href=""><i class="fa trash"></i></a>&nbsp;&nbsp;
+                                    <a th:href="${'/ticket/edit/'+ticket.ticketId+'/?employeeName=arjun'}"><i class="fa fa-edit"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>
+</body>
+
+</html>

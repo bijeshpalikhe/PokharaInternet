@@ -2,8 +2,8 @@ package com.pinet.app.service
 
 import com.pinet.app.entities.ClientDataEntity
 import com.pinet.app.model.ClientDataVO
-import com.pinet.app.model.ClientVO
 import com.pinet.app.repository.ClientDataRepository
+
 
 /**
  * Created by bijesh on 11/5/2017.

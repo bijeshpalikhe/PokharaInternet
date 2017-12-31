@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/main">
+
+<head>
+    <title>Add Staff</title>
+
+</head>
+
+<body>
+<div layout:fragment="content" class="page-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Add Staff</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item">Staff</li>
+                    <li class="breadcrumb-item active">Add Staff</li>
+                </ol>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-info">
+                        <h4 class="m-b-0 text-white">Add New Staff</h4>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/employeeinfo}" th:object="${employeeInfoVo}" method="post" class="form-horizontal">
+                            <div class="form-body">
+                                <h3 class="box-title">Personal Information</h3>
+                                <hr class="m-t-0 m-b-40"/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">First Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{employeesName.firstName}" class="form-control"  placeholder="Ashmeet" />
+                                                <small class="form-control-feedback">Employee First Name</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Middle Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{employeesName.middleName}" class="form-control" placeholder="Raj" />
+                                                <small class="form-control-feedback"> Employee Middle Name. </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Last Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{employeesName.lastName}" class="form-control" placeholder="Tiwari" />
+                                                <small class="form-control-feedback"> Employee Last Name. </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Phone No</label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{phoneNo}" class="form-control" placeholder="tiwariashmeet" />
+                                                <small class="form-control-feedback"> Employee Phone Number. </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Date of Birth</label>
+                                            <div class="col-md-9">
+                                                <input type="date" th:field="*{dob}" class="form-control" placeholder="dd/mm/yyyy" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="control-label text-right col-md-3">Relationship</label>
+                                                <div class="col-md-9">
+                                                    <div class="radio-list">
+                                                        <label class="custom-control custom-radio">
+                                                            <input th:field="*{infoVO.employeeRelation}" id="radio3" value="1" name="radio" type="radio" checked="" class="custom-control-input"/>
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">Married</span>
+                                                        </label>
+                                                        <label class="custom-control custom-radio">
+                                                            <input th:field="*{infoVO.employeeRelation}"  id="radio4" value="0" name="radio" type="radio" class="custom-control-input"/>
+                                                            <span class="custom-control-indicator"></span>
+                                                            <span class="custom-control-description">Unmarried</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <h3 class="box-title">General Information</h3>
+                                <hr class="m-t-0 m-b-40"/>
+                                <div class="row">
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Email </label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{email}" class="form-control" placeholder="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Id type</label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{idType}" class="form-control" placeholder="Developer" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Id No</label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{idNo}" class="form-control" placeholder="Nepal" />
+                                                <small class="form-control-feedback">Clients Nationality. </small> </div>
+                                        </div>
+                                    </div>
+
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">File No</label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{fileNo}" class="form-control" placeholder="1090/9807" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Employee Address</label>
+                                            <div class="col-md-9">
+                                                <input type="text" th:field="*{infoVO.employeeAddress}" class="form-control" placeholder="873294heuw" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Employement Date</label>
+                                            <div class="col-md-9">
+                                                <input type="date" th:field="*{infoVO.employmentDate}" class="form-control" placeholder="dd/mm/yyyy" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                                <h3 class="box-title">Contact Information</h3>
+                                <hr class="m-t-0 m-b-40"/>
+                                <div class="row">
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Employee Mobile Number</label>
+                                            <div class="col-md-9">
+                                                <input type="tel" th:field="*{infoVO.employeeContactNumber}" class="form-control" placeholder="98XXXXXXXX"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Phone Number</label>
+                                            <div class="col-md-9">
+                                                <input type="tel" th:field="*{infoVO.emergencyPhone}" class="form-control" placeholder="98XXXXXXXX" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+
+                                </div>
+
+                            </div>
+                            <hr/>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn btn-success">Add Staff</button>
+                                                <button type="reset" class="btn btn-inverse">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"> </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+databaseChangeLog:
+#  - changeSet:
+#      id: 1
+#      author: bpalikhe
+#      changes:
+#        - createTable:
+#            tableName: person
+#            columns:
+#              - column:
+#                  name: id
+#                  type: int
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#                    nullable: false
+#              - column:
+#                  name: first_name
+#                  type: varchar(255)
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: last_name
+#                  type: varchar(255)
+#                  constraints:
+#                    nullable: false
+#  - changeSet:
+#      id: 2
+#      author: bpalikhe
+#      preConditions:
+#        - onFail: MARK_RAN
+#        - tableExists:
+#            tableName: PROVEEDORBIENSERVICIO
+#      changes:
+#        - dropTable:
+#            cascadeConstraints: true
+#            tableName: person
+#  - changeSet:
+#      id: 3
+#      author: bpalikhe
+#      preConditions:
+#              - onFail: MARK_RAN
+#              - tableExists:
+#                  tableName: person
+#      changes:
+#      - dropTable:
+#          cascadeConstraints: true
+#          tableName: person
+#  - changeSet:
+#      id: 4
+#      author: bpalikhe
+#      preConditions:
+#        - onFail: MARK_RAN
+#        - not:
+#          - tableExists:
+#              tableName: user_detail
+#      changes:
+#        - createTable:
+#            tableName: user_detail
+#            columns:
+#              - column:
+#                  name: user_id
+#                  type: int
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#                    nullable: false
+#              - column:
+#                  name: name
+#                  type: varchar(255)
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: data
+#                  type: blob
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: dob
+#                  type: date
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: contact_no
+#                  type: text
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: id_verified
+#                  type: ENUM('TRUE','FALSE')
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: id_verified_by
+#                  type: int
+#                  constraints:
+#                    nullable: false
+#              - column:
+#                  name: email
+#                  type: blob
+#                  constraints:
+#                    nullable: false
+#  - changeSet:
+#      id: 5
+#      author: bpalikhe
+#      preConditions:
+#              - onFail: MARK_RAN
+#              - tableExists:
+#                  tableName: user_details
+#      changes:
+#      - dropTable:
+#          cascadeConstraints: true
+#          tableName: user_detail
+#  - changeSet:
+#      id: 6
+#      author: bpalikhe
+#      preConditions:
+#              - onFail: MARK_RAN
+#              - tableExists:
+#                  tableName: user_detail
+#      changes:
+#      - dropTable:
+#          cascadeConstraints: true
+#          tableName: user_detail
+#  - changeSet:
+#      id: 7
+#      author: bpalikhe
+#      preConditions:
+#              - onFail: MARK_RAN
+#              - tableExists:
+#                  tableName: user_detail
+#      changes:
+#      - dropTable:
+#          cascadeConstraints: true
+#          tableName: user_detail
+#  - changeSet:
+#      id: Drop_user_details
+#      author: bpalikhe
+#      preConditions:
+#        - onFail: MARK_RAN
+#        - tableExists:
+#            tableName: user_detail
+#      changes:
+#        - dropTable:
+#            cascadeConstraints: true
+#            tableName: user_detail
+#            schemaName: pinetdev
+  - changeSet:
+      id: Create_ServiceType
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+          - tableExists:
+              tableName: service_type
+      changes:
+        - createTable:
+            tableName: service_type
+            columns:
+            - column:
+                name: SERVICE_ID
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: SERVICE
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: BANDWIDTH
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+  - changeSet:
+        id: create_userData
+        author: bpalikhe
+        preConditions:
+          - onFail: MARK_RAN
+          - not:
+            - tableExists:
+                tableName: user_data
+        changes:
+          - createTable:
+              tableName: user_data
+              columns:
+              - column:
+                  name: USER_ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NAME
+                  type: varchar(255)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: USER_NAME
+                  type: varchar(255)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: GENDER
+                  type: varchar(1)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: DOB
+                  type: varchar(30)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: NATIONALITY
+                  type: varchar(255)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: CITIZEN_NO
+                  type: varchar(255)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: true
+              - column:
+                  name: PASSPORT_NO
+                  type: varchar(255)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: true
+              - column:
+                  name: FATHER_NAME
+                  type: varchar(255)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: EMAIL
+                  type: varchar(255)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: true
+              - column:
+                  name: ADDRESS
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: MOBILE_NO
+                  type: varchar(10)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: true
+              - column:
+                  name: PHONE_NO
+                  type: varchar(35)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: true
+              - column:
+                  name: OCCUPATION_TYPE
+                  type: varchar(50)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: SERVICE_CODES
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: SUBSCRIPTION_TYPES
+                  type: varchar(35)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: true
+              - column:
+                  name: INSTALLATION_ADDRESS
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: LAST_MODIFIED_BY
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: LAST_MODIFIED_DATE
+                  type: timestamp
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: CREATED_BY
+                  type: text
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+              - column:
+                  name: CREATED_DATE
+                  type: datetime
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: false
+                    nullable: false
+  - changeSet:
+      id: addColumn-notes
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+        - columnExists:
+            tableName: service_type
+            columnName: NOTES
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: NOTES
+              type: varchar(255)
+          tableName: service_type
+  - changeSet:
+      id: addColumn-notesRetry
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - columnExists:
+            tableName: service_type
+            columnName: NOTES
+      changes:
+        - addColumn:
+            columns:
+            - column:
+                name: NOTES
+                type: varchar(255)
+            tableName: service_type
+  - changeSet:
+      id: addColumn-notesRetry2
+      author: bpalikhe
+      changes:
+        - addColumn:
+            columns:
+            - column:
+                name: NOTES
+                type: varchar(255)
+            tableName: service_type

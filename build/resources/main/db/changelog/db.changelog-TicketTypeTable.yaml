@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create_TicketTypeTable
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+          - tableExists:
+              tableName: ticket_type
+      changes:
+        - createTable:
+            tableName: ticket_type
+            columns:
+            - column:
+                name: TICKET_IDENTIFIER
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: NOTES
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+  - changeSet:
+      id: inseting_ticket_type_data
+      author: bpalikhe
+      changes:
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('NewConnection_Fiber', "for new fiber connection")
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('NewConnection_Wireless', "for new wireless connection")
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('Complain_Wireless', "for new wireless complain")
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('Complain_Fiber', "for fiber complain")
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('NewConnection_ClearTV', "for new clear TV connection")
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('Complain_ClearTV', "for clear TV complain")
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('Network_Expansion', "for network expansion")
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('Network_Maintainence', "for network management")
+        - sql:
+            sql: insert into ticket_type (TICKET_IDENTIFIER, NOTES) values ('Miscellaneous', "for any other reason")
+
+

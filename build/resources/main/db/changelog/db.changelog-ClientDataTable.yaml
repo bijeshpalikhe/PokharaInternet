@@ -1,0 +1,131 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create_ClientDataTable
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+          - tableExists:
+              tableName: client_data
+      changes:
+        - createTable:
+            tableName: client_data
+            columns:
+            - column:
+                name: CLIENT_ID
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: USER_NAME
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+                  unique: true
+            - column:
+                name: CLIENT_NAME
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CLIENT_DATA
+                type: TEXT
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: DOB
+                type: date
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: EMAIL
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: ADDRESS
+                type: TEXT
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: MOBILE_NO
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: PHONE_NO
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: LAST_MODIFIED_BY
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: LAST_MODIFIED_DATE
+                type: timestamp
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CREATED_BY
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CREATED_DATE
+                type: datetime
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+
+  - changeSet:
+        id: addColumn-timeToComplete
+        author: ashmeet
+        changes:
+          - addColumn:
+              columns:
+                - column:
+                    name: TIME_TO_COMPLETE
+                    type: datetime
+              tableName: client_data
+
+  - changeSet:
+        id: dropColumn-timeToComplete
+        author: ashmeet
+        changes:
+        - dropColumn:
+            columnName: TIME_TO_COMPLETE
+            tableName: client_data
+  - changeSet:
+          id: dropColumn-timeToComplete
+          author: ashmeet
+          changes:
+          - dropColumn:
+              columnName: TIME_TO_COMPLETE
+              tableName: client_data

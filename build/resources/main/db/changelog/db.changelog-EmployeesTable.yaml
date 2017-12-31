@@ -1,0 +1,107 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create_EmployeesInfoTable
+      author: bpalikhe
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+          - tableExists:
+              tableName: employee_info
+      changes:
+        - createTable:
+            tableName: employee_info
+            columns:
+            - column:
+                name: EMPLOYEE_ID
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: PHONE_NO
+                type: varchar(255)
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: EMAIL
+                type: TEXT
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: INFO
+                type: TEXT
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: DOB
+                type: DATE
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: ID_TYPE
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: ID_NO
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: FILE_NO
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: LAST_MODIFIED_BY
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: LAST_MODIFIED_DATE
+                type: timestamp
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CREATED_BY
+                type: text
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: CREATED_DATE
+                type: datetime
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+  - changeSet:
+      id: addColumn-employeename
+      author: bpalikhe
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: EMPLOYEE_NAME
+                  type: varchar(255)
+            tableName: employee_info

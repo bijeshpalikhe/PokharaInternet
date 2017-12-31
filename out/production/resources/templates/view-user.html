@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/main">
+
+<head>
+    <title>View Staff</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="page-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Profile</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item">Staff</li>
+                    <li class="breadcrumb-item active">View</li>
+                </ol>
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="font-medium m-t-30">Service Information</h4>
+                        <hr/>
+                        <div class="card-body">
+                            <small class="text-muted">Service Type</small>
+                            <h6>Fiber 5 Mbps</h6>
+                            <small class="text-muted p-t-30 db">Installation Address</small>
+                            <h6>Prithvi Chowk</h6>
+                            <small class="text-muted p-t-30 db">Status</small>
+                            <h6>Active</h6>
+                            <small class="text-muted p-t-30 db">Connected Area</small>
+                            <h6>Lakeside</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="font-medium m-t-30">Personal Information</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Name</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.employeesName.firstName+ ' '+employee.employeesName.middleName+' '+employee.employeesName.lastName}" >Johnathan Deo</p>
+                            </div>
+                            <!--<div class="col-md-3 col-xs-6 b-r"> <strong>Username</strong>-->
+                                <!--<br/>-->
+                                <!--<p class="text-muted" th:text="${client.userName}">(123) 456 7890</p>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-2 col-xs-6 b-r"> <strong>Gender</strong>-->
+                                <!--<br/>-->
+                                <!--<p class="text-muted" th:text="${client.clientData.gender}">Male</p>-->
+                            <!--</div>-->
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>DOB</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.dob}">1997-11-22</p>
+                            </div>
+                        </div>
+                        <h4 class="font-medium m-t-30">Employee Information</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Address</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.info.employeeAddress}">Developer</p>
+                            </div>
+                            <div class="col-md-8 col-xs-6 b-r"> <strong>Employement Date</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.info.employmentDate}">Johnathan Deo</p>
+                            </div>
+
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Employee Relationship</strong>
+                                <br/>
+                                div class="radio-list">
+                                <label class="custom-control custom-radio">
+                                    <input th:checked="${employee.info.employeeRelation}" id="radio3" value="1" name="radio" type="radio" checked="" class="custom-control-input"/>
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Active</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input id="radio4"  th:checked="${employee.info.employeeRelation}"  value="0" name="radio" type="radio" class="custom-control-input"/>
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Inactive</span>
+                                </label>
+                            </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Emergence Phone No.</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.info.emergencyPhone}">7890</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Id Type.</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.idType}">123/21</p>
+                            </div>
+                        </div>
+                        <h4 class="font-medium m-t-30">Contact Information</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Id No</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.idNo}">Developer</p>
+                            </div>
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>File No</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.fileNo}">Johnathan Deo</p>
+                            </div>
+
+                            <div class="col-md-4 col-xs-6 b-r"> <strong>Created By</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.createdBy}">Johnathan Deo</p>
+                            </div>
+
+
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Created Date</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.createdDate}">7890</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Last Modified By</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.lastModifiedBy}">123/21</p>
+                            </div>
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>Last Modified Date</strong>
+                                <br/>
+                                <p class="text-muted" th:text="${employee.lastModifiedDate}">123/21</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+        <!-- Row -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+
+
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>
+
+</body>
+
+</html>

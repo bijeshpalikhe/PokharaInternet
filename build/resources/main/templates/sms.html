@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/main">
+
+<head>
+    <title>Send SMS</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="page-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Send SMS</h3>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card ">
+                    <div class="card-header bg-info">
+                        <h4 class="m-b-0 text-white">Send Message to Customer</h4>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/sms/sendsms}" th:object="${userService}" class="form-horizontal" method="post">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Select Clients</label>
+                                            <div class="col-md-9">
+                                                <!--For error on getting service-->
+                                                <div th:if="${param.error}">
+                                                    <div class="alert alert-danger">
+                                                        Cannot Get User Services
+                                                    </div>
+                                                </div>
+                                                <select th:field="*{serviceId}" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+
+                                                    <option th:each="service : ${services}"
+                                                            th:value="${service.serviceId}"
+                                                            th:text="${service.serviceType}+' '+${service.bandwidth} " />
+                                                </select>
+                                                <small class="form-control-feedback">Select Clients By Service</small> </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Message</label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" rows="10"></textarea>
+                                                <small class="form-control-feedback">Write your Message Here</small> </div>
+                                        </div>
+                                    </div>
+
+                                    <!--/span-->
+                                    <!--/span-->
+                                </div>
+                            </div>
+                            <!--/row-->
+
+                            <hr/>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn btn-success">Send Message</button>
+                                                <button type="reset" class="btn btn-inverse">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card ">
+                    <div class="card-header bg-info">
+                        <h4 class="m-b-0 text-white">Send Message To Staff</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/manage-customer" class="form-horizontal">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Select Staffs</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+                                                <option value="Category 1">Fiber</option>
+                                                <option value="Category 2">Clear TV 2</option>
+                                                <option value="Category 3">Wireless 5</option>
+                                            </select>
+                                            <small class="form-control-feedback">Select Clients</small> </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Message</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" rows="10"></textarea>
+                                            <small class="form-control-feedback">Write your Message Here</small> </div>
+                                    </div>
+                                </div>
+
+                                <!--/span-->
+                                <!--/span-->
+                            </div>
+
+                            <!--/row-->
+
+                            <hr/>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="submit" class="btn btn-success">Add Client</button>
+                                                <button type="reset" class="btn btn-inverse">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Row -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <div class="card-body">
+            <h4 class="card-title">Modal based on trigger button</h4>
+            <!-- sample modal content -->
+            <div class="button-box">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Click Me</button>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel1">New message</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name1" class="control-label">Recipient:</label>
+                                    <input type="text" class="form-control" id="recipient-name1"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text1" class="control-label">Message:</label>
+                                    <textarea class="form-control" id="message-text1"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+
+</div>
+
+</body>
+
+</html>

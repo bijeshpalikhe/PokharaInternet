@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/main">
+
+<head>
+    <title>Manage Employee</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="page-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Manage Staff</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item">Staff</li>
+                    <li class="breadcrumb-item active">Manage Staff</li>
+                </ol>
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!--<h4 class="card-title">Manage Staff</h4>-->
+                        <!--<h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>-->
+                        <!--<div class="table-responsive m-t-40">-->
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Mobile/Phone</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Mobile/Phone</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <tr th:each="employee : ${employees}">
+                                <td th:text="${employee.employeeId}"></td>
+                                <td th:text="${employee.employeesName.firstName+' '+employee.employeesName.middleName+' '+employee.employeesName.lastName}"></td>
+                                <td th:text="${employee.phoneNo}"></td>
+                                <td th:text="${employee.info.employeeAddress}"></td>
+
+                                <td><a th:href="${'/employeeinfo/'+employee.employeeId}"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
+                                    <a th:href="${'/employeeinfo/delete/'+employee.employeeId}"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;
+                                    <a th:href="${'/employeeinfo/edit/'+employee.employeeId}"><i class="fa fa-edit"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>
+</body>
+
+</html>

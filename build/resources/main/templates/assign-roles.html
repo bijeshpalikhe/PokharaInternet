@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/main">
+
+<head>
+    <title>Assign Staff Role</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="page-wrapper">
+
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">Staff Roles</h3>
+                </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item">Staff</li>
+                        <li class="breadcrumb-item active">Assign Role</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+
+            <!-- Row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card ">
+                        <div class="card-header bg-info">
+                            <h4 class="m-b-0 text-white">Assign Role to Staff</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="/employeeroles/assignroles"  th:object="${employeeRolesVo}" class="form-horizontal" method="post">
+                                <input type="hidden" id="employeeId" class="form-control" name="employeeId" th:field="*{employeeId}"/>
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="control-label text-right col-md-3">Select Roles</label>
+                                                <div class="col-md-9">
+                                                    <select th:field="*{roles}" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="ROLE_USER">User</option>
+                                                            <option value="ROLE_ADMIN">Admin</option>
+
+                                                    </select>
+                                                    <small class="form-control-feedback">Select Roles</small> </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="control-label text-right col-md-3">Username </label>
+                                                <div class="col-md-9">
+                                                    <input type="text"  th:field="*{userName}" class="form-control" placeholder="Tiwari"/>
+                                                    <small class="form-control-feedback"> username </small> </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-right col-md-3">Password</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" th:field="*{password}" class="form-control" placeholder="343" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <!--/span-->
+
+
+                                        </div>
+                                        <!--<div class="col-md-6">-->
+                                            <!--<div class="form-group row">-->
+                                                <!--<label class="control-label text-right col-md-3">Installation Address</label>-->
+                                                <!--<div class="col-md-9">-->
+                                                    <!--<input type="text" th:field="*{fname}" class="form-control" placeholder="Tiwari"/>-->
+                                                    <!--<small class="form-control-feedback"> Clients Middle Name. </small> </div>-->
+                                            <!--</div>-->
+
+
+                                        <!--/span-->
+                                        <!--/span-->
+                                    </div>
+
+                                </div>
+                                <!--/row-->
+
+
+                                <hr/>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit" class="btn btn-success">Assign Service</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Row -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+    </div>
+
+</body>
+
+</html>

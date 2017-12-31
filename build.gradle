@@ -27,7 +27,10 @@ repositories {
     mavenCentral()
     jcenter()
 }
-
+jar {
+    baseName = 'pinetwebapp'
+    version = '0.0.1-SNAPSHOT'
+}
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -47,7 +50,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4
     compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '2.1.2.RELEASE'
 
-   // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.4.3.RELEASE'
 
     // https://mvnrepository.com/artifact/com.sun.mail/javax.mail
@@ -56,7 +59,15 @@ dependencies {
 
 // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+    compile 'org.apache.tomcat:tomcat-dbcp:8.0.30'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
 
+    runtime 'javax.transaction:jta:1.1'
+    runtime 'org.apache.httpcomponents:httpclient:4.5.2'
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile('org.easytesting:fest-assert:1.4')
+    testCompile 'org.apache.httpcomponents:httpclient:4.5.2'
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
@@ -64,18 +75,15 @@ dependencies {
             'org.codehaus.groovy:groovy-all:2.4.6',
             'org.spockframework:spock-core:1.0-groovy-2.4'
     )
-    
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile("org.springframework.security:spring-security-test")
 
 }
+task stage{
+    dependsOn build
+}
 
-
-
-//task(runDebug, dependsOn: 'classes', type: JavaExec) {
-//    main = "com.mything.server.HttpServer"
-//    classpath = sourceSets.main.runtimeClasspath
-//    jvmArgs = ["-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
-//}
-//
-//
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
