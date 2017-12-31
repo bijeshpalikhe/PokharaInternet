@@ -47,9 +47,6 @@ dependencies {
 
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
-    // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4
-    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '2.1.2.RELEASE'
-
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.4.3.RELEASE'
 
@@ -81,7 +78,7 @@ dependencies {
 
 }
 task stage{
-    dependsOn build
+    dependsOn jar
 }
 
 task wrapper(type: Wrapper) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.pinet.app.service.ClientDataServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-12-31T03:21:21" hostname="ashmeet-HP-Notebook" time="0.701">
+<testsuite name="com.pinet.app.service.ClientDataServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-12-31T03:38:40" hostname="ashmeet-HP-Notebook" time="0.663">
   <properties/>
-  <testcase name="GetAllClients" classname="com.pinet.app.service.ClientDataServiceTest" time="0.684"/>
-  <testcase name="ConvertDatatojson" classname="com.pinet.app.service.ClientDataServiceTest" time="0.016"/>
+  <testcase name="GetAllClients" classname="com.pinet.app.service.ClientDataServiceTest" time="0.649"/>
+  <testcase name="ConvertDatatojson" classname="com.pinet.app.service.ClientDataServiceTest" time="0.014"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
