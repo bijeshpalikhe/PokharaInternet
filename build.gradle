@@ -33,8 +33,7 @@ jar {
 dependencies {
 // https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
     compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.0.RELEASE'
-
-
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.2.5.RELEASE'
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
     compile('org.liquibase:liquibase-core')
@@ -76,9 +75,9 @@ dependencies {
 
 }
 task stage{
-    dependsOn jar
+    dependsOn build
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
+    gradleVersion = '2.10'
 }
