@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.pinet.app.service.ClientDataServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-12-31T07:48:33" hostname="ashmeet-HP-Notebook" time="0.562">
-  <properties/>
-  <testcase name="GetAllClients" classname="com.pinet.app.service.ClientDataServiceTest" time="0.546"/>
-  <testcase name="ConvertDatatojson" classname="com.pinet.app.service.ClientDataServiceTest" time="0.016"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

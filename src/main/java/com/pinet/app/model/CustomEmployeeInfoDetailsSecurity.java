@@ -15,7 +15,6 @@ public class CustomEmployeeInfoDetailsSecurity implements UserDetails {
 
 
     public CustomEmployeeInfoDetailsSecurity(EmployeeRolesEntity employeeRolesEntity) {
-     //   System.out.println("\n USER ROLES : " + employeeRolesEntity.getRoles());
         this.employeeRolesEntity = employeeRolesEntity;
     }
 
@@ -24,7 +23,7 @@ public class CustomEmployeeInfoDetailsSecurity implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
         String roles = employeeRolesEntity.getRoles();
-
+        System.out.println("ROLES : "+roles);
         if (roles.contains(",")) {
             String[] parts = roles.split(",");
             String part1 = parts[0]; // 004

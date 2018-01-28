@@ -29,8 +29,4 @@ public class TicketTypeService {
         return ticketList;
     }
 
-
-//    public TicketDataResponse save(TicketDataVO ticketDataVO, String arjun) {
-//
-//    }
 }

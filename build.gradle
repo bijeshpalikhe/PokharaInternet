@@ -31,8 +31,7 @@ jar {
 }
 
 dependencies {
-// https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
-    compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.0.RELEASE'
+    compile 'org.springframework.security:spring-security-web:5.0.0.M4'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.2.5.RELEASE'
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
@@ -43,22 +42,15 @@ dependencies {
     compile group: 'cglib', name: 'cglib-nodep', version: '2.2'
     compile('org.webjars:bootstrap:4.0.0-beta')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.4.3.RELEASE'
-
-    // https://mvnrepository.com/artifact/com.sun.mail/javax.mail
     compile group: 'com.sun.mail', name: 'javax.mail', version: '1.6.0'
-
-
-// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
-    compile 'org.apache.tomcat:tomcat-dbcp:8.0.30'
     compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
 
-    runtime 'javax.transaction:jta:1.1'
-    runtime 'org.apache.httpcomponents:httpclient:4.5.2'
+    compile 'javax.transaction:jta:1.1'
+    compile 'org.apache.httpcomponents:httpclient:4.5.2'
 
+//    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile('org.easytesting:fest-assert:1.4')
     testCompile 'org.apache.httpcomponents:httpclient:4.5.2'
@@ -69,15 +61,6 @@ dependencies {
             'org.codehaus.groovy:groovy-all:2.4.6',
             'org.spockframework:spock-core:1.0-groovy-2.4'
     )
-
-    testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile("org.springframework.security:spring-security-test")
 
-}
-task stage{
-    dependsOn build
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.10'
 }

@@ -28,6 +28,11 @@ public class DefaultController {
         return "index";
     }
 
+    @GetMapping("/")
+    public String defaultLoginPage() {
+        return "index";
+    }
+
 //    @GetMapping("/")
 //    public String showDashboard(){
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -51,74 +56,6 @@ public class DefaultController {
         return "dashboard";
 
     }
-//
-//    @GetMapping("/")
-//    public String dashboard() {
-//        return "dashboard";
-//    }
-
-//    @GetMapping("/dashboard")
-//    public String dashboardPage() {
-//        return "dashboard";
-//    }
-
-    @GetMapping("/due")
-    public String dueDate() {
-        return "due-date";
-    }
-
-//    @GetMapping("/accessdenied")
-//    public String accessDenied() {
-//        return "access-denied";
-//    }
-//
-//    @GetMapping("/addcustomer")
-//    public String addcustomer() {
-//        return "add-customer";
-//    }
-//
-//
-//    @GetMapping("/managecustomer")
-//    public String managecustomer() {
-//        return "manage-customer";
-//    }
-//    @GetMapping("/addservice")
-//    public String addservice() {
-//        return "add-service";
-//    }
-//    @GetMapping("/viewservice")
-//    public String viewservice() {
-//        return "view-service";
-//    }
-//    @GetMapping("/manageservice")
-//    public String manageservice() {
-//        return "manage-service";
-//    }
-//    @GetMapping("/adduser")
-//    public String adduser() {
-//        return "add-user";
-//    }
-//    @GetMapping("/viewuser")
-//    public String viewuser() {
-//        return "view-user";
-//    }
-//    @GetMapping("/manageuser")
-//    public String manageuser() {
-//        return "manage-user";
-//    }
-//    @GetMapping("/addticket")
-//    public String addticket() {
-//        return "add-ticket";
-//    }
-//    @GetMapping("/viewticket")
-//    public String viewticket() {
-//        return "view-ticket";
-//    }
-//    @GetMapping("/manageticket")
-//    public String manageticket() {
-//        return "manage-ticket";
-//    }
-//    @Secured(value="ROLE_ADMIN")
 
 
 }
